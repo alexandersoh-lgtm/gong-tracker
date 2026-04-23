@@ -2,7 +2,7 @@ import workstreamsData from "@/data/workstreams.json";
 import { Workstream } from "@/app/types";
 import { getCalendarMeetings, CalendarMeeting } from "@/lib/googleCalendar";
 import StatusBadge from "@/components/StatusBadge";
-import ProgressBar from "@/components/ProgressBar";
+import MilestoneTimeline from "@/components/MilestoneTimeline";
 
 const milestoneIcon: Record<string, string> = {
   complete: "✓",
@@ -103,38 +103,29 @@ export default async function WorkstreamsPage() {
               </div>
             </div>
 
-            {/* Progress */}
-            <div className="px-6 py-4 border-b border-[var(--border)]">
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-[var(--text)]">Overall Progress</span>
-                <span className="text-[var(--text)] font-medium">{ws.percentComplete}%</span>
-              </div>
-              <ProgressBar
-                percent={ws.percentComplete}
-                color={ws.status === "green" ? "emerald" : ws.status === "yellow" ? "amber" : "blue"}
-              />
+            {/* Milestone Timeline */}
+            <div className="px-6 py-5 border-b border-[var(--border)]">
+              <MilestoneTimeline milestones={ws.milestones} />
             </div>
 
-            {/* Milestones + Blockers + Updates */}
+            {/* Milestones detail + Blockers + Updates */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
-              <div className="lg:col-span-2 p-6">
-                <h3 className="text-sm font-semibold text-[var(--text)] uppercase tracking-wide mb-4">Milestones</h3>
-                <div className="space-y-2">
+              <div className="lg:col-span-2 px-6 py-4">
+                <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Milestone Details</h3>
+                <div className="divide-y divide-[var(--border)]">
                   {ws.milestones.map((m) => (
-                    <div key={m.id} className="flex items-start gap-3">
-                      <span className={`text-sm mt-0.5 font-bold ${milestoneText[m.status]}`}>
-                        {milestoneIcon[m.status]}
-                      </span>
-                      <div className="flex-1 flex items-start justify-between gap-2">
-                        <span className={`text-sm ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-white" : "text-[var(--text-muted)]"}`}>
+                    <div key={m.id} className="flex items-center justify-between py-1.5 gap-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <span className={`text-xs font-bold shrink-0 ${milestoneText[m.status]}`}>
+                          {milestoneIcon[m.status]}
+                        </span>
+                        <span className={`text-xs truncate ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-medium" : "text-[var(--text-muted)]"}`}>
                           {m.name}
                         </span>
-                        <div className="text-right shrink-0">
-                          <span className="text-xs text-[var(--text-muted)]">{m.dueDate}</span>
-                          <div className="mt-0.5">
-                            <StatusBadge status={m.status} size="xs" />
-                          </div>
-                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-xs text-[var(--text-muted)]">{m.dueDate}</span>
+                        <StatusBadge status={m.status} size="xs" />
                       </div>
                     </div>
                   ))}

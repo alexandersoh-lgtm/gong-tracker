@@ -8,12 +8,12 @@
     "percentComplete": 65,
     "description": "A custom Lightning Web Component (LWC) built in Salesforce that integrates the Unified Genesys CTI dialer with Gong Engage. Reps access their Gong to-do call tasks and manage inbound queue routing directly from the Salesforce UI — eliminating the need to dial from the Gong UI. Features auto-authenticated Genesys login, required call disposition with 60-second auto-submit, TCPA/DNC compliance controls, and automatic Salesforce task writeback. Pilot launching May 4 with volunteer ASA cohort; GA release targeted June 8.",
     "milestones": [
-      { "id": "gd-1", "name": "Discovery", "dueDate": "2026-01-14", "status": "complete" },
-      { "id": "gd-2", "name": "Requirements", "dueDate": "2026-02-12", "status": "complete" },
-      { "id": "gd-3", "name": "Development", "dueDate": "2026-04-15", "status": "complete" },
-      { "id": "gd-4", "name": "UAT", "dueDate": "2026-04-23", "status": "in_progress" },
-      { "id": "gd-5", "name": "Pilot Launch", "dueDate": "2026-05-04", "status": "not_started" },
-      { "id": "gd-6", "name": "GA Release", "dueDate": "2026-06-08", "status": "not_started" }
+      { "id": "gd-1", "name": "Discovery",     "dueDate": "2026-01-28", "status": "complete" },
+      { "id": "gd-2", "name": "Requirements",  "dueDate": "2026-02-16", "status": "complete" },
+      { "id": "gd-3", "name": "Development",   "dueDate": "2026-04-20", "status": "complete" },
+      { "id": "gd-4", "name": "UAT",           "dueDate": "2026-04-23", "status": "in_progress" },
+      { "id": "gd-5", "name": "Pilot Launch",  "dueDate": "2026-05-04", "status": "not_started" },
+      { "id": "gd-6", "name": "GA Release",    "dueDate": "2026-06-08", "status": "not_started" }
     ],
     "blockers": [
       { "id": "b1", "description": "FC2 environment setup needed before full UAT can begin — targeting Apr 23 2PM PST", "owner": "Vishwas Dhudum", "raisedDate": "2026-04-22" },
