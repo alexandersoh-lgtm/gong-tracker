@@ -288,11 +288,14 @@ export default async function WorkstreamsPage() {
                   {/* Manual entries */}
                   {ws.meetings.past.map((m) => (
                     <div key={m.id} className="bg-slate-900/40 rounded-xl border border-slate-700/40 p-4">
-                      <div className="flex items-start justify-between gap-2 mb-3">
+                      <div className="flex items-start justify-between gap-2 mb-2">
                         <p className="font-semibold text-white text-sm">{m.title}</p>
                         <span className="text-xs text-slate-400 bg-slate-800 border border-slate-600 px-2 py-0.5 rounded-full shrink-0">{m.date}</span>
                       </div>
-                      <p className="text-xs text-slate-500 mb-3">Attendees: {m.attendees}</p>
+                      <p className="text-xs text-slate-500 mb-1">Attendees: {m.attendees}</p>
+                      {(m as { calendarLink?: string }).calendarLink && (
+                        <a href={(m as { calendarLink?: string }).calendarLink} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:underline block mb-3">Open in Google Calendar →</a>
+                      )}
                       <div className="space-y-3">
                         <div>
                           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">Decisions Made</p>

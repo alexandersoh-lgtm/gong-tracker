@@ -38,15 +38,51 @@
       ],
       "past": [
         {
-          "id": "gd-pm1",
-          "title": "Requirements Kickoff",
-          "date": "2026-04-10",
-          "attendees": "Alexander Soh, IT Ops, Sales Ops",
-          "decisions": ["Unified Genesys dialer selected as integration target", "Scope confirmed: click-to-dial, call logging, activity sync"],
+          "id": "gd-pm4",
+          "title": "Gong - Zillow (Genesys Dispositions)",
+          "date": "2026-03-26",
+          "attendees": "Austin Owens, Alexander Soh, Gong team",
+          "calendarLink": "https://www.google.com/calendar/event?eid=MDQ1NmI0bTQzOTMydnIzdmYyYW1zYmQ3M3UgYWxleGFuZGVyc29oQHppbGxvd2dyb3VwLmNvbQ",
+          "decisions": [],
+          "actionItems": []
+        },
+        {
+          "id": "gd-pm5",
+          "title": "Blocker: Unified Genesys Dialer Issue",
+          "date": "2026-03-23",
+          "attendees": "Alexander Soh, Gong team",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc3MTM0YWgyMzY5MzQ0Z3BoODhzNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODhzamNoaG02OHA0Y2docDZzcTRjZDFrNzBzM2NjaTE2Z3JqOGM5bTg0b2pjaGkyNjEzMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": ["Duplicate call issue escalated to Gong — email sent with full context"],
           "actionItems": [
-            { "title": "IT Ops to provision non-prod API credentials", "owner": "IT Ops", "dueDate": "2026-04-20" },
-            { "title": "Finalize requirements document", "owner": "Alexander Soh", "dueDate": "2026-04-30" }
+            { "title": "Follow up with Gong on duplicate call logging fix", "owner": "Alexander Soh", "dueDate": "2026-03-30" }
           ]
+        },
+        {
+          "id": "gd-pm3",
+          "title": "Engage Dialer Approach",
+          "date": "2026-02-12",
+          "attendees": "Alexander Soh, Gong team",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4OHFqNGQyMzhvc2s2YzI1NzUwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRzazRkaGg2ZDJrY2gxbDg5MWplYzlrNjExMzRjYTQ2ZDFqY2U5azY0bzRjaDFvOG9zMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": ["Reviewed three dialer options: Single Genesys Dialer, Gong native dialer, hybrid", "Goal confirmed: align on preferred dialer option for Gong Engage"],
+          "actionItems": []
+        },
+        {
+          "id": "gd-pm2",
+          "title": "Discuss with Zillow: Custom Build — Genesys Dialer with Engage",
+          "date": "2026-02-10",
+          "attendees": "Brea Porter, Brady (Gong), Ziv (Gong), Alexander Soh",
+          "calendarLink": "https://www.google.com/calendar/event?eid=MGdrdDhvNDdibTNpcWs1NzNmcGdzc2k1NGEgYWxleGFuZGVyc29oQHppbGxvd2dyb3VwLmNvbQ",
+          "decisions": ["Reviewed custom build approach for Genesys dialer integration with Engage"],
+          "actionItems": []
+        },
+        {
+          "id": "gd-pm1",
+          "title": "Genesys / Gong Dialer Sync",
+          "date": "2026-02-09",
+          "attendees": "Alexander Soh, Gong team, Genesys team",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2NTBrMmdpNjY0cWo2aDlvNzRzazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnOGQyajZjMWk2NG9qaWdpNTg1MWowZzlrNmwwazRjMWs2OHBrNGRxNDY4cmo2aDFtOGwyMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": ["Internal regroup after Gong sync"],
+          "actionItems": []
         }
       ]
     }
@@ -92,14 +128,23 @@
       "past": [
         {
           "id": "ge-pm1",
-          "title": "Admin Configuration Sign-off",
-          "date": "2026-04-15",
-          "attendees": "Alexander Soh, Gong CSM, IT",
-          "decisions": ["Admin config approved — workspace settings, permissions, and roles finalized", "Email integration confirmed via OAuth"],
+          "title": "Rentals Gong Engage Pilot",
+          "date": "2026-04-17",
+          "attendees": "Alexander Soh, Rentals team, Gong CSM",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4NTJrOGM5bzZjcjNnZDFnOGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzRyNDRkMjE2OHIzMmQ5bDZjcjQ0ZzlrNnNza2FkMjE2Y3FqaWMyMThsMmplZTI1NmQzMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": ["Lean 4-5 week Gong Engage pilot scoped for Rentals", "Includes Genesys click-to-call with auto-logging and Chili Piper integration"],
           "actionItems": [
-            { "title": "Begin Salesforce integration build", "owner": "Engineering", "dueDate": "2026-05-01" },
-            { "title": "Draft ASA sequence templates for review", "owner": "Alexander Soh", "dueDate": "2026-05-05" }
+            { "title": "Assemble Rentals pilot team (BA, SMB/Mid-Market)", "owner": "TBD", "dueDate": "2026-04-25" }
           ]
+        },
+        {
+          "id": "ge-pm2",
+          "title": "Engage Dialer Approach",
+          "date": "2026-02-12",
+          "attendees": "Alexander Soh, Gong team",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4OHFqNGQyMzhvc2s2YzI1NzUwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRzazRkaGg2ZDJrY2gxbDg5MWplYzlrNjExMzRjYTQ2ZDFqY2U5azY0bzRjaDFvOG9zMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": ["Reviewed dialer options for Gong Engage: Single Genesys, Gong native, hybrid"],
+          "actionItems": []
         }
       ]
     }
