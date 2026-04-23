@@ -282,7 +282,7 @@ export default async function WorkstreamsPage() {
                     </span>
                   )}
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-3 max-h-[560px] overflow-y-auto pr-1">
                   {/* Calendar past events */}
                   {pastCal.map((m) => <CalendarMeetingCard key={m.id} m={m} />)}
                   {/* Manual entries */}

@@ -29,6 +29,33 @@
       "upcoming": [],
       "past": [
         {
+          "id": "gd-pm6",
+          "title": "Dialer Scenarios",
+          "date": "2026-04-15",
+          "attendees": "Alexander Soh, Chris Hayden, Vishwas Dhudum, Alex Coventry",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4OHFqNGQyMzhvc2s2YzI1NzUwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRzazRkaGg2ZDJrY2gxbDg5MWplYzlrNjExMzRjYTQ2ZDFqY2U5azY0bzRjaDFvOG9zMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": [
+            "Confirmed 3 dialer use cases: (1) outbound 1-to-1, (2) inbound queue calls, (3) inbound 1-to-1 calls. 4th noted: outbound calls to support/transfer hub",
+            "Disposition/wrap-up codes will be displayed consistently across ALL call types using the same custom model",
+            "Disposition will be REQUIRED — modal cannot be closed without selecting a value",
+            "60-second timeout after call completion before auto-submit with a default value",
+            "Genesys native wrap-up popup to be suppressed (1-second timeout) to avoid double-dispositioning",
+            "Disposition values will write back to corresponding Salesforce task",
+            "Options stored as custom metadata in Salesforce — configurable by admin, not hard-coded",
+            "Role/business-line-specific disposition options noted as future backlog item (not in current scope)"
+          ],
+          "actionItems": [
+            { "title": "Alex Coventry to provide core default disposition values (target: ~4 options, keep simple)", "owner": "Alex Coventry", "dueDate": "2026-04-22" },
+            { "title": "Alex Coventry to provide ideal disposition options by role (acquisitions, GNR, CSMs) for future enhancement", "owner": "Alex Coventry", "dueDate": "2026-04-29" },
+            { "title": "Vishwas to validate whether inbound call dispositions would impact outbound analytics in Gong", "owner": "Vishwas Dhudum", "dueDate": "2026-04-22" },
+            { "title": "Vishwas to confirm disposition data writeback to Salesforce task in production (sandbox showed limited data)", "owner": "Vishwas Dhudum", "dueDate": "2026-04-22" },
+            { "title": "Alexander to create story for Salesforce task disposition writeback", "owner": "Alexander Soh", "dueDate": "2026-04-22" },
+            { "title": "Configure 60-second auto-submit with non-selectable default value in Genesys", "owner": "Vishwas Dhudum", "dueDate": "2026-05-01" },
+            { "title": "Suppress Genesys native wrap-up popup (1-second timeout)", "owner": "Vishwas Dhudum", "dueDate": "2026-05-01" },
+            { "title": "Chris Hayden to ask reps about inbound call dispositioning preferences", "owner": "Chris Hayden", "dueDate": "2026-04-22" }
+          ]
+        },
+        {
           "id": "gd-pm4",
           "title": "Gong - Zillow (Genesys Dispositions)",
           "date": "2026-03-26",
@@ -133,11 +160,23 @@
           "date": "2026-04-17",
           "attendees": "Alexander Soh, Michelle Maenpaa, Rentals team",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0NTJrOGM5bzZjcjNnZDFnOGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzRyNDRkMjE2OHIzMmQ5bDZjcjQ0ZzlrNnNza2FkMjE2Y3FqaWMyMThsMmplZTI1NmQzMCA%3D",
-          "decisions": ["Lean 4-5 week Gong Engage pilot scoped for Rentals BDR/SE/BA roles", "Includes Genesys click-to-call with auto-logging and Chili Piper routing", "Engage Work List to replace Outlook flags as daily start surface"],
+          "decisions": [
+            "Too early to commit to a Rentals pilot — Michelle just started and needs time to understand the team's current workflows and tool usage",
+            "Agreed to parallel path: (1) SalesLoft contract extension exploration and (2) Rentals pilot planning for future consideration",
+            "SalesLoft contract ends August 2026 — Rentals will be the last remaining group if all others migrate to Gong Engage by that date",
+            "Rentals would have its own separate Gong workspace with admin control if/when they migrate",
+            "Agreed on bi-weekly 1:1 cadence between Alexander and Michelle going forward",
+            "Alexander will audit Gong smart trackers and reallocate equitably across business lines (ASA currently consuming majority)",
+            "Gong moving to usage-based smart trackers — capacity concerns should resolve naturally"
+          ],
           "actionItems": [
-            { "title": "Assemble pilot cohort (5-8 reps across BDR, SE, BA)", "owner": "TBD", "dueDate": "2026-04-25" },
-            { "title": "Confirm Genesys dialer live and tested for pilot reps before Week 3", "owner": "Alexander Soh", "dueDate": "2026-05-01" },
-            { "title": "Schedule leadership alignment with Joanna, Chris, Jenna", "owner": "Alexander Soh", "dueDate": "2026-04-25" }
+            { "title": "Alexander to set up follow-up meeting with Michelle (~2 weeks) to discuss Rentals pilot approach", "owner": "Alexander Soh", "dueDate": "2026-04-27" },
+            { "title": "Alexander to set up 3-way meeting: Alexander + Michelle + Brian Short (Sourcing) re: SalesLoft extension", "owner": "Alexander Soh", "dueDate": "2026-04-27" },
+            { "title": "Alexander to send Michelle the Gong implementation SOW", "owner": "Alexander Soh", "dueDate": "2026-04-20" },
+            { "title": "Alexander to research pros/cons of shared vs separate Gong instance for Rentals", "owner": "Alexander Soh", "dueDate": "2026-05-01" },
+            { "title": "Alexander to audit and reallocate Gong smart trackers equitably across business lines", "owner": "Alexander Soh", "dueDate": "2026-05-01" },
+            { "title": "Michelle to gather Rentals team enablement data from peer by next Wednesday", "owner": "Michelle Maenpaa", "dueDate": "2026-04-22" },
+            { "title": "Michelle to meet with Rentals sales managers and reps to understand current SalesLoft usage and pain points", "owner": "Michelle Maenpaa", "dueDate": "2026-05-01" }
           ]
         },
         {
