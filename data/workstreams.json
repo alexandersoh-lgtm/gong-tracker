@@ -4,30 +4,80 @@
     "name": "Unified Genesys Dialer",
     "icon": "📞",
     "status": "green",
-    "owner": "TBD",
-    "percentComplete": 25,
-    "description": "Integration of Gong Engage with the Unified Genesys dialer platform. Enables click-to-dial, call logging, and activity sync.",
+    "owner": "Alexander Sohn, Vishwas Dhudum",
+    "percentComplete": 65,
+    "description": "A custom Lightning Web Component (LWC) built in Salesforce that integrates the Unified Genesys CTI dialer with Gong Engage. Reps access their Gong to-do call tasks and manage inbound queue routing directly from the Salesforce UI — eliminating the need to dial from the Gong UI. Features auto-authenticated Genesys login, required call disposition with 60-second auto-submit, TCPA/DNC compliance controls, and automatic Salesforce task writeback. Pilot launching May 4 with volunteer ASA cohort; GA release targeted June 8.",
     "milestones": [
-      { "id": "gd-1", "name": "Requirements & scope finalized", "dueDate": "2026-04-30", "status": "complete" },
-      { "id": "gd-2", "name": "Technical architecture approved", "dueDate": "2026-05-15", "status": "in_progress" },
-      { "id": "gd-3", "name": "Dev environment configured", "dueDate": "2026-05-30", "status": "not_started" },
-      { "id": "gd-4", "name": "Integration build complete", "dueDate": "2026-06-30", "status": "not_started" },
-      { "id": "gd-5", "name": "UAT sign-off", "dueDate": "2026-07-15", "status": "not_started" },
-      { "id": "gd-6", "name": "Production deployment", "dueDate": "2026-07-31", "status": "not_started" }
+      { "id": "gd-1", "name": "Discovery", "dueDate": "2026-01-14", "status": "complete" },
+      { "id": "gd-2", "name": "Requirements", "dueDate": "2026-02-12", "status": "complete" },
+      { "id": "gd-3", "name": "Development", "dueDate": "2026-04-15", "status": "complete" },
+      { "id": "gd-4", "name": "UAT", "dueDate": "2026-04-23", "status": "in_progress" },
+      { "id": "gd-5", "name": "Pilot Launch", "dueDate": "2026-05-04", "status": "not_started" },
+      { "id": "gd-6", "name": "GA Release", "dueDate": "2026-06-08", "status": "not_started" }
     ],
     "blockers": [
-      { "id": "b1", "description": "Genesys API credentials not yet provisioned for non-prod environment", "owner": "IT Ops", "raisedDate": "2026-04-20" }
+      { "id": "b1", "description": "FC2 environment setup needed before full UAT can begin — targeting Apr 23 2PM PST", "owner": "Vishwas Dhudum", "raisedDate": "2026-04-22" },
+      { "id": "b2", "description": "Decision pending on whether to disable Gong dialing in extension during pilot — tabled for separate Alex/Chris/Alex Coventry meeting", "owner": "Alexander Sohn", "raisedDate": "2026-04-22" }
     ],
     "updates": [
-      { "date": "2026-04-23", "text": "Waiting on IT Ops for API access." }
+      { "date": "2026-04-22", "text": "UAT kicked off — Vishwas demoed build in sandbox. FC2 env targeting ready Apr 23. Official UAT begins Friday. Pilot target confirmed May 4 pending clean UAT." }
     ],
     "actions": [
-      { "id": "gd-a1", "title": "Escalate Genesys API credentials to IT leadership", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
-      { "id": "gd-a2", "title": "Complete technical architecture document", "owner": "TBD", "dueDate": "2026-05-10", "priority": "high", "status": "in_progress" }
+      { "id": "gd-a1", "title": "Gather and validate pilot user list (70-80 users) and send to Vishwas for Gong user ID assignment", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
+      { "id": "gd-a2", "title": "Start Slack thread with Vishwas and Bree to coordinate Genesys queue setup for UAT users", "owner": "Alexander Sohn", "dueDate": "2026-04-23", "priority": "high", "status": "open" },
+      { "id": "gd-a3", "title": "Meet with Chris Hayden and Alex Coventry to decide on Gong dialing disable vs keep for pilot", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
+      { "id": "gd-a4", "title": "Follow up on Caller ID display in Genesys (showing contact name + number)", "owner": "Alexander Sohn", "dueDate": "2026-04-28", "priority": "medium", "status": "open" },
+      { "id": "gd-a5", "title": "Create post-MVP ticket to automate permission set assignment + Gong user ID update in Salesforce", "owner": "Alexander Sohn", "dueDate": "2026-04-28", "priority": "medium", "status": "open" },
+      { "id": "gd-a6", "title": "Develop pilot evaluation criteria and satisfaction survey for control vs pilot group comparison", "owner": "Alexander Sohn", "dueDate": "2026-04-30", "priority": "high", "status": "open" },
+      { "id": "gd-a7", "title": "Vishwas to check recording button behavior / permissions for standard rep profiles", "owner": "Vishwas Dhudum", "dueDate": "2026-04-25", "priority": "medium", "status": "open" }
     ],
     "meetings": {
       "upcoming": [],
       "past": [
+        {
+          "id": "gd-pm8",
+          "title": "Unified Genesys Dialer UAT",
+          "date": "2026-04-22",
+          "attendees": "Alexander Sohn, Chris Hayden, Alex Coventry, Vishwas Dhudum",
+          "decisions": [
+            "UAT environment (FC2) targeting ready Apr 23 2PM PST — official UAT begins Friday Apr 24",
+            "Build demonstrated in sandbox: LWC routes Gong to-do tasks and inbound queue through Genesys CTI within Salesforce",
+            "Disposition modal confirmed: 60-second auto-submit, close button disabled, reps cannot exit without selecting or waiting",
+            "To-do task list shows 3 at a time sorted by due date — task filtering/sorting logged as fast follower",
+            "Reps auto-authenticated into Genesys on Salesforce login (requires Genesys onboarding and call center assignment on user record)",
+            "Decision on disabling Gong dialing in extension tabled — separate meeting with Chris and Alex Coventry to decide",
+            "Pilot cohort: volunteer teams from GNR and/or acquisitions who have complained about current dialer — AB test against control group",
+            "Production deployment held until after Zero retreat (end of week of Apr 28)",
+            "Post-MVP: TCPA/DNC service call to filter only callable numbers before display in to-do list"
+          ],
+          "actionItems": [
+            { "title": "Vishwas to complete FC2 environment setup", "owner": "Vishwas Dhudum", "dueDate": "2026-04-23" },
+            { "title": "Alexander to start Slack thread with Vishwas + Bree for UAT user Genesys queue setup", "owner": "Alexander Sohn", "dueDate": "2026-04-23" },
+            { "title": "Chris Hayden to compile list of rep feedback and enhancement requests from UAT", "owner": "Chris Hayden", "dueDate": "2026-04-28" },
+            { "title": "Alexander, Chris, Alex Coventry to meet to decide on Gong dialing disable vs keep", "owner": "Alexander Sohn", "dueDate": "2026-04-25" },
+            { "title": "Vishwas to check recording button behavior for standard rep profiles", "owner": "Vishwas Dhudum", "dueDate": "2026-04-25" }
+          ]
+        },
+        {
+          "id": "gd-pm7",
+          "title": "Vishwas & Alex Weekly Gong Sync",
+          "date": "2026-04-22",
+          "attendees": "Alexander Sohn, Vishwas Dhudum",
+          "decisions": [
+            "Reviewed UAT test scripts ahead of UAT session — expected outcomes confirmed",
+            "FC2 (Salesforce), Zillow Dev (Genesys), dedicated sandbox (Gong) are the UAT environments",
+            "Production deployment to be held until after Zero retreat (end of Apr 28 week)",
+            "Pilot users (70-80) will have two manual setup steps: permission set assignment + Gong user ID update in Salesforce — to be automated post-MVP (Ticket 11694)",
+            "Inbound UAT: users must be added to Genesys queues by Bree — ServiceNow ticket already created for 3 UAT users"
+          ],
+          "actionItems": [
+            { "title": "Vishwas to complete FC2 environment setup targeting Apr 23 2PM PST", "owner": "Vishwas Dhudum", "dueDate": "2026-04-23" },
+            { "title": "Alexander to gather pilot user list and send to Vishwas (email or name format)", "owner": "Alexander Sohn", "dueDate": "2026-04-25" },
+            { "title": "Alexander to create post-MVP ticket to automate permission set + Gong user ID assignment", "owner": "Alexander Sohn", "dueDate": "2026-04-28" },
+            { "title": "Alexander to ask Bree about SalesLoft caller ID behavior for comparison", "owner": "Alexander Sohn", "dueDate": "2026-04-25" },
+            { "title": "Alexander to start Slack thread with Vishwas + Bree to coordinate Genesys queue setup", "owner": "Alexander Sohn", "dueDate": "2026-04-23" }
+          ]
+        },
         {
           "id": "gd-pm6",
           "title": "Dialer Scenarios",
