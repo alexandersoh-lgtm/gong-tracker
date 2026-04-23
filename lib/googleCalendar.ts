@@ -31,7 +31,7 @@ export function mapToWorkstreams(title: string, description: string): string[] {
     ws.add("gong-forecast");
   }
 
-  return [...ws];
+  return Array.from(ws);
 }
 
 function unfold(ics: string): string {
