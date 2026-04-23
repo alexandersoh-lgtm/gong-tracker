@@ -9,16 +9,6 @@ export interface CalendarMeeting {
   source: "calendar";
 }
 
-interface GoogleCalendarEvent {
-  id: string;
-  summary?: string;
-  description?: string;
-  start: { dateTime?: string; date?: string };
-  end: { dateTime?: string; date?: string };
-  attendees?: { email: string; displayName?: string; self?: boolean }[];
-  htmlLink: string;
-}
-
 const KEYWORDS = ["gong", "genesys"];
 
 function isRelevant(title: string, description: string): boolean {
@@ -35,7 +25,6 @@ export function mapToWorkstreams(title: string, description: string): string[] {
   if (text.includes("gong forecast")) ws.add("gong-forecast");
   if (text.includes("gong") && text.includes("pmo")) ws.add("pmo");
 
-  // Generic "Gong" with no specific product → show in both Engage and Forecast
   const hasSpecific = ws.has("gong-engage") || ws.has("gong-forecast") || ws.has("pmo");
   if (text.includes("gong") && !hasSpecific) {
     ws.add("gong-engage");
@@ -45,81 +34,127 @@ export function mapToWorkstreams(title: string, description: string): string[] {
   return [...ws];
 }
 
-async function getAccessToken(): Promise<string> {
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      client_id: process.env.GOOGLE_CLIENT_ID!,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET!,
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN!,
-      grant_type: "refresh_token",
-    }),
-    cache: "no-store",
+function unfold(ics: string): string {
+  // iCal lines folded with CRLF + whitespace must be joined
+  return ics.replace(/\r\n[ \t]/g, "").replace(/\n[ \t]/g, "");
+}
+
+function parseICalDate(value: string): Date {
+  // Strip TZID prefix if present (DTSTART;TZID=...:value)
+  const raw = value.includes(":") ? value.split(":").pop()! : value;
+
+  if (raw.length === 8) {
+    // DATE: YYYYMMDD (all-day)
+    return new Date(
+      parseInt(raw.slice(0, 4)),
+      parseInt(raw.slice(4, 6)) - 1,
+      parseInt(raw.slice(6, 8))
+    );
+  }
+
+  // DATETIME: YYYYMMDDTHHmmss[Z]
+  const y = parseInt(raw.slice(0, 4));
+  const mo = parseInt(raw.slice(4, 6)) - 1;
+  const d = parseInt(raw.slice(6, 8));
+  const h = parseInt(raw.slice(9, 11));
+  const m = parseInt(raw.slice(11, 13));
+
+  return raw.endsWith("Z")
+    ? new Date(Date.UTC(y, mo, d, h, m))
+    : new Date(y, mo, d, h, m);
+}
+
+function parseICS(ics: string): CalendarMeeting[] {
+  const content = unfold(ics);
+  const lines = content.split(/\r?\n/);
+  const meetings: CalendarMeeting[] = [];
+  const now = new Date();
+
+  let inEvent = false;
+  let summary = "";
+  let description = "";
+  let dtstart = "";
+  let uid = "";
+  let url = "";
+  const attendees: string[] = [];
+
+  for (const line of lines) {
+    if (line === "BEGIN:VEVENT") {
+      inEvent = true;
+      summary = "";
+      description = "";
+      dtstart = "";
+      uid = "";
+      url = "";
+      attendees.length = 0;
+      continue;
+    }
+
+    if (line === "END:VEVENT") {
+      inEvent = false;
+      if (!isRelevant(summary, description)) continue;
+
+      const date = parseICalDate(dtstart);
+      const workstreamIds = mapToWorkstreams(summary, description);
+      if (workstreamIds.length === 0) continue;
+
+      meetings.push({
+        id: uid || `${summary}-${dtstart}`,
+        title: summary || "(No title)",
+        date: date.toISOString().split("T")[0],
+        attendees: attendees.join(", ") || "See calendar",
+        calendarLink: url || "https://calendar.google.com",
+        workstreamIds,
+        isPast: date < now,
+        source: "calendar",
+      });
+      continue;
+    }
+
+    if (!inEvent) continue;
+
+    if (line.startsWith("SUMMARY:")) {
+      summary = line.slice(8).replace(/\\,/g, ",").replace(/\\n/g, " ");
+    } else if (line.startsWith("DESCRIPTION:")) {
+      description = line.slice(12).replace(/\\n/g, " ").replace(/\\,/g, ",");
+    } else if (line.startsWith("DTSTART")) {
+      dtstart = line.slice(line.indexOf(":") + 1);
+    } else if (line.startsWith("UID:")) {
+      uid = line.slice(4);
+    } else if (line.startsWith("URL:")) {
+      url = line.slice(4);
+    } else if (line.startsWith("ATTENDEE")) {
+      const cn = line.match(/CN=([^;:]+)/);
+      const self = line.includes("PARTSTAT=ACCEPTED") || line.includes("CUTYPE=INDIVIDUAL");
+      if (cn && !line.toLowerCase().includes(process.env.CALENDAR_OWNER_EMAIL?.toLowerCase() ?? "__noop__")) {
+        attendees.push(cn[1].replace(/^"(.*)"$/, "$1"));
+      }
+    }
+  }
+
+  // Sort: upcoming by date asc, past by date desc
+  return meetings.sort((a, b) => {
+    const da = new Date(a.date).getTime();
+    const db = new Date(b.date).getTime();
+    if (!a.isPast && !b.isPast) return da - db;
+    if (a.isPast && b.isPast) return db - da;
+    return 0;
   });
-  const data = await res.json();
-  if (!data.access_token) throw new Error("Failed to get access token");
-  return data.access_token;
 }
 
 export async function getCalendarMeetings(): Promise<CalendarMeeting[]> {
-  if (!process.env.GOOGLE_REFRESH_TOKEN || !process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-    return [];
-  }
+  const icalUrl = process.env.GOOGLE_CALENDAR_ICAL_URL;
+  if (!icalUrl) return [];
 
   try {
-    const accessToken = await getAccessToken();
-
-    const now = new Date();
-    const timeMin = new Date(now);
-    timeMin.setDate(timeMin.getDate() - 30);
-    const timeMax = new Date(now);
-    timeMax.setDate(timeMax.getDate() + 60);
-
-    const params = new URLSearchParams({
-      timeMin: timeMin.toISOString(),
-      timeMax: timeMax.toISOString(),
-      singleEvents: "true",
-      orderBy: "startTime",
-      maxResults: "250",
+    const res = await fetch(icalUrl, {
+      next: { revalidate: 300 }, // refresh every 5 minutes
     });
-
-    const res = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
-      {
-        headers: { Authorization: `Bearer ${accessToken}` },
-        next: { revalidate: 300 }, // cache for 5 minutes
-      }
-    );
-
-    const data = await res.json();
-    const events: GoogleCalendarEvent[] = data.items ?? [];
-    const now2 = new Date();
-
-    return events
-      .filter((e) => isRelevant(e.summary ?? "", e.description ?? ""))
-      .map((e) => {
-        const dateStr = e.start.dateTime ?? e.start.date ?? "";
-        const date = new Date(dateStr);
-        const workstreamIds = mapToWorkstreams(e.summary ?? "", e.description ?? "");
-        const attendeeList = (e.attendees ?? [])
-          .filter((a) => !a.self)
-          .map((a) => a.displayName ?? a.email)
-          .join(", ");
-
-        return {
-          id: e.id,
-          title: e.summary ?? "(No title)",
-          date: date.toISOString().split("T")[0],
-          attendees: attendeeList || "No external attendees",
-          calendarLink: e.htmlLink,
-          workstreamIds,
-          isPast: date < now2,
-          source: "calendar" as const,
-        };
-      });
+    if (!res.ok) return [];
+    const ics = await res.text();
+    return parseICS(ics);
   } catch (err) {
-    console.error("Google Calendar fetch failed:", err);
+    console.error("iCal fetch failed:", err);
     return [];
   }
 }

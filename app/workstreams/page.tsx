@@ -53,8 +53,7 @@ export default async function WorkstreamsPage() {
   const workstreams = workstreamsData as Workstream[];
   const calendarMeetings = await getCalendarMeetings();
 
-  const calendarConnected = calendarMeetings.length > 0 ||
-    (!!process.env.GOOGLE_REFRESH_TOKEN && !!process.env.GOOGLE_CLIENT_ID);
+  const calendarConnected = !!process.env.GOOGLE_CALENDAR_ICAL_URL;
 
   return (
     <div className="space-y-10">
@@ -63,18 +62,14 @@ export default async function WorkstreamsPage() {
           <h1 className="text-2xl font-bold text-white">Workstreams</h1>
           <p className="text-slate-400 text-sm mt-1">Detailed status for each program workstream.</p>
         </div>
-        {!calendarConnected && (
-          <a
-            href="/api/auth/google"
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-          >
-            📅 Connect Google Calendar
-          </a>
-        )}
-        {calendarConnected && (
+        {calendarConnected ? (
           <span className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-900/20 border border-emerald-700/40 px-3 py-1.5 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             Google Calendar connected
+          </span>
+        ) : (
+          <span className="text-xs text-slate-500 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full">
+            📅 Calendar not connected — add GOOGLE_CALENDAR_ICAL_URL in Vercel
           </span>
         )}
       </div>
