@@ -26,16 +26,7 @@
       { "id": "gd-a2", "title": "Complete technical architecture document", "owner": "TBD", "dueDate": "2026-05-10", "priority": "high", "status": "in_progress" }
     ],
     "meetings": {
-      "upcoming": [
-        {
-          "id": "gd-um1",
-          "title": "Architecture Review",
-          "date": "2026-04-28",
-          "attendees": "Alexander Soh, IT Ops, Gong CSM",
-          "goals": ["Review and approve technical architecture", "Confirm API integration approach"],
-          "decisionPoints": ["Confirm dialer integration method (CTI vs native)", "Decide on call recording storage approach"]
-        }
-      ],
+      "upcoming": [],
       "past": [
         {
           "id": "gd-pm4",
