@@ -118,11 +118,21 @@
       "upcoming": [
         {
           "id": "ge-um1",
-          "title": "ASA Pre-Launch Readiness Review",
-          "date": "2026-05-08",
-          "attendees": "Alexander Soh, ASA Sales Lead, Gong CSM",
-          "goals": ["Confirm ASA training schedule", "Review sequence templates", "Validate CRM integration"],
-          "decisionPoints": ["Go / No-Go decision for ASA pilot on May 15", "Confirm pilot group size and rep selection"]
+          "title": "Gong Engage & Forecast Core Planning",
+          "date": "2026-04-28",
+          "attendees": "Alexander Soh, Coleton Foruria, Doug Lampart, Chris Hayden, Alex Coventry, Emily Bates",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y3JqOGRxMTc0cjMyZWE2OGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnOGdvajRlOWk4OHBqaWQxZzY0czM0Y2hrNmgxM2NkaTU2a280Y2NobDhncTM2YzFoNjEzMF8yMDI2MDQyMVQxODA1MDBaIA%3D%3D",
+          "goals": ["Review rollout plan", "Core planning for Engage & Forecast implementation"],
+          "decisionPoints": []
+        },
+        {
+          "id": "ge-um2",
+          "title": "Gong Engage & Forecast — Sourcing Sync",
+          "date": "2026-05-01",
+          "attendees": "Alexander Soh, Brian Short, Alex Coventry",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc3MHIzaWNwbzY1MmsyZ3BrODRzazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNmNyNDhkMXA2MHJrNmNwbDg4cjRjZ2hrOG9zMzhnaTQ3NHMzZWRoZzZvcGo0Z2ExNzRvZ18yMDI2MDUwMVQxNjM1MDBaIA%3D%3D",
+          "goals": ["Review Gong early renewal workbook", "Align on sourcing and contracting activities"],
+          "decisionPoints": []
         }
       ],
       "past": [
@@ -130,20 +140,40 @@
           "id": "ge-pm1",
           "title": "Rentals Gong Engage Pilot",
           "date": "2026-04-17",
-          "attendees": "Alexander Soh, Rentals team, Gong CSM",
-          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4NTJrOGM5bzZjcjNnZDFnOGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzRyNDRkMjE2OHIzMmQ5bDZjcjQ0ZzlrNnNza2FkMjE2Y3FqaWMyMThsMmplZTI1NmQzMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
-          "decisions": ["Lean 4-5 week Gong Engage pilot scoped for Rentals", "Includes Genesys click-to-call with auto-logging and Chili Piper integration"],
+          "attendees": "Alexander Soh, Michelle Maenpaa, Rentals team",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0NTJrOGM5bzZjcjNnZDFnOGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzRyNDRkMjE2OHIzMmQ5bDZjcjQ0ZzlrNnNza2FkMjE2Y3FqaWMyMThsMmplZTI1NmQzMCA%3D",
+          "decisions": ["Lean 4-5 week Gong Engage pilot scoped for Rentals BDR/SE/BA roles", "Includes Genesys click-to-call with auto-logging and Chili Piper routing", "Engage Work List to replace Outlook flags as daily start surface"],
           "actionItems": [
-            { "title": "Assemble Rentals pilot team (BA, SMB/Mid-Market)", "owner": "TBD", "dueDate": "2026-04-25" }
+            { "title": "Assemble pilot cohort (5-8 reps across BDR, SE, BA)", "owner": "TBD", "dueDate": "2026-04-25" },
+            { "title": "Confirm Genesys dialer live and tested for pilot reps before Week 3", "owner": "Alexander Soh", "dueDate": "2026-05-01" },
+            { "title": "Schedule leadership alignment with Joanna, Chris, Jenna", "owner": "Alexander Soh", "dueDate": "2026-04-25" }
           ]
         },
         {
           "id": "ge-pm2",
-          "title": "Engage Dialer Approach",
-          "date": "2026-02-12",
-          "attendees": "Alexander Soh, Gong team",
-          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4OHFqNGQyMzhvc2s2YzI1NzUwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRzazRkaGg2ZDJrY2gxbDg5MWplYzlrNjExMzRjYTQ2ZDFqY2U5azY0bzRjaDFvOG9zMCBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
-          "decisions": ["Reviewed dialer options for Gong Engage: Single Genesys, Gong native, hybrid"],
+          "title": "[Optional] Office Hours: Gong Engage & Forecast Troubleshooting",
+          "date": "2026-03-13",
+          "attendees": "Connor O'Sullivan, Kyle Marquand, Alexander Soh, Laura Stoner + Agent Sales team",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0OHNqaWVhMjc0c2pnZzlqODRyNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNjhzazhoOWk2cDE0NmUxazZzc2thYzFrNjBzM2VkMXA2cDFqaWdpMzhncmppaDFrODRvZ18yMDI2MDMxM1QyMDM1MDBaIA%3D%3D",
+          "decisions": ["Open office hours to troubleshoot Gong Engage and Forecast issues during ASA pilot"],
+          "actionItems": []
+        },
+        {
+          "id": "ge-pm3",
+          "title": "Gong Engage & Forecast Rollout Plan",
+          "date": "2026-03-03",
+          "attendees": "Alexander Soh, Alex Coventry, Emily Bates",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4Y3E0Y2U5aDhrcWsyZHBwODRyNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNjhvM2llMWw4b3JqNmdxMjZoMjM0aGhrNjhzajRoMjU2NTEzZ2NocDZzc2o4ZDlsNjRwMCA%3D",
+          "decisions": ["Reviewed rollout plan for Agent Sales"],
+          "actionItems": []
+        },
+        {
+          "id": "ge-pm4",
+          "title": "Gong Engage & Forecast — Go/No-Go",
+          "date": "2026-02-13",
+          "attendees": "Alexander Soh, Kelly Talaske, Andy Michaud-Reisig, Brian Short, Matt Gilliland, Joanna Kao, Doug Lampart + team",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3EzaWU5bjhkMmpkZWhuODkyM2dlMWs4Y3NqMmUxajcwc2s0ZDlrNnNzNDhkaGw2c3MwA%3D%3D",
+          "decisions": [],
           "actionItems": []
         }
       ]
@@ -179,24 +209,41 @@
       "upcoming": [
         {
           "id": "gf-um1",
-          "title": "Forecast Workstream Owner Alignment",
+          "title": "Gongsolidation PMO: Gong Forecast Weekly Standup",
+          "date": "2026-04-27",
+          "attendees": "Alexander Soh, Steven Reilly, Alex Coventry, Shawn Cournoyer, Will Gray, Angela McClure, Alex Zener",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3AzZ2doZzcxMzNhZDlnODRwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRvM2FncGw2Y3FrY2c5aDc0cjQ0ZzlrNnAwazZoOXA4OHA0OGRhMzcxMWoyaDFwNmNzMF8yMDI2MDQyN1QyMDM1MDBaIA%3D%3D",
+          "goals": ["Weekly standup for Gong Forecast buildout contributors"],
+          "decisionPoints": []
+        },
+        {
+          "id": "gf-um2",
+          "title": "Gong Engage & Forecast Core Planning",
           "date": "2026-04-28",
-          "attendees": "Alexander Soh, VP Sales Ops, Gong CSM",
-          "goals": ["Confirm workstream owner", "Review CRM field mapping output", "Align on forecast rollup structure"],
-          "decisionPoints": ["Owner assignment for Forecast workstream", "Approval of CRM field mapping approach"]
+          "attendees": "Alexander Soh, Coleton Foruria, Doug Lampart, Chris Hayden, Alex Coventry, Emily Bates",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y3JqOGRxMTc0cjMyZWE2OGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnOGdvajRlOWk4OHBqaWQxZzY0czM0Y2hrNmgxM2NkaTU2a280Y2NobDhncTM2YzFoNjEzMF8yMDI2MDQyMVQxODA1MDBaIA%3D%3D",
+          "goals": ["Core planning across Engage & Forecast rollout"],
+          "decisionPoints": []
         }
       ],
       "past": [
         {
           "id": "gf-pm1",
-          "title": "CRM Field Mapping Workshop",
-          "date": "2026-04-18",
-          "attendees": "Alexander Soh, Sales Ops, Gong CSM, Salesforce Admin",
-          "decisions": ["Opportunity fields confirmed for Gong Forecast sync", "Pipeline stages mapped to Gong deal stages"],
-          "actionItems": [
-            { "title": "Document finalized field mapping", "owner": "Salesforce Admin", "dueDate": "2026-04-25" },
-            { "title": "Escalate owner assignment to VP Sales Ops", "owner": "Alexander Soh", "dueDate": "2026-04-28" }
-          ]
+          "title": "Gongsolidation PMO: Gong Forecast Weekly Standup",
+          "date": "2026-04-21",
+          "attendees": "Alexander Soh, Steven Reilly, Alex Coventry, Shawn Cournoyer, Will Gray, Angela McClure, Alex Zener",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3AzZ2doZzcxMzNhZDlnODRwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRvM2FncGw2Y3FrY2c5aDc0cjQ0ZzlrNnAwazZoOXA4OHA0OGRhMzcxMWoyaDFwNmNzMF8yMDI2MDQyMFQyMDM1MDBaIA%3D%3D",
+          "decisions": [],
+          "actionItems": []
+        },
+        {
+          "id": "gf-pm2",
+          "title": "Gong Engage & Forecast — Go/No-Go",
+          "date": "2026-02-13",
+          "attendees": "Alexander Soh, Kelly Talaske, Andy Michaud-Reisig, Brian Short, Matt Gilliland, Joanna Kao, Doug Lampart + team",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3EzaWU5bjhkMmpkZWhuODkyM2dlMWs4Y3NqMmUxajcwc2s0ZDlrNnNzNDhkaGw2c3MwA%3D%3D",
+          "decisions": [],
+          "actionItems": []
         }
       ]
     }
@@ -228,24 +275,41 @@
       "upcoming": [
         {
           "id": "pm-um1",
-          "title": "Steering Committee — Q2 Update",
-          "date": "2026-04-30",
-          "attendees": "Alexander Soh, VP Sales Ops, Gong CSM, IT Leadership",
-          "goals": ["Present Q2 program status", "Get alignment on Forecast owner", "Review launch timeline for all groups"],
-          "decisionPoints": ["Approval of Q2 status report", "Go-forward plan for ZMGI legal review", "Resource allocation for remaining workstreams"]
+          "title": "Gongsolidation PMO: Gong Forecast Weekly Standup",
+          "date": "2026-04-27",
+          "attendees": "Alexander Soh, Steven Reilly, Alex Coventry, Shawn Cournoyer, Will Gray, Angela McClure, Alex Zener",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3AzZ2doZzcxMzNhZDlnODRwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRvM2FncGw2Y3FrY2c5aDc0cjQ0ZzlrNnAwazZoOXA4OHA0OGRhMzcxMWoyaDFwNmNzMF8yMDI2MDQyN1QyMDM1MDBaIA%3D%3D",
+          "goals": ["Weekly standup — Gong Forecast buildout contributors"],
+          "decisionPoints": []
+        },
+        {
+          "id": "pm-um2",
+          "title": "Gong Engage & Forecast Core Planning",
+          "date": "2026-04-28",
+          "attendees": "Alexander Soh, Coleton Foruria, Doug Lampart, Chris Hayden, Alex Coventry, Emily Bates",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y3JqOGRxMTc0cjMyZWE2OGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnOGdvajRlOWk4OHBqaWQxZzY0czM0Y2hrNmgxM2NkaTU2a280Y2NobDhncTM2YzFoNjEzMF8yMDI2MDQyMVQxODA1MDBaIA%3D%3D",
+          "goals": ["Core planning — Engage & Forecast rollout"],
+          "decisionPoints": []
         }
       ],
       "past": [
         {
           "id": "pm-pm1",
-          "title": "Steering Committee Kickoff",
-          "date": "2026-03-01",
-          "attendees": "Alexander Soh, VP Sales Ops, CFO, IT Leadership, Gong CSM",
-          "decisions": ["Program charter approved", "ASA confirmed as first launch group", "Bi-weekly steering committee cadence established"],
-          "actionItems": [
-            { "title": "Publish program charter to SharePoint", "owner": "Alexander Soh", "dueDate": "2026-03-08" },
-            { "title": "Set up recurring steering committee invites", "owner": "Alexander Soh", "dueDate": "2026-03-05" }
-          ]
+          "title": "Gong Engage/Forecast Sourcing Weekly Sync",
+          "date": "2026-02-20",
+          "attendees": "Alexander Soh, Andy Michaud-Reisig, Brian Short, Alex Coventry, Shannon Spivey",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2b3E0YWM5cDY1MzMwZzltNzUzNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzUxamNkMWs4bDMzZ2hhNjZwMzM4Z3BrNmNzNDZkcTY4a3FrYWc5cDg4b2pjaDIxODhyMCA%3D",
+          "decisions": ["Aligned on key sourcing and contracting activities for Gong early renewal", "Reviewed renewal workbook open items"],
+          "actionItems": []
+        },
+        {
+          "id": "pm-pm2",
+          "title": "Gong Engage & Forecast — Go/No-Go",
+          "date": "2026-02-13",
+          "attendees": "Alexander Soh, Kelly Talaske, Andy Michaud-Reisig, Brian Short, Matt Gilliland, Joanna Kao, Doug Lampart + team",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3EzaWU5bjhkMmpkZWhuODkyM2dlMWs4Y3NqMmUxajcwc2s0ZDlrNnNzNDhkaGw2c3MwA%3D%3D",
+          "decisions": [],
+          "actionItems": []
         }
       ]
     }
