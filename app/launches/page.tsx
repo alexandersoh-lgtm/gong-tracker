@@ -4,7 +4,7 @@ import { LaunchData, PhaseStatus } from "@/app/types";
 const phaseStyles: Record<PhaseStatus, { cell: string; label: string }> = {
   complete: { cell: "bg-emerald-900/50 border-emerald-700/50 text-emerald-300", label: "Done" },
   in_progress: { cell: "bg-blue-900/50 border-blue-700/50 text-blue-300", label: "Active" },
-  not_started: { cell: "bg-slate-800/40 border-slate-700/30 text-slate-500", label: "—" },
+  not_started: { cell: "bg-[var(--surface-2)]/40 border-slate-700/30 text-slate-500", label: "—" },
 };
 
 function PhaseCell({ status }: { status: PhaseStatus }) {
@@ -22,8 +22,8 @@ export default function LaunchesPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Launch Tracker</h1>
-        <p className="text-slate-400 text-sm mt-1">
+        <h1 className="text-2xl font-bold text-[var(--text)]">Launch Tracker</h1>
+        <p className="text-[var(--text-muted)] text-sm mt-1">
           Phase-by-phase launch status for each business unit, across Engage and Forecast products.
         </p>
       </div>
@@ -43,34 +43,34 @@ export default function LaunchesPage() {
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <span className="text-blue-400">🎯</span> Gong Engage
         </h2>
-        <div className="overflow-x-auto rounded-xl border border-slate-700/50">
+        <div className="overflow-x-auto rounded-xl border border-[var(--border)]/50">
           <table className="w-full min-w-[500px]">
             <thead>
-              <tr className="bg-slate-800/80">
-                <th className="text-left text-xs font-semibold text-slate-300 uppercase tracking-wide px-5 py-3 w-44">
+              <tr className="bg-[var(--surface-2)]">
+                <th className="text-left text-xs font-semibold text-[var(--text)] uppercase tracking-wide px-5 py-3 w-44">
                   Group
                 </th>
                 {launches.phases.map((p) => (
-                  <th key={p} className="text-center text-xs font-semibold text-slate-300 uppercase tracking-wide px-2 py-3">
+                  <th key={p} className="text-center text-xs font-semibold text-[var(--text)] uppercase tracking-wide px-2 py-3">
                     {p}
                   </th>
                 ))}
-                <th className="text-center text-xs font-semibold text-slate-300 uppercase tracking-wide px-3 py-3">
+                <th className="text-center text-xs font-semibold text-[var(--text)] uppercase tracking-wide px-3 py-3">
                   Target Go-Live
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-700/30">
+            <tbody className="divide-y divide-[var(--border)]">
               {launches.groups.map((g) => (
-                <tr key={g.id} className="hover:bg-slate-800/30 transition-colors">
+                <tr key={g.id} className="hover:bg-[var(--surface-2)] transition-colors">
                   <td className="px-5 py-3">
                     <p className="text-sm font-medium text-white">{g.name}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{g.fullName}</p>
+                    <p className="text-xs text-[var(--text-muted)] mt-0.5">{g.fullName}</p>
                   </td>
                   {launches.phases.map((p) => (
                     <PhaseCell key={p} status={g.engage[p] as PhaseStatus} />
                   ))}
-                  <td className="text-center text-xs text-slate-300 px-3 py-3 whitespace-nowrap">
+                  <td className="text-center text-xs text-[var(--text)] px-3 py-3 whitespace-nowrap">
                     {g.targetGoLive}
                   </td>
                 </tr>
@@ -85,34 +85,34 @@ export default function LaunchesPage() {
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <span className="text-purple-400">📊</span> Gong Forecast
         </h2>
-        <div className="overflow-x-auto rounded-xl border border-slate-700/50">
+        <div className="overflow-x-auto rounded-xl border border-[var(--border)]/50">
           <table className="w-full min-w-[500px]">
             <thead>
-              <tr className="bg-slate-800/80">
-                <th className="text-left text-xs font-semibold text-slate-300 uppercase tracking-wide px-5 py-3 w-44">
+              <tr className="bg-[var(--surface-2)]">
+                <th className="text-left text-xs font-semibold text-[var(--text)] uppercase tracking-wide px-5 py-3 w-44">
                   Group
                 </th>
                 {launches.phases.map((p) => (
-                  <th key={p} className="text-center text-xs font-semibold text-slate-300 uppercase tracking-wide px-2 py-3">
+                  <th key={p} className="text-center text-xs font-semibold text-[var(--text)] uppercase tracking-wide px-2 py-3">
                     {p}
                   </th>
                 ))}
-                <th className="text-center text-xs font-semibold text-slate-300 uppercase tracking-wide px-3 py-3">
+                <th className="text-center text-xs font-semibold text-[var(--text)] uppercase tracking-wide px-3 py-3">
                   Target Go-Live
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-700/30">
+            <tbody className="divide-y divide-[var(--border)]">
               {launches.groups.map((g) => (
-                <tr key={g.id} className="hover:bg-slate-800/30 transition-colors">
+                <tr key={g.id} className="hover:bg-[var(--surface-2)] transition-colors">
                   <td className="px-5 py-3">
                     <p className="text-sm font-medium text-white">{g.name}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{g.fullName}</p>
+                    <p className="text-xs text-[var(--text-muted)] mt-0.5">{g.fullName}</p>
                   </td>
                   {launches.phases.map((p) => (
                     <PhaseCell key={p} status={g.forecast[p] as PhaseStatus} />
                   ))}
-                  <td className="text-center text-xs text-slate-300 px-3 py-3 whitespace-nowrap">
+                  <td className="text-center text-xs text-[var(--text)] px-3 py-3 whitespace-nowrap">
                     {g.targetGoLive}
                   </td>
                 </tr>
@@ -127,15 +127,15 @@ export default function LaunchesPage() {
         <h2 className="text-lg font-semibold text-white mb-4">Group Notes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {launches.groups.map((g) => (
-            <div key={g.id} className="bg-slate-800/50 rounded-xl border border-slate-700/40 p-4">
+            <div key={g.id} className="bg-[var(--surface-2)]/50 rounded-xl border border-[var(--border)] p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <p className="font-semibold text-white text-sm">{g.name}</p>
-                  <p className="text-xs text-slate-400">{g.fullName}</p>
+                  <p className="font-semibold text-[var(--text)] text-sm">{g.name}</p>
+                  <p className="text-xs text-[var(--text-muted)]">{g.fullName}</p>
                 </div>
-                <span className="text-xs text-slate-500 shrink-0 ml-2">Owner: {g.launchOwner}</span>
+                <span className="text-xs text-[var(--text-muted)] shrink-0 ml-2">Owner: {g.launchOwner}</span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">{g.notes}</p>
+              <p className="text-xs text-[var(--text)] leading-relaxed">{g.notes}</p>
             </div>
           ))}
         </div>

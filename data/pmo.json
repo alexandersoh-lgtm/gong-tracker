@@ -17,7 +17,7 @@
       "description": "No confirmed owner for Forecast workstream is delaying key configuration decisions.",
       "likelihood": "high",
       "impact": "high",
-      "owner": "Alexander Soh",
+      "owner": "Alexander Sohn",
       "mitigationPlan": "Escalate to VP Sales Ops by Apr 28 for owner assignment.",
       "status": "open",
       "raisedDate": "2026-04-15"
@@ -56,7 +56,7 @@
     {
       "id": "a1",
       "title": "Confirm Gong Forecast workstream owner",
-      "owner": "Alexander Soh",
+      "owner": "Alexander Sohn",
       "dueDate": "2026-04-28",
       "status": "open",
       "priority": "high"
@@ -64,7 +64,7 @@
     {
       "id": "a2",
       "title": "Escalate Genesys API credentials to IT leadership",
-      "owner": "Alexander Soh",
+      "owner": "Alexander Sohn",
       "dueDate": "2026-04-25",
       "status": "open",
       "priority": "high"
@@ -72,7 +72,7 @@
     {
       "id": "a3",
       "title": "Draft Q2 executive status report",
-      "owner": "Alexander Soh",
+      "owner": "Alexander Sohn",
       "dueDate": "2026-04-30",
       "status": "in_progress",
       "priority": "medium"
@@ -88,7 +88,7 @@
     {
       "id": "a5",
       "title": "Assign launch owners for StreetEasy, New Con, ZMGI",
-      "owner": "Alexander Soh",
+      "owner": "Alexander Sohn",
       "dueDate": "2026-05-01",
       "status": "open",
       "priority": "medium"
