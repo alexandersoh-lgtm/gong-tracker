@@ -66,8 +66,8 @@ export default function Dashboard() {
 
   const launchSummary = launches.groups.map((g) => {
     const allPhases = launches.phases;
-    const completedEngage = allPhases.filter((p) => g.engage[p] === "complete").length;
-    const completedForecast = allPhases.filter((p) => g.forecast[p] === "complete").length;
+    const completedEngage = allPhases.filter((p) => (g.engage as Record<string, string>)[p] === "complete").length;
+    const completedForecast = allPhases.filter((p) => (g.forecast as Record<string, string>)[p] === "complete").length;
     return { ...g, completedEngage, completedForecast, totalPhases: allPhases.length };
   });
 
