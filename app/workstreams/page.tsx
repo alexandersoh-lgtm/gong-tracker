@@ -15,6 +15,12 @@ const milestoneText: Record<string, string> = {
   not_started: "text-slate-500",
 };
 
+const priorityColor: Record<string, string> = {
+  high: "text-red-400",
+  medium: "text-amber-400",
+  low: "text-slate-400",
+};
+
 export default function WorkstreamsPage() {
   const workstreams = workstreamsData as Workstream[];
 
@@ -57,8 +63,8 @@ export default function WorkstreamsPage() {
             />
           </div>
 
+          {/* Milestones + Blockers + Updates */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/40">
-            {/* Milestones */}
             <div className="lg:col-span-2 p-6">
               <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-4">Milestones</h3>
               <div className="space-y-2">
@@ -83,7 +89,6 @@ export default function WorkstreamsPage() {
               </div>
             </div>
 
-            {/* Right panel: blockers + updates */}
             <div className="p-6 space-y-6">
               <div>
                 <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-3">Blockers</h3>
@@ -119,6 +124,133 @@ export default function WorkstreamsPage() {
                   </div>
                 )}
               </div>
+            </div>
+          </div>
+
+          {/* High Priority Actions */}
+          <div className="border-t border-slate-700/40 px-6 py-5">
+            <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-4">High Priority Actions</h3>
+            {ws.actions.filter((a) => a.priority === "high" && (a.status === "open" || a.status === "in_progress")).length === 0 ? (
+              <p className="text-emerald-400 text-sm">No high priority open actions.</p>
+            ) : (
+              <div className="overflow-x-auto rounded-lg border border-slate-700/40">
+                <table className="w-full min-w-[500px]">
+                  <thead>
+                    <tr className="bg-slate-800/60">
+                      {["Action", "Owner", "Due Date", "Priority", "Status"].map((h) => (
+                        <th key={h} className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wide px-4 py-2.5">
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-700/30">
+                    {ws.actions
+                      .filter((a) => a.priority === "high" && (a.status === "open" || a.status === "in_progress"))
+                      .map((a) => (
+                        <tr key={a.id} className="hover:bg-slate-800/30 transition-colors">
+                          <td className="px-4 py-3 text-sm text-white">{a.title}</td>
+                          <td className="px-4 py-3 text-sm text-slate-300 whitespace-nowrap">{a.owner}</td>
+                          <td className="px-4 py-3 text-sm text-slate-300 whitespace-nowrap">{a.dueDate}</td>
+                          <td className="px-4 py-3">
+                            <span className={`text-xs font-semibold uppercase ${priorityColor[a.priority]}`}>{a.priority}</span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <StatusBadge status={a.status} size="xs" />
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Meetings */}
+          <div className="border-t border-slate-700/40 grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/40">
+            {/* Upcoming Meetings */}
+            <div className="px-6 py-5">
+              <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-4">Upcoming Meetings</h3>
+              {ws.meetings.upcoming.length === 0 ? (
+                <p className="text-slate-500 text-sm">No upcoming meetings.</p>
+              ) : (
+                <div className="space-y-4">
+                  {ws.meetings.upcoming.map((m) => (
+                    <div key={m.id} className="bg-slate-900/40 rounded-xl border border-slate-700/40 p-4">
+                      <div className="flex items-start justify-between gap-2 mb-3">
+                        <p className="font-semibold text-white text-sm">{m.title}</p>
+                        <span className="text-xs text-blue-400 bg-blue-900/30 border border-blue-700/40 px-2 py-0.5 rounded-full shrink-0">{m.date}</span>
+                      </div>
+                      <p className="text-xs text-slate-500 mb-3">Attendees: {m.attendees}</p>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">Goals</p>
+                          <ul className="space-y-1">
+                            {m.goals.map((g, i) => (
+                              <li key={i} className="text-xs text-slate-300 flex gap-2">
+                                <span className="text-blue-400 shrink-0">→</span>{g}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 mt-2">Decision Points</p>
+                          <ul className="space-y-1">
+                            {m.decisionPoints.map((d, i) => (
+                              <li key={i} className="text-xs text-slate-300 flex gap-2">
+                                <span className="text-amber-400 shrink-0">◆</span>{d}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Past Meetings */}
+            <div className="px-6 py-5">
+              <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-4">Past Meetings</h3>
+              {ws.meetings.past.length === 0 ? (
+                <p className="text-slate-500 text-sm">No past meetings recorded.</p>
+              ) : (
+                <div className="space-y-4">
+                  {ws.meetings.past.map((m) => (
+                    <div key={m.id} className="bg-slate-900/40 rounded-xl border border-slate-700/40 p-4">
+                      <div className="flex items-start justify-between gap-2 mb-3">
+                        <p className="font-semibold text-white text-sm">{m.title}</p>
+                        <span className="text-xs text-slate-400 bg-slate-800 border border-slate-600 px-2 py-0.5 rounded-full shrink-0">{m.date}</span>
+                      </div>
+                      <p className="text-xs text-slate-500 mb-3">Attendees: {m.attendees}</p>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">Decisions Made</p>
+                          <ul className="space-y-1">
+                            {m.decisions.map((d, i) => (
+                              <li key={i} className="text-xs text-slate-300 flex gap-2">
+                                <span className="text-emerald-400 shrink-0">✓</span>{d}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 mt-2">Action Items</p>
+                          <ul className="space-y-1.5">
+                            {m.actionItems.map((a, i) => (
+                              <li key={i} className="text-xs text-slate-300 bg-slate-800/60 rounded-lg px-3 py-2">
+                                <p>{a.title}</p>
+                                <p className="text-slate-500 mt-0.5">Owner: {a.owner} · Due: {a.dueDate}</p>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </section>

@@ -21,6 +21,33 @@ export interface Update {
   text: string;
 }
 
+export interface WorkstreamAction {
+  id: string;
+  title: string;
+  owner: string;
+  dueDate: string;
+  priority: Priority;
+  status: ActionStatus;
+}
+
+export interface UpcomingMeeting {
+  id: string;
+  title: string;
+  date: string;
+  attendees: string;
+  goals: string[];
+  decisionPoints: string[];
+}
+
+export interface PastMeeting {
+  id: string;
+  title: string;
+  date: string;
+  attendees: string;
+  decisions: string[];
+  actionItems: { title: string; owner: string; dueDate: string }[];
+}
+
 export interface Workstream {
   id: string;
   name: string;
@@ -32,6 +59,11 @@ export interface Workstream {
   milestones: Milestone[];
   blockers: Blocker[];
   updates: Update[];
+  actions: WorkstreamAction[];
+  meetings: {
+    upcoming: UpcomingMeeting[];
+    past: PastMeeting[];
+  };
 }
 
 export type PhaseStatus = "complete" | "in_progress" | "not_started";

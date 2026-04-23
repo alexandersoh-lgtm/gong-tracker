@@ -20,7 +20,36 @@
     ],
     "updates": [
       { "date": "2026-04-23", "text": "Architecture review meeting scheduled for Apr 28. Waiting on IT Ops for API access." }
-    ]
+    ],
+    "actions": [
+      { "id": "gd-a1", "title": "Escalate Genesys API credentials to IT leadership", "owner": "Alexander Soh", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
+      { "id": "gd-a2", "title": "Complete technical architecture document", "owner": "TBD", "dueDate": "2026-05-10", "priority": "high", "status": "in_progress" }
+    ],
+    "meetings": {
+      "upcoming": [
+        {
+          "id": "gd-um1",
+          "title": "Architecture Review",
+          "date": "2026-04-28",
+          "attendees": "Alexander Soh, IT Ops, Gong CSM",
+          "goals": ["Review and approve technical architecture", "Confirm API integration approach"],
+          "decisionPoints": ["Confirm dialer integration method (CTI vs native)", "Decide on call recording storage approach"]
+        }
+      ],
+      "past": [
+        {
+          "id": "gd-pm1",
+          "title": "Requirements Kickoff",
+          "date": "2026-04-10",
+          "attendees": "Alexander Soh, IT Ops, Sales Ops",
+          "decisions": ["Unified Genesys dialer selected as integration target", "Scope confirmed: click-to-dial, call logging, activity sync"],
+          "actionItems": [
+            { "title": "IT Ops to provision non-prod API credentials", "owner": "IT Ops", "dueDate": "2026-04-20" },
+            { "title": "Finalize requirements document", "owner": "Alexander Soh", "dueDate": "2026-04-30" }
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "gong-engage",
@@ -43,7 +72,37 @@
     "blockers": [],
     "updates": [
       { "date": "2026-04-23", "text": "Salesforce integration 70% complete. On track for May 1 milestone." }
-    ]
+    ],
+    "actions": [
+      { "id": "ge-a1", "title": "Complete Salesforce CRM integration", "owner": "Engineering", "dueDate": "2026-05-01", "priority": "high", "status": "in_progress" },
+      { "id": "ge-a2", "title": "Schedule ASA training sessions", "owner": "TBD", "dueDate": "2026-05-05", "priority": "high", "status": "open" },
+      { "id": "ge-a3", "title": "Build ASA sequence templates", "owner": "Alexander Soh", "dueDate": "2026-05-10", "priority": "high", "status": "open" }
+    ],
+    "meetings": {
+      "upcoming": [
+        {
+          "id": "ge-um1",
+          "title": "ASA Pre-Launch Readiness Review",
+          "date": "2026-05-08",
+          "attendees": "Alexander Soh, ASA Sales Lead, Gong CSM",
+          "goals": ["Confirm ASA training schedule", "Review sequence templates", "Validate CRM integration"],
+          "decisionPoints": ["Go / No-Go decision for ASA pilot on May 15", "Confirm pilot group size and rep selection"]
+        }
+      ],
+      "past": [
+        {
+          "id": "ge-pm1",
+          "title": "Admin Configuration Sign-off",
+          "date": "2026-04-15",
+          "attendees": "Alexander Soh, Gong CSM, IT",
+          "decisions": ["Admin config approved — workspace settings, permissions, and roles finalized", "Email integration confirmed via OAuth"],
+          "actionItems": [
+            { "title": "Begin Salesforce integration build", "owner": "Engineering", "dueDate": "2026-05-01" },
+            { "title": "Draft ASA sequence templates for review", "owner": "Alexander Soh", "dueDate": "2026-05-05" }
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "gong-forecast",
@@ -66,7 +125,36 @@
     ],
     "updates": [
       { "date": "2026-04-23", "text": "CRM field mapping workshop completed. Awaiting workstream owner confirmation before proceeding." }
-    ]
+    ],
+    "actions": [
+      { "id": "gf-a1", "title": "Confirm Gong Forecast workstream owner", "owner": "Alexander Soh", "dueDate": "2026-04-28", "priority": "high", "status": "open" },
+      { "id": "gf-a2", "title": "Finalize CRM field mapping document", "owner": "TBD", "dueDate": "2026-05-10", "priority": "high", "status": "open" }
+    ],
+    "meetings": {
+      "upcoming": [
+        {
+          "id": "gf-um1",
+          "title": "Forecast Workstream Owner Alignment",
+          "date": "2026-04-28",
+          "attendees": "Alexander Soh, VP Sales Ops, Gong CSM",
+          "goals": ["Confirm workstream owner", "Review CRM field mapping output", "Align on forecast rollup structure"],
+          "decisionPoints": ["Owner assignment for Forecast workstream", "Approval of CRM field mapping approach"]
+        }
+      ],
+      "past": [
+        {
+          "id": "gf-pm1",
+          "title": "CRM Field Mapping Workshop",
+          "date": "2026-04-18",
+          "attendees": "Alexander Soh, Sales Ops, Gong CSM, Salesforce Admin",
+          "decisions": ["Opportunity fields confirmed for Gong Forecast sync", "Pipeline stages mapped to Gong deal stages"],
+          "actionItems": [
+            { "title": "Document finalized field mapping", "owner": "Salesforce Admin", "dueDate": "2026-04-25" },
+            { "title": "Escalate owner assignment to VP Sales Ops", "owner": "Alexander Soh", "dueDate": "2026-04-28" }
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "pmo",
@@ -86,6 +174,35 @@
     "blockers": [],
     "updates": [
       { "date": "2026-04-23", "text": "Q2 status report in draft. Steering committee meeting scheduled for Apr 30." }
-    ]
+    ],
+    "actions": [
+      { "id": "pm-a1", "title": "Complete Q2 executive status report", "owner": "Alexander Soh", "dueDate": "2026-04-30", "priority": "high", "status": "in_progress" },
+      { "id": "pm-a2", "title": "Assign launch owners for StreetEasy, New Con, ZMGI", "owner": "Alexander Soh", "dueDate": "2026-05-01", "priority": "high", "status": "open" }
+    ],
+    "meetings": {
+      "upcoming": [
+        {
+          "id": "pm-um1",
+          "title": "Steering Committee — Q2 Update",
+          "date": "2026-04-30",
+          "attendees": "Alexander Soh, VP Sales Ops, Gong CSM, IT Leadership",
+          "goals": ["Present Q2 program status", "Get alignment on Forecast owner", "Review launch timeline for all groups"],
+          "decisionPoints": ["Approval of Q2 status report", "Go-forward plan for ZMGI legal review", "Resource allocation for remaining workstreams"]
+        }
+      ],
+      "past": [
+        {
+          "id": "pm-pm1",
+          "title": "Steering Committee Kickoff",
+          "date": "2026-03-01",
+          "attendees": "Alexander Soh, VP Sales Ops, CFO, IT Leadership, Gong CSM",
+          "decisions": ["Program charter approved", "ASA confirmed as first launch group", "Bi-weekly steering committee cadence established"],
+          "actionItems": [
+            { "title": "Publish program charter to SharePoint", "owner": "Alexander Soh", "dueDate": "2026-03-08" },
+            { "title": "Set up recurring steering committee invites", "owner": "Alexander Soh", "dueDate": "2026-03-05" }
+          ]
+        }
+      ]
+    }
   }
 ]
