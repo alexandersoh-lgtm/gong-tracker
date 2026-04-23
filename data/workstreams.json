@@ -1,0 +1,91 @@
+[
+  {
+    "id": "genesys-dialer",
+    "name": "Unified Genesys Dialer",
+    "icon": "📞",
+    "status": "yellow",
+    "owner": "TBD",
+    "percentComplete": 25,
+    "description": "Integration of Gong Engage with the Unified Genesys dialer platform. Enables click-to-dial, call logging, and activity sync.",
+    "milestones": [
+      { "id": "gd-1", "name": "Requirements & scope finalized", "dueDate": "2026-04-30", "status": "complete" },
+      { "id": "gd-2", "name": "Technical architecture approved", "dueDate": "2026-05-15", "status": "in_progress" },
+      { "id": "gd-3", "name": "Dev environment configured", "dueDate": "2026-05-30", "status": "not_started" },
+      { "id": "gd-4", "name": "Integration build complete", "dueDate": "2026-06-30", "status": "not_started" },
+      { "id": "gd-5", "name": "UAT sign-off", "dueDate": "2026-07-15", "status": "not_started" },
+      { "id": "gd-6", "name": "Production deployment", "dueDate": "2026-07-31", "status": "not_started" }
+    ],
+    "blockers": [
+      { "id": "b1", "description": "Genesys API credentials not yet provisioned for non-prod environment", "owner": "IT Ops", "raisedDate": "2026-04-20" }
+    ],
+    "updates": [
+      { "date": "2026-04-23", "text": "Architecture review meeting scheduled for Apr 28. Waiting on IT Ops for API access." }
+    ]
+  },
+  {
+    "id": "gong-engage",
+    "name": "Gong Engage Implementation",
+    "icon": "🎯",
+    "status": "green",
+    "owner": "Alexander Soh",
+    "percentComplete": 40,
+    "description": "Full deployment of Gong Engage (sales engagement / sequences) across all ZG sales teams. Includes email, dialer, and task automation.",
+    "milestones": [
+      { "id": "ge-1", "name": "Vendor SOW signed", "dueDate": "2026-03-01", "status": "complete" },
+      { "id": "ge-2", "name": "Admin configuration complete", "dueDate": "2026-04-15", "status": "complete" },
+      { "id": "ge-3", "name": "Integration with Salesforce CRM", "dueDate": "2026-05-01", "status": "in_progress" },
+      { "id": "ge-4", "name": "ASA pilot launch", "dueDate": "2026-05-15", "status": "not_started" },
+      { "id": "ge-5", "name": "StreetEasy pilot launch", "dueDate": "2026-06-01", "status": "not_started" },
+      { "id": "ge-6", "name": "New Con pilot launch", "dueDate": "2026-06-15", "status": "not_started" },
+      { "id": "ge-7", "name": "ZMGI/Mortech pilot launch", "dueDate": "2026-07-01", "status": "not_started" },
+      { "id": "ge-8", "name": "All groups fully live", "dueDate": "2026-08-01", "status": "not_started" }
+    ],
+    "blockers": [],
+    "updates": [
+      { "date": "2026-04-23", "text": "Salesforce integration 70% complete. On track for May 1 milestone." }
+    ]
+  },
+  {
+    "id": "gong-forecast",
+    "name": "Gong Forecast Implementation",
+    "icon": "📊",
+    "status": "yellow",
+    "owner": "TBD",
+    "percentComplete": 15,
+    "description": "Deployment of Gong Forecast for revenue intelligence and pipeline management. Replaces legacy forecasting tools.",
+    "milestones": [
+      { "id": "gf-1", "name": "Vendor SOW signed", "dueDate": "2026-03-01", "status": "complete" },
+      { "id": "gf-2", "name": "Data model & CRM field mapping", "dueDate": "2026-05-01", "status": "in_progress" },
+      { "id": "gf-3", "name": "Forecast configuration & rollups", "dueDate": "2026-05-30", "status": "not_started" },
+      { "id": "gf-4", "name": "Manager enablement sessions", "dueDate": "2026-06-15", "status": "not_started" },
+      { "id": "gf-5", "name": "Parallel run vs legacy tool", "dueDate": "2026-07-01", "status": "not_started" },
+      { "id": "gf-6", "name": "Legacy tool decommission", "dueDate": "2026-08-31", "status": "not_started" }
+    ],
+    "blockers": [
+      { "id": "b2", "description": "Owner not yet confirmed for Forecast workstream — blocking key decisions", "owner": "Alexander Soh", "raisedDate": "2026-04-15" }
+    ],
+    "updates": [
+      { "date": "2026-04-23", "text": "CRM field mapping workshop completed. Awaiting workstream owner confirmation before proceeding." }
+    ]
+  },
+  {
+    "id": "pmo",
+    "name": "Overall PMO",
+    "icon": "🗂️",
+    "status": "green",
+    "owner": "Alexander Soh",
+    "percentComplete": 50,
+    "description": "Program governance, steering committee, cross-functional coordination, budget tracking, and executive reporting.",
+    "milestones": [
+      { "id": "pm-1", "name": "Program charter approved", "dueDate": "2026-02-15", "status": "complete" },
+      { "id": "pm-2", "name": "Steering committee established", "dueDate": "2026-03-01", "status": "complete" },
+      { "id": "pm-3", "name": "Q2 executive status report", "dueDate": "2026-04-30", "status": "in_progress" },
+      { "id": "pm-4", "name": "Mid-program checkpoint review", "dueDate": "2026-06-15", "status": "not_started" },
+      { "id": "pm-5", "name": "Final program close-out report", "dueDate": "2026-10-15", "status": "not_started" }
+    ],
+    "blockers": [],
+    "updates": [
+      { "date": "2026-04-23", "text": "Q2 status report in draft. Steering committee meeting scheduled for Apr 30." }
+    ]
+  }
+]

@@ -1,0 +1,121 @@
+{
+  "risks": [
+    {
+      "id": "r1",
+      "title": "Genesys API access delayed",
+      "description": "IT Ops has not provisioned Genesys API credentials for non-prod. Blocks dialer integration build.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner": "IT Ops",
+      "mitigationPlan": "Escalate to IT leadership by Apr 25 if not resolved. Explore manual dialer workaround for pilot.",
+      "status": "open",
+      "raisedDate": "2026-04-20"
+    },
+    {
+      "id": "r2",
+      "title": "Gong Forecast workstream owner TBD",
+      "description": "No confirmed owner for Forecast workstream is delaying key configuration decisions.",
+      "likelihood": "high",
+      "impact": "high",
+      "owner": "Alexander Soh",
+      "mitigationPlan": "Escalate to VP Sales Ops by Apr 28 for owner assignment.",
+      "status": "open",
+      "raisedDate": "2026-04-15"
+    },
+    {
+      "id": "r3",
+      "title": "ZMGI/Mortech legal review timeline",
+      "description": "Mortgage compliance review for Gong Engage sequence templates may extend the ZMGI launch timeline.",
+      "likelihood": "medium",
+      "impact": "medium",
+      "owner": "TBD",
+      "mitigationPlan": "Engage legal team in May to begin review in parallel with build. Buffer 2 weeks in launch plan.",
+      "status": "open",
+      "raisedDate": "2026-04-10"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "ASA selected as first launch group",
+      "description": "ASA chosen as the first cohort due to team size, leadership buy-in, and simpler use case.",
+      "decidedBy": "Steering Committee",
+      "decidedDate": "2026-03-15",
+      "rationale": "Smaller team allows faster iteration; lessons learned will inform subsequent launches."
+    },
+    {
+      "id": "d2",
+      "title": "Gong Forecast launches after Engage per group",
+      "description": "Each business unit will go live on Engage first, then layer on Forecast 4-6 weeks later.",
+      "decidedBy": "Alexander Soh + Gong CSM",
+      "decidedDate": "2026-04-01",
+      "rationale": "Reduces change management burden. Teams adopt sequencing habits before adding forecasting workflow."
+    }
+  ],
+  "actions": [
+    {
+      "id": "a1",
+      "title": "Confirm Gong Forecast workstream owner",
+      "owner": "Alexander Soh",
+      "dueDate": "2026-04-28",
+      "status": "open",
+      "priority": "high"
+    },
+    {
+      "id": "a2",
+      "title": "Escalate Genesys API credentials to IT leadership",
+      "owner": "Alexander Soh",
+      "dueDate": "2026-04-25",
+      "status": "open",
+      "priority": "high"
+    },
+    {
+      "id": "a3",
+      "title": "Draft Q2 executive status report",
+      "owner": "Alexander Soh",
+      "dueDate": "2026-04-30",
+      "status": "in_progress",
+      "priority": "medium"
+    },
+    {
+      "id": "a4",
+      "title": "Schedule ASA training sessions",
+      "owner": "TBD",
+      "dueDate": "2026-05-05",
+      "status": "open",
+      "priority": "high"
+    },
+    {
+      "id": "a5",
+      "title": "Assign launch owners for StreetEasy, New Con, ZMGI",
+      "owner": "Alexander Soh",
+      "dueDate": "2026-05-01",
+      "status": "open",
+      "priority": "medium"
+    },
+    {
+      "id": "a6",
+      "title": "Engage legal for ZMGI compliance review kickoff",
+      "owner": "TBD",
+      "dueDate": "2026-05-15",
+      "status": "open",
+      "priority": "medium"
+    },
+    {
+      "id": "a7",
+      "title": "Complete Salesforce CRM integration for Engage",
+      "owner": "Engineering",
+      "dueDate": "2026-05-01",
+      "status": "in_progress",
+      "priority": "high"
+    },
+    {
+      "id": "a8",
+      "title": "CRM field mapping finalization for Forecast",
+      "owner": "TBD",
+      "dueDate": "2026-05-10",
+      "status": "open",
+      "priority": "medium"
+    }
+  ]
+}

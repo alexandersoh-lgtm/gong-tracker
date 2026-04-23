@@ -1,0 +1,93 @@
+{
+  "phases": ["Kickoff", "Training", "Pilot", "Go-Live", "Hypercare"],
+  "groups": [
+    {
+      "id": "asa",
+      "name": "ASA",
+      "fullName": "Agent Services & Administration",
+      "launchOwner": "TBD",
+      "targetGoLive": "2026-05-15",
+      "notes": "First to launch — will serve as model for subsequent groups.",
+      "engage": {
+        "Kickoff": "complete",
+        "Training": "in_progress",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      },
+      "forecast": {
+        "Kickoff": "in_progress",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      }
+    },
+    {
+      "id": "streeteasy",
+      "name": "StreetEasy",
+      "fullName": "StreetEasy Sales",
+      "launchOwner": "TBD",
+      "targetGoLive": "2026-06-15",
+      "notes": "NYC-based team. Coordinate with StreetEasy IT for any local config.",
+      "engage": {
+        "Kickoff": "complete",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      },
+      "forecast": {
+        "Kickoff": "not_started",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      }
+    },
+    {
+      "id": "new-con",
+      "name": "New Con",
+      "fullName": "New Construction Sales",
+      "launchOwner": "TBD",
+      "targetGoLive": "2026-07-01",
+      "notes": "Unique workflow — builder-facing sequences will require custom templates.",
+      "engage": {
+        "Kickoff": "not_started",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      },
+      "forecast": {
+        "Kickoff": "not_started",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      }
+    },
+    {
+      "id": "zmgi-mortech",
+      "name": "ZMGI / Mortech",
+      "fullName": "Zillow Home Loans / Mortech",
+      "launchOwner": "TBD",
+      "targetGoLive": "2026-07-31",
+      "notes": "Mortgage-specific compliance requirements — legal review required before go-live.",
+      "engage": {
+        "Kickoff": "not_started",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      },
+      "forecast": {
+        "Kickoff": "not_started",
+        "Training": "not_started",
+        "Pilot": "not_started",
+        "Go-Live": "not_started",
+        "Hypercare": "not_started"
+      }
+    }
+  ]
+}
