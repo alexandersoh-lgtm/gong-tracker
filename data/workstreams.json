@@ -19,7 +19,7 @@
       { "id": "b1", "description": "Genesys API credentials not yet provisioned for non-prod environment", "owner": "IT Ops", "raisedDate": "2026-04-20" }
     ],
     "updates": [
-      { "date": "2026-04-23", "text": "Architecture review meeting scheduled for Apr 28. Waiting on IT Ops for API access." }
+      { "date": "2026-04-23", "text": "Waiting on IT Ops for API access." }
     ],
     "actions": [
       { "id": "gd-a1", "title": "Escalate Genesys API credentials to IT leadership", "owner": "Alexander Soh", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
