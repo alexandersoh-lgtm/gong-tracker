@@ -88,18 +88,23 @@ export default async function WorkstreamsPage() {
             className="bg-[var(--surface)] rounded-2xl border border-[var(--border)] overflow-hidden"
           >
             {/* Header */}
-            <div className="px-6 py-5 border-b border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-semibold text-white">
-                  <span className="mr-2">{ws.icon}</span>{ws.name}
-                </h2>
-                <p className="text-[var(--text-muted)] text-sm mt-1 max-w-2xl">{ws.description}</p>
-              </div>
-              <div className="flex items-center gap-4 shrink-0">
-                <StatusBadge status={ws.status} size="md" />
-                <span className="text-[var(--text-muted)] text-sm">
-                  Owner: <span className="text-[var(--text)]">{ws.owner}</span>
-                </span>
+            <div className="px-6 py-5 border-b border-[var(--border)]">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4 min-w-0">
+                  <div className="w-11 h-11 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] flex items-center justify-center text-2xl shrink-0">
+                    {ws.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="text-lg font-bold text-[var(--text)] leading-tight">{ws.name}</h2>
+                    <p className="text-[var(--text-muted)] text-sm mt-1 max-w-2xl leading-relaxed">{ws.description}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end gap-2 shrink-0">
+                  <StatusBadge status={ws.status} size="md" />
+                  <span className="text-xs text-[var(--text-muted)]">
+                    Owner: <span className="text-[var(--text)] font-medium">{ws.owner}</span>
+                  </span>
+                </div>
               </div>
             </div>
 

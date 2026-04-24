@@ -23,13 +23,10 @@
       { "date": "2026-04-22", "text": "UAT kicked off — Vishwas demoed build in sandbox. FC2 env targeting ready Apr 23. Official UAT begins Friday. Pilot target confirmed May 4 pending clean UAT." }
     ],
     "actions": [
-      { "id": "gd-a1", "title": "Gather and validate pilot user list (70-80 users) and send to Vishwas for Gong user ID assignment", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
-      { "id": "gd-a2", "title": "Start Slack thread with Vishwas and Bree to coordinate Genesys queue setup for UAT users", "owner": "Alexander Sohn", "dueDate": "2026-04-23", "priority": "high", "status": "open" },
-      { "id": "gd-a3", "title": "Meet with Chris Hayden and Alex Coventry to decide on Gong dialing disable vs keep for pilot", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
-      { "id": "gd-a4", "title": "Follow up on Caller ID display in Genesys (showing contact name + number)", "owner": "Alexander Sohn", "dueDate": "2026-04-28", "priority": "medium", "status": "open" },
-      { "id": "gd-a5", "title": "Create post-MVP ticket to automate permission set assignment + Gong user ID update in Salesforce", "owner": "Alexander Sohn", "dueDate": "2026-04-28", "priority": "medium", "status": "open" },
-      { "id": "gd-a6", "title": "Develop pilot evaluation criteria and satisfaction survey for control vs pilot group comparison", "owner": "Alexander Sohn", "dueDate": "2026-04-30", "priority": "high", "status": "open" },
-      { "id": "gd-a7", "title": "Vishwas to check recording button behavior / permissions for standard rep profiles", "owner": "Vishwas Dhudum", "dueDate": "2026-04-25", "priority": "medium", "status": "open" }
+      { "id": "gd-a1", "title": "Complete UAT — validate all dialer scenarios in FC2 environment", "owner": "Alex Coventry, Chris Hayden", "dueDate": "2026-04-28", "priority": "high", "status": "in_progress" },
+      { "id": "gd-a2", "title": "Decide on Gong dialing disable vs keep for pilot cohort", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
+      { "id": "gd-a3", "title": "Gather and validate pilot user list (70-80 users) for Vishwas", "owner": "Alexander Sohn", "dueDate": "2026-04-25", "priority": "high", "status": "open" },
+      { "id": "gd-a4", "title": "Develop pilot evaluation criteria and rep satisfaction survey", "owner": "Alexander Sohn", "dueDate": "2026-04-30", "priority": "high", "status": "open" }
     ],
     "meetings": {
       "upcoming": [],
