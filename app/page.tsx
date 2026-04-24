@@ -7,6 +7,7 @@ import ProgressBar from "@/components/ProgressBar";
 import Link from "next/link";
 import { Workstream } from "@/app/types";
 import { fmtDate } from "@/lib/utils";
+import { calcProgress, getAllBlockers, getNextGoLive } from "@/lib/computed";
 
 const statusBorder: Record<string, string> = {
   green:  "border-emerald-200 dark:border-emerald-500/20",
@@ -21,6 +22,7 @@ const progressColor: Record<string, "emerald" | "amber" | "blue"> = {
 function WorkstreamCard({ ws }: { ws: Workstream }) {
   const done = ws.milestones.filter((m) => m.status === "complete").length;
   const active = ws.milestones.find((m) => m.status === "in_progress");
+  const pct = calcProgress(ws.milestones);
   return (
     <Link href={`/workstreams#${ws.id}`} className="block group">
       <div className={`h-full bg-[var(--surface)] rounded-2xl p-5 border ${statusBorder[ws.status] ?? "border-[var(--border)]"} hover:shadow-lg dark:hover:shadow-black/30 hover:border-indigo-200 dark:hover:border-indigo-500/30 transition-all duration-200`}>
@@ -34,9 +36,9 @@ function WorkstreamCard({ ws }: { ws: Workstream }) {
         <div className="mb-3">
           <div className="flex justify-between text-xs text-[var(--text-muted)] mb-1.5">
             <span>{done} of {ws.milestones.length} milestones</span>
-            <span className="font-medium text-[var(--text)]">{ws.percentComplete}%</span>
+            <span className="font-medium text-[var(--text)]">{pct}%</span>
           </div>
-          <ProgressBar percent={ws.percentComplete} color={progressColor[ws.status] ?? "blue"} />
+          <ProgressBar percent={pct} color={progressColor[ws.status] ?? "blue"} />
         </div>
         {active && (
           <p className="text-xs text-[var(--text-muted)] truncate mt-2">
@@ -75,16 +77,13 @@ export default function Dashboard() {
   const completedMilestones = workstreams.flatMap((ws) => ws.milestones.filter((m) => m.status === "complete")).length;
   const totalMilestones = workstreams.flatMap((ws) => ws.milestones).length;
 
-  const nextGoLive = workstreams
-    .flatMap((ws) => ws.milestones.filter((m) =>
-      m.status === "not_started" &&
-      /go.live|launch|GA/i.test(m.name)
-    ))
-    .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())[0];
-
-  const allBlockers = workstreams
-    .filter((ws) => ws.blockers.length > 0)
-    .map((ws) => ({ ...ws.blockers[0], workstream: ws.name, icon: ws.icon }));
+  // All computed — no manual keyStats needed
+  const allBlockers = getAllBlockers(workstreams);
+  const nextGoLive = getNextGoLive(workstreams);
+  const openPmoRisks = pmo.risks.filter((r) => r.status === "open").length;
+  const openPmoActions = pmo.actions.filter((a) => a.status === "open" || a.status === "in_progress").length;
+  const openWsActions = workstreams.flatMap((ws) => ws.actions)
+    .filter((a) => a.status === "open" || a.status === "in_progress").length;
 
   return (
     <div className="space-y-7">
@@ -134,8 +133,8 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Milestones Complete", value: `${completedMilestones}/${totalMilestones}`, sub: `${Math.round((completedMilestones / totalMilestones) * 100)}% done`, color: "text-emerald-600 dark:text-emerald-400" },
-          { label: "Open Risks",          value: pmo.risks.filter((r) => r.status === "open").length, sub: "require attention", color: "text-amber-600 dark:text-amber-400" },
-          { label: "Open Actions",        value: pmo.actions.filter((a) => a.status === "open" || a.status === "in_progress").length, sub: "across all workstreams", color: "text-indigo-600 dark:text-indigo-400" },
+          { label: "Open Blockers",        value: allBlockers.length, sub: `${openPmoRisks} program risk${openPmoRisks !== 1 ? "s" : ""}`, color: allBlockers.length > 0 ? "text-red-600 dark:text-red-400" : "text-emerald-600 dark:text-emerald-400" },
+          { label: "Open Actions",         value: openPmoActions + openWsActions, sub: `${openWsActions} workstream · ${openPmoActions} PMO`, color: "text-indigo-600 dark:text-indigo-400" },
           { label: "Next Go-Live",         value: nextGoLive ? fmtDate(nextGoLive.dueDate) : "TBD", sub: nextGoLive?.name ?? "", color: "text-violet-600 dark:text-violet-400" },
         ].map((s) => (
           <div key={s.label} className="bg-[var(--surface)] rounded-2xl p-5 border border-[var(--border)] hover:border-indigo-200 dark:hover:border-indigo-500/30 transition-colors">
@@ -215,12 +214,12 @@ export default function Dashboard() {
             {allBlockers.length === 0 ? (
               <p className="px-4 py-5 text-sm text-emerald-500 dark:text-emerald-400 text-center">No open blockers across any workstream 🎉</p>
             ) : allBlockers.map((b) => (
-                <div key={b.id} className="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-2)] transition-colors">
+                <div key={`${b.wsId}-${b.id}`} className="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-2)] transition-colors">
                   <span className="text-red-500 mt-0.5 shrink-0 text-xs">●</span>
                   <div className="min-w-0">
                     <p className="text-sm text-[var(--text)] leading-snug">{b.description}</p>
                     <div className="flex items-center gap-2 mt-1 text-xs text-[var(--text-muted)]">
-                      <span>{(b as { icon?: string }).icon}</span>
+                      <span>{b.icon}</span>
                       <span>{b.workstream}</span>
                       <span>·</span>
                       <span>Owner: {b.owner}</span>

@@ -4,6 +4,7 @@ import { getCalendarMeetings, CalendarMeeting } from "@/lib/googleCalendar";
 import StatusBadge from "@/components/StatusBadge";
 import MilestoneTimeline from "@/components/MilestoneTimeline";
 import { fmtDate } from "@/lib/utils";
+import { calcProgress } from "@/lib/computed";
 
 const milestoneIcon: Record<string, string> = {
   complete: "✓",
