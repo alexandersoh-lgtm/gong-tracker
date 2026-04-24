@@ -24,7 +24,13 @@ This file tells Claude how this project works and what common update tasks look 
 
 ### Calendar sync
 > "Sync calendar" or "Refresh my meetings"
-→ Pull latest Gong/Genesys meetings from Glean, update upcoming/past meetings in workstreams.json
+Full sync — does all of the following in one pass:
+1. Pull upcoming meetings from Glean → update upcoming section with attendees + goals/decision points
+2. Pull past meetings from Glean → identify new ones not yet in the workstream
+3. Search ~/Downloads/Zoom Transcripts for matching transcript files → extract decisions + action items
+4. Check Glean for Zoom AI meeting summary emails → extract decisions + action items
+5. Prepend key takeaways to the Updates section for the most recent meeting
+6. If no transcript/summary found → adds meeting shell (title, date, attendees, calendar link) with blank decisions for manual fill-in
 
 ### Update a workstream status
 > "Update Genesys Dialer status to yellow"
