@@ -264,7 +264,10 @@ export default async function WorkstreamsPage() {
                         <p className="font-semibold text-[var(--text)] text-sm">{m.title}</p>
                         <span className="text-xs text-blue-400 bg-blue-900/30 border border-blue-700/40 px-2 py-0.5 rounded-full shrink-0">{fmtDate(m.date)}</span>
                       </div>
-                      <p className="text-xs text-[var(--text-muted)] mb-3">Attendees: {m.attendees}</p>
+                      <p className="text-xs text-[var(--text-muted)] mb-1.5">Attendees: {m.attendees}</p>
+                      {(m as { docLink?: string }).docLink && (
+                        <a href={(m as { docLink?: string }).docLink} target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-400 hover:underline block mb-3">📄 View Rollout Plan Doc →</a>
+                      )}
                       <div className="space-y-3">
                         <div>
                           <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Goals</p>
@@ -316,9 +319,14 @@ export default async function WorkstreamsPage() {
                         <span className="text-xs text-[var(--text-muted)] bg-[var(--surface-2)] border border-slate-600 px-2 py-0.5 rounded-full shrink-0">{fmtDate(m.date)}</span>
                       </div>
                       <p className="text-xs text-[var(--text-muted)] mb-1">Attendees: {m.attendees}</p>
-                      {(m as { calendarLink?: string }).calendarLink && (
-                        <a href={(m as { calendarLink?: string }).calendarLink} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:underline block mb-3">Open in Google Calendar →</a>
-                      )}
+                      <div className="flex gap-3 flex-wrap mb-2">
+                        {(m as { calendarLink?: string }).calendarLink && (
+                          <a href={(m as { calendarLink?: string }).calendarLink} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:underline">Open in Calendar →</a>
+                        )}
+                        {(m as { docLink?: string }).docLink && (
+                          <a href={(m as { docLink?: string }).docLink} target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-400 hover:underline">📄 Rollout Plan Doc →</a>
+                        )}
+                      </div>
                       <div className="space-y-3">
                         <div>
                           <p className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1.5">Decisions Made</p>

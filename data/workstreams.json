@@ -193,8 +193,18 @@
           "date": "2026-04-28",
           "attendees": "Alexander Sohn, Coleton Foruria, Doug Lampart, Chris Hayden, Alex Coventry, Emily Bates",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y3JqOGRxMTc0cjMyZWE2OGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnOGdvajRlOWk4OHBqaWQxZzY0czM0Y2hrNmgxM2NkaTU2a280Y2NobDhncTM2YzFoNjEzMF8yMDI2MDQyMVQxODA1MDBaIA%3D%3D",
-          "goals": [],
-          "decisionPoints": []
+          "docLink": "https://docs.google.com/document/d/1VxCf0w1pcNOVeslsPjg3c2CdBNmGM26mWATWCAd59TI",
+          "goals": [
+            "Review Discovery & Configuration progress — confirm Gong Wk 1-2 deliverables are on track",
+            "Confirm draft project plan received from Gong by May 4",
+            "Align on Salesforce API credentials delivery timeline (due by ~May 26 per SOW)",
+            "Confirm Wave 1 training dates submitted to Gong (minimum 4 weeks in advance per SOW)"
+          ],
+          "decisionPoints": [
+            "Confirm Discovery session schedule for Engage and Forecast (up to 15 x 1hr sessions each)",
+            "Align on Wave 1 user list approach — who owns finalization for ASA SMB cohort",
+            "Confirm training date submission plan to Gong"
+          ]
         },
         {
           "id": "ge-um2",
@@ -202,43 +212,85 @@
           "date": "2026-05-01",
           "attendees": "Alexander Sohn, Brian Short, Alex Coventry",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc3MHIzaWNwbzY1MmsyZ3BrODRzazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNmNyNDhkMXA2MHJrNmNwbDg4cjRjZ2hrOG9zMzhnaTQ3NHMzZWRoZzZvcGo0Z2ExNzRvZ18yMDI2MDUwMVQxNjM1MDBaIA%3D%3D",
-          "goals": [],
-          "decisionPoints": []
+          "goals": [
+            "Review contract execution status and any outstanding commercial items",
+            "Confirm SOW service timeline — Gong services must begin within 6 weeks of staffing completion",
+            "Discuss standard pilot license structure for Rentals and future teams"
+          ],
+          "decisionPoints": [
+            "Confirm pilot license approach for Rentals — timeline and terms",
+            "Align on Twilio documentation timeline (needed for Gong Connect phone number provisioning)"
+          ]
         }
       ],
       "past": [
         {
+          "id": "ge-pm0",
+          "title": "Gong Engage & Forecast Core Planning",
+          "date": "2026-04-22",
+          "attendees": "Alexander Sohn, Coleton Foruria, Chris Hayden, Alex Coventry, Emily Bates",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y3JqOGRxMTc0cjMyZWE2OGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnOGdvajRlOWk4OHBqaWQxZzY0czM0Y2hrNmgxM2NkaTU2a280Y2NobDhncTM2YzFoNjEzMF8yMDI2MDQyMVQxODA1MDBaIA%3D%3D",
+          "docLink": "https://docs.google.com/document/d/1VxCf0w1pcNOVeslsPjg3c2CdBNmGM26mWATWCAd59TI",
+          "decisions": [
+            "Reviewed Gong Engage & Forecast Rollout Plan doc — timeline and wave structure confirmed",
+            "Contract executed Apr 6. Gong implementation team staffing in progress, targeting ready by Apr 25.",
+            "Kickoff targeting Apr 27. Draft project plan due from Gong within 5 business days of kickoff (~May 4).",
+            "Wave 1 (ASA SMB - Ney + Weinraub pods, ~138 reps) go-live week of Jun 8",
+            "Wave 2 (ASA MM/Strategic/Enterprise, ~105 reps) go-live week of Jun 22",
+            "All ASA fully onboarded by Jun 30. Phase 2 (NC/ZGMI/SE) begins July 2026+"
+          ],
+          "actionItems": [
+            { "title": "Submit Wave 1 training dates to Gong — minimum 4 weeks in advance (SOW requirement)", "owner": "Alexander Sohn", "dueDate": "2026-05-01" },
+            { "title": "Confirm Zillow trainers completing Gong Academy (prerequisite for Train the Trainer)", "owner": "Emily Bates", "dueDate": "2026-04-25" },
+            { "title": "Document existing workflows for Gong Discovery sessions", "owner": "Alex Coventry, Chris Hayden", "dueDate": "2026-04-27" }
+          ]
+        },
+        {
           "id": "ge-pm1",
           "title": "Rentals Gong Engage Pilot",
           "date": "2026-04-17",
-          "attendees": "Alexander Sohn, Michelle Maenpaa, Rentals team",
+          "attendees": "Alexander Sohn, Michelle Maenpaa",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0NTJrOGM5bzZjcjNnZDFnOGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzRyNDRkMjE2OHIzMmQ5bDZjcjQ0ZzlrNnNza2FkMjE2Y3FqaWMyMThsMmplZTI1NmQzMCA%3D",
           "decisions": [
-            "Too early to commit to a Rentals pilot — Michelle just started and needs time to understand the team's current workflows and tool usage",
-            "Agreed to parallel path: (1) SalesLoft contract extension exploration and (2) Rentals pilot planning for future consideration",
-            "SalesLoft contract ends August 2026 — Rentals will be the last remaining group if all others migrate to Gong Engage by that date",
-            "Rentals would have its own separate Gong workspace with admin control if/when they migrate",
-            "Agreed on bi-weekly 1:1 cadence between Alexander and Michelle going forward",
-            "Alexander will audit Gong smart trackers and reallocate equitably across business lines (ASA currently consuming majority)",
+            "Too early to commit to Rentals pilot — Michelle just started, needs time to understand team workflows",
+            "Agreed to parallel path: SalesLoft extension exploration + Rentals Gong Engage pilot scoping",
+            "SalesLoft contract ends Aug 26, 2026 — Rentals last remaining group if all others migrate by then",
+            "Rentals would have separate Gong workspace with own admin control if they migrate",
+            "Bi-weekly 1:1 cadence agreed between Alexander and Michelle",
+            "Alexander to audit Gong smart trackers and reallocate equitably — ASA currently consuming majority",
             "Gong moving to usage-based smart trackers — capacity concerns should resolve naturally"
           ],
           "actionItems": [
-            { "title": "Alexander to set up follow-up meeting with Michelle (~2 weeks) to discuss Rentals pilot approach", "owner": "Alexander Sohn", "dueDate": "2026-04-27" },
-            { "title": "Alexander to set up 3-way meeting: Alexander + Michelle + Brian Short (Sourcing) re: SalesLoft extension", "owner": "Alexander Sohn", "dueDate": "2026-04-27" },
-            { "title": "Alexander to send Michelle the Gong implementation SOW", "owner": "Alexander Sohn", "dueDate": "2026-04-20" },
-            { "title": "Alexander to research pros/cons of shared vs separate Gong instance for Rentals", "owner": "Alexander Sohn", "dueDate": "2026-05-01" },
-            { "title": "Alexander to audit and reallocate Gong smart trackers equitably across business lines", "owner": "Alexander Sohn", "dueDate": "2026-05-01" },
-            { "title": "Michelle to gather Rentals team enablement data from peer by next Wednesday", "owner": "Michelle Maenpaa", "dueDate": "2026-04-22" },
-            { "title": "Michelle to meet with Rentals sales managers and reps to understand current SalesLoft usage and pain points", "owner": "Michelle Maenpaa", "dueDate": "2026-05-01" }
+            { "title": "Set up follow-up meeting with Michelle to discuss Rentals pilot (~week of May 4)", "owner": "Alexander Sohn", "dueDate": "2026-04-27" },
+            { "title": "Set up 3-way meeting: Alexander + Michelle + Brian Short re: SalesLoft extension", "owner": "Alexander Sohn", "dueDate": "2026-04-27" },
+            { "title": "Send Michelle the Gong implementation SOW", "owner": "Alexander Sohn", "dueDate": "2026-04-20" },
+            { "title": "Research pros/cons of shared vs separate Gong instance for Rentals", "owner": "Alexander Sohn", "dueDate": "2026-05-01" }
+          ]
+        },
+        {
+          "id": "ge-pm5",
+          "title": "Gong Engage & Forecast — Sourcing Sync",
+          "date": "2026-03-20",
+          "attendees": "Alexander Sohn, Brian Short, Alex Coventry",
+          "decisions": [
+            "Gong pricing still ~$300K over AOP after exec call between Gong leadership and Zillow",
+            "Leadership focused on services pricing and overall seat pricing",
+            "Brian Short pushing for Foundations price to come down; Engage+Forecast at ~$400/seat likely acceptable",
+            "Austin (Gong AE) to provide best and final offer by Mon Mar 23",
+            "Agreed to establish standard pilot license structure for future pilots (Rentals, LMD Gong Enable, etc.)"
+          ],
+          "actionItems": [
+            { "title": "Brian Short to review Gong best/final proposal on Monday Mar 23", "owner": "Brian Short", "dueDate": "2026-03-23" },
+            { "title": "Align on standard pilot license structure for all future Gong pilots", "owner": "Brian Short", "dueDate": "2026-03-27" }
           ]
         },
         {
           "id": "ge-pm2",
-          "title": "[Optional] Office Hours: Gong Engage & Forecast Troubleshooting",
+          "title": "Office Hours: Gong Engage & Forecast Troubleshooting",
           "date": "2026-03-13",
-          "attendees": "Connor O'Sullivan, Kyle Marquand, Alexander Sohn, Laura Stoner + Agent Sales team",
+          "attendees": "Alexander Sohn + Agent Sales team (optional)",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0OHNqaWVhMjc0c2pnZzlqODRyNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNjhzazhoOWk2cDE0NmUxazZzc2thYzFrNjBzM2VkMXA2cDFqaWdpMzhncmppaDFrODRvZ18yMDI2MDMxM1QyMDM1MDBaIA%3D%3D",
-          "decisions": ["Open office hours to troubleshoot Gong Engage and Forecast issues during ASA pilot"],
+          "decisions": ["Open office hours session to troubleshoot Gong Engage and Forecast issues during ASA pilot. Ran multiple sessions through March 5–13."],
           "actionItems": []
         },
         {
@@ -247,8 +299,18 @@
           "date": "2026-03-03",
           "attendees": "Alexander Sohn, Alex Coventry, Emily Bates",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4Y3E0Y2U5aDhrcWsyZHBwODRyNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNjhvM2llMWw4b3JqNmdxMjZoMjM0aGhrNjhzajRoMjU2NTEzZ2NocDZzc2o4ZDlsNjRwMCA%3D",
-          "decisions": ["Reviewed rollout plan for Agent Sales"],
-          "actionItems": []
+          "docLink": "https://docs.google.com/document/d/1VxCf0w1pcNOVeslsPjg3c2CdBNmGM26mWATWCAd59TI",
+          "decisions": [
+            "Alex Coventry confirmed green light to move forward with Gong Engage & Forecast",
+            "Gong's initial pricing was not best/final — they deliberately held back to gauge deal stage",
+            "700 seats does not include Rentals — pricing should assume 1,100 seats eventually",
+            "Brian Short to meet with Austin (Gong AE) next day for best/final pricing",
+            "Agent Sales rollout plan reviewed — ASA confirmed as primary launch cohort"
+          ],
+          "actionItems": [
+            { "title": "Brian Short to negotiate best/final Gong pricing", "owner": "Brian Short", "dueDate": "2026-03-04" },
+            { "title": "Finalize rollout plan doc and circulate for alignment", "owner": "Alexander Sohn", "dueDate": "2026-03-10" }
+          ]
         },
         {
           "id": "ge-pm4",
@@ -258,6 +320,22 @@
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3EzaWU5bjhkMmpkZWhuODkyM2dlMWs4Y3NqMmUxajcwc2s0ZDlrNnNzNDhkaGw2c3MwA%3D%3D",
           "decisions": [],
           "actionItems": []
+        },
+        {
+          "id": "ge-pm6",
+          "title": "Gong Engage & Forecast — Retrospective",
+          "date": "2026-01-22",
+          "attendees": "Alexander Sohn, Andy Michaud-Reisig, Sam Honnold, Matt Ryan, Alex Marden, Chris Hayden, Alex Coventry, Emily Bates, Shannon Spivey",
+          "calendarLink": "https://www.google.com/calendar/event?eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2MTMzYWdobTZzbzNhaDlnNnAyNDhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzUzMzZkcGo2ZDBrOGNpNDhrb2plY3BrNm9zajhjcG04a280YWQxazY0czQ2ZTluNmNzZyBhbGV4YW5kZXJzb2hAemlsbG93Z3JvdXAuY29t",
+          "decisions": [
+            "Captured key lessons from Gong Engage & Forecast ASA pilot via retrospective template",
+            "Prioritized improvement plan drafted to guide full ASA rollout design",
+            "Pilot learnings to be applied to smoother, higher-confidence full rollout for Agent Sales and beyond"
+          ],
+          "actionItems": [
+            { "title": "Finalize prioritized improvement plan from pilot retrospective", "owner": "Alexander Sohn", "dueDate": "2026-01-29" },
+            { "title": "Share retrospective findings with leadership ahead of Go/No-Go meeting", "owner": "Alexander Sohn", "dueDate": "2026-02-06" }
+          ]
         }
       ]
     }
