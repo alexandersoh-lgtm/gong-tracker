@@ -151,14 +151,14 @@ export default async function WorkstreamsPage() {
               </div>
 
               {/* Blockers + Updates — 1/3, scrollable */}
-              <div className="px-5 py-5 flex flex-col gap-4">
+              <div className="px-5 pt-4 pb-4 flex flex-col gap-3">
                 {/* Blockers */}
                 <div>
-                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Blockers</h3>
+                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5">Blockers</h3>
                   {ws.blockers.length === 0 ? (
                     <p className="text-xs text-emerald-500 dark:text-emerald-400">No blockers</p>
                   ) : (
-                    <div className="max-h-28 overflow-y-auto space-y-2 pr-1">
+                    <div className="max-h-24 overflow-y-auto space-y-1.5 pr-1">
                       {ws.blockers.map((b) => (
                         <div key={b.id} className="flex gap-2 items-start">
                           <span className="text-red-500 mt-0.5 shrink-0 text-[10px]">●</span>
@@ -175,13 +175,13 @@ export default async function WorkstreamsPage() {
                 {/* Divider */}
                 <div className="border-t border-[var(--border)]" />
 
-                {/* Updates */}
-                <div>
-                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Updates</h3>
+                {/* Updates — grows to fill remaining space */}
+                <div className="flex flex-col flex-1 min-h-0">
+                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5">Updates</h3>
                   {ws.updates.length === 0 ? (
                     <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
                   ) : (
-                    <div className="max-h-36 overflow-y-auto space-y-2.5 pr-1">
+                    <div className="overflow-y-auto space-y-2 pr-1" style={{ maxHeight: "calc(100% - 20px)" }}>
                       {ws.updates.map((u, i) => (
                         <div key={i} className="flex gap-2 items-start">
                           <span className="text-indigo-400 mt-0.5 shrink-0 text-[10px]">●</span>
