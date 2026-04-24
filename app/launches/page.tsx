@@ -1,3 +1,4 @@
+import { fmtDate } from "@/lib/utils";
 import launchData from "@/data/launches.json";
 import { LaunchData, PhaseStatus } from "@/app/types";
 
@@ -71,7 +72,7 @@ export default function LaunchesPage() {
                     <PhaseCell key={p} status={g.engage[p] as PhaseStatus} />
                   ))}
                   <td className="text-center text-xs text-[var(--text)] px-3 py-3 whitespace-nowrap">
-                    {g.targetGoLive}
+                    {fmtDate(g.targetGoLive)}
                   </td>
                 </tr>
               ))}
@@ -113,7 +114,7 @@ export default function LaunchesPage() {
                     <PhaseCell key={p} status={g.forecast[p] as PhaseStatus} />
                   ))}
                   <td className="text-center text-xs text-[var(--text)] px-3 py-3 whitespace-nowrap">
-                    {g.targetGoLive}
+                    {fmtDate(g.targetGoLive)}
                   </td>
                 </tr>
               ))}

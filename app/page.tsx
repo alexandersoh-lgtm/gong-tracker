@@ -6,6 +6,7 @@ import StatusBadge from "@/components/StatusBadge";
 import ProgressBar from "@/components/ProgressBar";
 import Link from "next/link";
 import { Workstream } from "@/app/types";
+import { fmtDate } from "@/lib/utils";
 
 const statusBorder: Record<string, string> = {
   green:  "border-emerald-200 dark:border-emerald-500/20",
@@ -105,15 +106,15 @@ export default function Dashboard() {
               <StatusBadge status={program.status} size="md" />
               <div className="text-right">
                 <p className="text-xs text-[var(--text-muted)]">Target go-live</p>
-                <p className="text-sm font-semibold text-[var(--text)]">{program.targetGoLive}</p>
+                <p className="text-sm font-semibold text-[var(--text)]">{fmtDate(program.targetGoLive)}</p>
               </div>
             </div>
           </div>
 
           <div className="mt-6 pt-5 border-t border-[var(--border)] flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[var(--text-muted)]">
             <span>Owner: <span className="text-[var(--text)] font-medium">{program.programOwner}</span></span>
-            <span>Start: <span className="text-[var(--text)] font-medium">{program.startDate}</span></span>
-            <span>Last updated: <span className="text-[var(--text)] font-medium">{program.lastUpdated}</span></span>
+            <span>Start: <span className="text-[var(--text)] font-medium">{fmtDate(program.startDate)}</span></span>
+            <span>Last updated: <span className="text-[var(--text)] font-medium">{fmtDate(program.lastUpdated)}</span></span>
           </div>
         </div>
       </div>
@@ -164,7 +165,7 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="text-right shrink-0 ml-3 space-y-1">
-                  <p className="text-xs text-[var(--text-muted)]">{m.dueDate}</p>
+                  <p className="text-xs text-[var(--text-muted)]">{fmtDate(m.dueDate)}</p>
                   <StatusBadge status={m.status} size="xs" />
                 </div>
               </div>
@@ -189,7 +190,7 @@ export default function Dashboard() {
                   <p className="text-sm text-[var(--text)]">{a.title}</p>
                   <div className="flex items-center gap-3 mt-1.5">
                     <span className="text-xs text-[var(--text-muted)]">{a.owner}</span>
-                    <span className="text-xs text-[var(--text-muted)]">Due {a.dueDate}</span>
+                    <span className="text-xs text-[var(--text-muted)]">Due {fmtDate(a.dueDate)}</span>
                     <StatusBadge status={a.status} size="xs" />
                   </div>
                 </div>
@@ -207,7 +208,7 @@ export default function Dashboard() {
                 <div key={g.id} className="flex items-center justify-between px-4 py-3 hover:bg-[var(--surface-2)] transition-colors">
                   <div>
                     <p className="text-sm font-medium text-[var(--text)]">{g.name}</p>
-                    <p className="text-xs text-[var(--text-muted)] mt-0.5">{g.targetGoLive}</p>
+                    <p className="text-xs text-[var(--text-muted)] mt-0.5">{fmtDate(g.targetGoLive)}</p>
                   </div>
                   <div className="text-right text-xs text-[var(--text-muted)] space-y-0.5">
                     <p>Engage <span className="text-[var(--text)] font-medium">{completedEngage}/{launches.phases.length}</span></p>

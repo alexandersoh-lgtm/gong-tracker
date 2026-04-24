@@ -1,3 +1,4 @@
+import { fmtDate } from "@/lib/utils";
 import pmoData from "@/data/pmo.json";
 import { PMOData, Risk, Action } from "@/app/types";
 import StatusBadge from "@/components/StatusBadge";
@@ -58,7 +59,7 @@ export default function PMOPage() {
                 <span>Owner: <span className="text-[var(--text)]">{r.owner}</span></span>
                 <span>Likelihood: <span className={likelihood[r.likelihood]}>{r.likelihood}</span></span>
                 <span>Impact: <span className={impact[r.impact]}>{r.impact}</span></span>
-                <span>Raised: {r.raisedDate}</span>
+                <span>Raised: {fmtDate(r.raisedDate)}</span>
               </div>
             </div>
           ))}
@@ -96,7 +97,7 @@ export default function PMOPage() {
                   <tr key={a.id} className="hover:bg-[var(--surface-2)] transition-colors">
                     <td className="px-4 py-3 text-sm text-white max-w-xs">{a.title}</td>
                     <td className="px-4 py-3 text-sm text-[var(--text)] whitespace-nowrap">{a.owner}</td>
-                    <td className="px-4 py-3 text-sm text-[var(--text)] whitespace-nowrap">{a.dueDate}</td>
+                    <td className="px-4 py-3 text-sm text-[var(--text)] whitespace-nowrap">{fmtDate(a.dueDate)}</td>
                     <td className="px-4 py-3">
                       <span className={`text-xs font-semibold uppercase ${priorityColor(a.priority)}`}>
                         {a.priority}
@@ -124,7 +125,7 @@ export default function PMOPage() {
                     <tr key={a.id} className="opacity-60">
                       <td className="px-4 py-2.5 text-sm text-[var(--text-muted)] line-through max-w-xs">{a.title}</td>
                       <td className="px-4 py-2.5 text-sm text-slate-500">{a.owner}</td>
-                      <td className="px-4 py-2.5 text-sm text-slate-500">{a.dueDate}</td>
+                      <td className="px-4 py-2.5 text-sm text-slate-500">{fmtDate(a.dueDate)}</td>
                       <td className="px-4 py-2.5"><StatusBadge status={a.status} size="xs" /></td>
                     </tr>
                   ))}
@@ -143,7 +144,7 @@ export default function PMOPage() {
             <div key={d.id} className="bg-[var(--surface)] rounded-xl border border-[var(--border)] p-5">
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">
                 <h3 className="font-semibold text-[var(--text)] text-sm">{d.title}</h3>
-                <span className="text-xs text-[var(--text-muted)] shrink-0">{d.decidedDate}</span>
+                <span className="text-xs text-[var(--text-muted)] shrink-0">{fmtDate(d.decidedDate)}</span>
               </div>
               <p className="text-[var(--text-muted)] text-sm">{d.description}</p>
               <div className="bg-[var(--surface-2)] rounded-lg p-3 mt-3">

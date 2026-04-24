@@ -3,6 +3,7 @@ import { Workstream } from "@/app/types";
 import { getCalendarMeetings, CalendarMeeting } from "@/lib/googleCalendar";
 import StatusBadge from "@/components/StatusBadge";
 import MilestoneTimeline from "@/components/MilestoneTimeline";
+import { fmtDate } from "@/lib/utils";
 
 const milestoneIcon: Record<string, string> = {
   complete: "✓",
@@ -105,7 +106,7 @@ export default async function WorkstreamsPage() {
                     <div className="flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-500/8 border border-indigo-100 dark:border-indigo-500/15 rounded-full px-2.5 py-1">
                       <span className="text-xs">🚀</span>
                       <span className="text-[11px] font-medium text-indigo-600 dark:text-indigo-400 whitespace-nowrap">
-                        Go-live {ws.milestones[ws.milestones.length - 1].dueDate}
+                        Go-live {fmtDate(ws.milestones[ws.milestones.length - 1].dueDate)}
                       </span>
                     </div>
                   )}
@@ -126,7 +127,7 @@ export default async function WorkstreamsPage() {
 
               {/* Milestones — 2/3 */}
               <div className="lg:col-span-2 px-6 py-5">
-                <div className="grid items-center gap-x-4 mb-1" style={{ gridTemplateColumns: "16px 1fr 86px 86px 84px" }}>
+                <div className="grid items-center gap-x-3 mb-1" style={{ gridTemplateColumns: "16px 1fr 76px 76px 80px" }}>
                   <span />
                   <span className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">Milestone</span>
                   <span className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">Start</span>
@@ -136,15 +137,14 @@ export default async function WorkstreamsPage() {
                 <div className="divide-y divide-[var(--border)]">
                   {ws.milestones.map((m) => {
                     const ms = m as { id: string; name: string; startDate?: string; dueDate: string; status: string };
-                    const fmt = (d?: string) => d ? d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$2-$3-$1") : "—";
                     return (
-                      <div key={m.id} className="grid items-center gap-x-4 py-1.5" style={{ gridTemplateColumns: "16px 1fr 86px 86px 84px" }}>
+                      <div key={m.id} className="grid items-center gap-x-3 py-1.5" style={{ gridTemplateColumns: "16px 1fr 76px 76px 80px" }}>
                         <span className={`text-xs font-bold ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
                         <span className={`text-xs truncate ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
                           {m.name}
                         </span>
-                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums">{fmt(ms.startDate)}</span>
-                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums">{fmt(ms.dueDate)}</span>
+                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums">{fmtDate(ms.startDate)}</span>
+                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums">{fmtDate(ms.dueDate)}</span>
                         <div className="flex justify-end">
                           <StatusBadge status={m.status} size="xs" />
                         </div>
@@ -168,7 +168,7 @@ export default async function WorkstreamsPage() {
                           <span className="text-red-500 mt-0.5 shrink-0 text-[10px]">●</span>
                           <div>
                             <p className="text-xs text-[var(--text)] leading-snug">{b.description}</p>
-                            <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{b.owner} · {b.raisedDate}</p>
+                            <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{b.owner} · {fmtDate(b.raisedDate)}</p>
                           </div>
                         </div>
                       ))}
@@ -190,7 +190,7 @@ export default async function WorkstreamsPage() {
                         <div key={i} className="flex gap-2 items-start">
                           <span className="text-indigo-400 mt-0.5 shrink-0 text-[10px]">●</span>
                           <div>
-                            <p className="text-[10px] text-[var(--text-muted)]">{u.date}</p>
+                            <p className="text-[10px] text-[var(--text-muted)]">{fmtDate(u.date)}</p>
                             <p className="text-xs text-[var(--text)] leading-snug">{u.text}</p>
                           </div>
                         </div>
@@ -226,7 +226,7 @@ export default async function WorkstreamsPage() {
                           <tr key={a.id} className="hover:bg-[var(--surface-2)] transition-colors">
                             <td className="px-4 py-3 text-sm text-[var(--text)]">{a.title}</td>
                             <td className="px-4 py-3 text-sm text-[var(--text)] whitespace-nowrap">{a.owner}</td>
-                            <td className="px-4 py-3 text-sm text-[var(--text)] whitespace-nowrap">{a.dueDate}</td>
+                            <td className="px-4 py-3 text-sm text-[var(--text)] whitespace-nowrap">{fmtDate(a.dueDate)}</td>
                             <td className="px-4 py-3">
                               <span className={`text-xs font-semibold uppercase ${priorityColor[a.priority]}`}>{a.priority}</span>
                             </td>
@@ -262,7 +262,7 @@ export default async function WorkstreamsPage() {
                     <div key={m.id} className="bg-[var(--surface-2)] rounded-xl border border-[var(--border)] p-4">
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <p className="font-semibold text-[var(--text)] text-sm">{m.title}</p>
-                        <span className="text-xs text-blue-400 bg-blue-900/30 border border-blue-700/40 px-2 py-0.5 rounded-full shrink-0">{m.date}</span>
+                        <span className="text-xs text-blue-400 bg-blue-900/30 border border-blue-700/40 px-2 py-0.5 rounded-full shrink-0">{fmtDate(m.date)}</span>
                       </div>
                       <p className="text-xs text-[var(--text-muted)] mb-3">Attendees: {m.attendees}</p>
                       <div className="space-y-3">
@@ -313,7 +313,7 @@ export default async function WorkstreamsPage() {
                     <div key={m.id} className="bg-[var(--surface-2)] rounded-xl border border-[var(--border)] p-4">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <p className="font-semibold text-[var(--text)] text-sm">{m.title}</p>
-                        <span className="text-xs text-[var(--text-muted)] bg-[var(--surface-2)] border border-slate-600 px-2 py-0.5 rounded-full shrink-0">{m.date}</span>
+                        <span className="text-xs text-[var(--text-muted)] bg-[var(--surface-2)] border border-slate-600 px-2 py-0.5 rounded-full shrink-0">{fmtDate(m.date)}</span>
                       </div>
                       <p className="text-xs text-[var(--text-muted)] mb-1">Attendees: {m.attendees}</p>
                       {(m as { calendarLink?: string }).calendarLink && (
@@ -336,7 +336,7 @@ export default async function WorkstreamsPage() {
                             {m.actionItems.map((a, i) => (
                               <li key={i} className="text-xs text-[var(--text)] bg-[var(--surface)] rounded-lg px-3 py-2">
                                 <p>{a.title}</p>
-                                <p className="text-slate-500 mt-0.5">Owner: {a.owner} · Due: {a.dueDate}</p>
+                                <p className="text-slate-500 mt-0.5">Owner: {a.owner} · Due: {fmtDate(a.dueDate)}</p>
                               </li>
                             ))}
                           </ul>
