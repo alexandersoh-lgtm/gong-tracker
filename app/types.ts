@@ -75,6 +75,7 @@ export interface LaunchGroup {
   fullName: string;
   launchOwner: string;
   targetGoLive: string;
+  forecastInScope: boolean;
   notes: string;
   engage: Record<string, PhaseStatus>;
   forecast: Record<string, PhaseStatus>;
