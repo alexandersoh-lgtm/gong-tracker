@@ -8,8 +8,8 @@
   "lastCalendarSync": "2026-04-23T18:00:00Z",
   "summary": "Enterprise rollout of Gong Engage and Gong Forecast across Zillow Group sales teams, including Unified Genesys dialer integration. Phased launch by business unit.",
   "keyStats": {
-    "totalMilestones": 26,
-    "completedMilestones": 7,
+    "totalMilestones": 24,
+    "completedMilestones": 6,
     "openRisks": 3,
     "openActions": 8
   }
