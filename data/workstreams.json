@@ -333,7 +333,8 @@
       { "id": "gf-6", "name": "Legacy Decommission",      "startDate": "2026-07-01", "dueDate": "2026-08-26", "status": "not_started" }
     ],
     "blockers": [
-      { "id": "gf-b1", "description": "Salesforce opportunity data hygiene — reps not updating deal amounts or closing lost opps, which will degrade Gong automated forecast accuracy vs manual", "owner": "Alex Coventry, Shawn Cournoyer", "raisedDate": "2026-03-10" }
+      { "id": "gf-b1", "description": "Salesforce opportunity data hygiene — reps not updating deal amounts or closing lost opps, which will degrade Gong automated forecast accuracy vs manual", "owner": "Alex Coventry, Shawn Cournoyer", "raisedDate": "2026-03-10" },
+      { "id": "gf-b2", "description": "Cost breakdown needed for Gong Forecast Essentials for non-ASA LOB Ops users (NC, ZGMI, SE, Rentals) — current contract scopes Forecast to ASA only (340 seats). Expanding Ops access across LOBs requires Forecast Essentials at $25/user/month ($300/yr per seat), with a 2-yr potential cost of $816K. Budget owner and funding path per LOB not yet confirmed.", "owner": "Alexander Sohn, Brian Short", "raisedDate": "2026-04-21" }
     ],
     "updates": [
       { "date": "2026-04-21", "text": "Weekly Gong Forecast standup completed with Alex Coventry, Shawn Cournoyer, Will Gray, Angela McClure, Alex Zener. Forecast configuration kickoff targeting Apr 27 implementation kickoff." },
