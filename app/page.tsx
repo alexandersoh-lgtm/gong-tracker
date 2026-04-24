@@ -75,8 +75,19 @@ export default function Dashboard() {
   const completedMilestones = workstreams.flatMap((ws) => ws.milestones.filter((m) => m.status === "complete")).length;
   const totalMilestones = workstreams.flatMap((ws) => ws.milestones).length;
 
+  const nextGoLive = workstreams
+    .flatMap((ws) => ws.milestones.filter((m) =>
+      m.status === "not_started" &&
+      /go.live|launch|GA/i.test(m.name)
+    ))
+    .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())[0];
+
+  const allBlockers = workstreams
+    .filter((ws) => ws.blockers.length > 0)
+    .map((ws) => ({ ...ws.blockers[0], workstream: ws.name, icon: ws.icon }));
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-7">
 
       {/* Hero Header */}
       <div className="relative overflow-hidden rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-8">
@@ -105,7 +116,7 @@ export default function Dashboard() {
             <div className="flex flex-col items-end gap-2 shrink-0">
               <StatusBadge status={program.status} size="md" />
               <div className="text-right">
-                <p className="text-xs text-[var(--text-muted)]">Target go-live</p>
+                <p className="text-xs text-[var(--text-muted)]">Target completion</p>
                 <p className="text-sm font-semibold text-[var(--text)]">{fmtDate(program.targetGoLive)}</p>
               </div>
             </div>
@@ -125,7 +136,7 @@ export default function Dashboard() {
           { label: "Milestones Complete", value: `${completedMilestones}/${totalMilestones}`, sub: `${Math.round((completedMilestones / totalMilestones) * 100)}% done`, color: "text-emerald-600 dark:text-emerald-400" },
           { label: "Open Risks",          value: pmo.risks.filter((r) => r.status === "open").length, sub: "require attention", color: "text-amber-600 dark:text-amber-400" },
           { label: "Open Actions",        value: pmo.actions.filter((a) => a.status === "open" || a.status === "in_progress").length, sub: "across all workstreams", color: "text-indigo-600 dark:text-indigo-400" },
-          { label: "Launch Groups",       value: launches.groups.length, sub: "business units", color: "text-violet-600 dark:text-violet-400" },
+          { label: "Next Go-Live",         value: nextGoLive ? fmtDate(nextGoLive.dueDate) : "TBD", sub: nextGoLive?.name ?? "", color: "text-violet-600 dark:text-violet-400" },
         ].map((s) => (
           <div key={s.label} className="bg-[var(--surface)] rounded-2xl p-5 border border-[var(--border)] hover:border-indigo-200 dark:hover:border-indigo-500/30 transition-colors">
             <p className={`text-3xl font-bold tabular-nums ${s.color}`}>{s.value}</p>
@@ -198,21 +209,24 @@ export default function Dashboard() {
             )}
           </div>
 
-          {/* Launch snapshot */}
-          <h2 className="text-base font-semibold text-[var(--text)] mt-6 mb-4">Launch Snapshot</h2>
+          {/* Open Blockers */}
+          <h2 className="text-base font-semibold text-[var(--text)] mt-6 mb-4">Open Blockers</h2>
           <div className="bg-[var(--surface)] rounded-2xl border border-[var(--border)] divide-y divide-[var(--border)] overflow-hidden">
-            {launches.groups.map((g) => {
-              const completedEngage = launches.phases.filter((p) => (g.engage as Record<string, string>)[p] === "complete").length;
-              const completedForecast = launches.phases.filter((p) => (g.forecast as Record<string, string>)[p] === "complete").length;
-              return (
-                <div key={g.id} className="flex items-center justify-between px-4 py-3 hover:bg-[var(--surface-2)] transition-colors">
-                  <div>
-                    <p className="text-sm font-medium text-[var(--text)]">{g.name}</p>
-                    <p className="text-xs text-[var(--text-muted)] mt-0.5">{fmtDate(g.targetGoLive)}</p>
-                  </div>
-                  <div className="text-right text-xs text-[var(--text-muted)] space-y-0.5">
-                    <p>Engage <span className="text-[var(--text)] font-medium">{completedEngage}/{launches.phases.length}</span></p>
-                    <p>Forecast <span className="text-[var(--text)] font-medium">{completedForecast}/{launches.phases.length}</span></p>
+            {allBlockers.length === 0 ? (
+              <p className="px-4 py-5 text-sm text-emerald-500 dark:text-emerald-400 text-center">No open blockers across any workstream 🎉</p>
+            ) : allBlockers.map((b) => (
+                <div key={b.id} className="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-2)] transition-colors">
+                  <span className="text-red-500 mt-0.5 shrink-0 text-xs">●</span>
+                  <div className="min-w-0">
+                    <p className="text-sm text-[var(--text)] leading-snug">{b.description}</p>
+                    <div className="flex items-center gap-2 mt-1 text-xs text-[var(--text-muted)]">
+                      <span>{(b as { icon?: string }).icon}</span>
+                      <span>{b.workstream}</span>
+                      <span>·</span>
+                      <span>Owner: {b.owner}</span>
+                      <span>·</span>
+                      <span>{fmtDate(b.raisedDate)}</span>
+                    </div>
                   </div>
                 </div>
               );
