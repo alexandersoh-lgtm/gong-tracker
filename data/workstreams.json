@@ -6,7 +6,7 @@
     "status": "green",
     "owner": "Alexander Sohn, Vishwas Dhudum",
     "percentComplete": 65,
-    "description": "A custom Lightning Web Component (LWC) built in Salesforce that integrates the Unified Genesys CTI dialer with Gong Engage. Reps access their Gong to-do call tasks and manage inbound queue routing directly from the Salesforce UI — eliminating the need to dial from the Gong UI. Features auto-authenticated Genesys login, required call disposition with 60-second auto-submit, TCPA/DNC compliance controls, and automatic Salesforce task writeback. Pilot launching May 4 with volunteer ASA cohort; GA release targeted June 8.",
+    "description": "A custom Lightning Web Component (LWC) built in Salesforce that integrates the Unified Genesys CTI dialer with Gong Engage. Reps access their Gong to-do call tasks and manage inbound queue routing directly from the Salesforce UI (Outbound & Inbound dialing with single/unified dialer).",
     "milestones": [
       { "id": "gd-1", "name": "Discovery",    "startDate": "2025-12-10", "dueDate": "2026-01-28", "status": "complete" },
       { "id": "gd-2", "name": "Requirements", "startDate": "2026-01-29", "dueDate": "2026-02-16", "status": "complete" },
@@ -15,10 +15,7 @@
       { "id": "gd-5", "name": "Pilot Launch", "startDate": "2026-05-04", "dueDate": "2026-05-04", "status": "not_started" },
       { "id": "gd-6", "name": "GA Release",   "startDate": "2026-06-08", "dueDate": "2026-06-08", "status": "not_started" }
     ],
-    "blockers": [
-      { "id": "b1", "description": "FC2 environment setup needed before full UAT can begin — targeting Apr 23 2PM PST", "owner": "Vishwas Dhudum", "raisedDate": "2026-04-22" },
-      { "id": "b2", "description": "Decision pending on whether to disable Gong dialing in extension during pilot — tabled for separate Alex/Chris/Alex Coventry meeting", "owner": "Alexander Sohn", "raisedDate": "2026-04-22" }
-    ],
+    "blockers": [],
     "updates": [
       { "date": "2026-04-22", "text": "UAT kicked off. FC2 environment targeting ready Apr 23. All 3 dialer scenarios demoed in sandbox — disposition modal (60-sec auto-submit) approved by Chris and Alex Coventry." },
       { "date": "2026-04-15", "text": "Dialer scenarios finalized — 3 use cases confirmed (outbound 1-to-1, inbound queue, inbound 1-to-1). Disposition required, 60-sec auto-submit agreed. Role-specific options logged as fast follower." },

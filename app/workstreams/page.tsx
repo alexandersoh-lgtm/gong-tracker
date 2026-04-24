@@ -101,6 +101,14 @@ export default async function WorkstreamsPage() {
                 </div>
                 <div className="flex flex-col items-end gap-2 shrink-0">
                   <StatusBadge status={ws.status} size="md" />
+                  {ws.milestones.length > 0 && (
+                    <div className="flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-500/8 border border-indigo-100 dark:border-indigo-500/15 rounded-full px-2.5 py-1">
+                      <span className="text-xs">🚀</span>
+                      <span className="text-[11px] font-medium text-indigo-600 dark:text-indigo-400 whitespace-nowrap">
+                        Go-live {ws.milestones[ws.milestones.length - 1].dueDate}
+                      </span>
+                    </div>
+                  )}
                   <span className="text-xs text-[var(--text-muted)]">
                     Owner: <span className="text-[var(--text)] font-medium">{ws.owner}</span>
                   </span>
