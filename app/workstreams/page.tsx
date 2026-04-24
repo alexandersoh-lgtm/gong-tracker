@@ -179,13 +179,13 @@ export default async function WorkstreamsPage() {
                 {/* Divider */}
                 <div className="border-t border-[var(--border)] shrink-0 mb-3" />
 
-                {/* Updates — fills remaining height, scrolls */}
-                <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
-                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5 shrink-0">Updates</h3>
+                {/* Updates */}
+                <div>
+                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5">Updates</h3>
                   {ws.updates.length === 0 ? (
                     <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
                   ) : (
-                    <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+                    <div className="max-h-52 overflow-y-auto space-y-2 pr-1">
                       {ws.updates.map((u, i) => (
                         <div key={i} className="flex gap-2 items-start">
                           <span className="text-indigo-400 mt-0.5 shrink-0 text-[10px]">●</span>
