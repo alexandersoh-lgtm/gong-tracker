@@ -130,16 +130,18 @@ export default async function WorkstreamsPage() {
                 <div className="divide-y divide-[var(--border)]">
                   {ws.milestones.map((m) => {
                     const ms = m as { id: string; name: string; startDate?: string; dueDate: string; status: string };
+                    const fmt = (d?: string) => d ? d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$2-$3-$1") : "";
+                    const dateRange = ms.startDate ? `${fmt(ms.startDate)} → ${fmt(ms.dueDate)}` : fmt(ms.dueDate);
                     return (
-                      <div key={m.id} className="grid grid-cols-[18px_1fr_auto_80px] items-center gap-x-3 py-1.5">
-                        <span className={`text-xs font-bold ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
-                        <span className={`text-xs ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
+                      <div key={m.id} className="flex items-center gap-3 py-1.5">
+                        <span className={`text-xs font-bold shrink-0 w-4 ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
+                        <span className={`text-xs flex-1 ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
                           {m.name}
                         </span>
-                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums whitespace-nowrap">
-                          {ms.startDate ? `${ms.startDate} → ${m.dueDate}` : m.dueDate}
+                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums whitespace-nowrap shrink-0">
+                          {dateRange}
                         </span>
-                        <div className="flex justify-end">
+                        <div className="shrink-0 w-20 flex justify-end">
                           <StatusBadge status={m.status} size="xs" />
                         </div>
                       </div>

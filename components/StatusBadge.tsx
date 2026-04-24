@@ -17,7 +17,7 @@ export default function StatusBadge({ status, size = "sm" }: { status: string; s
   const px = size === "md" ? "px-2.5 py-1" : size === "xs" ? "px-1.5 py-0.5" : "px-2 py-0.5";
   const dot = size === "xs" ? "w-1 h-1" : "w-1.5 h-1.5";
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full font-medium tracking-wide ${text} ${px} ${cfg.classes}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-full font-medium tracking-wide whitespace-nowrap ${text} ${px} ${cfg.classes}`}>
       <span className={`rounded-full shrink-0 ${dot} ${cfg.dot}`} />
       {cfg.label}
     </span>
