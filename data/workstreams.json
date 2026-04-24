@@ -12,7 +12,7 @@
       { "id": "gd-2", "name": "Requirements", "startDate": "2026-01-29", "dueDate": "2026-02-16", "status": "complete" },
       { "id": "gd-3", "name": "Development",  "startDate": "2026-02-17", "dueDate": "2026-04-20", "status": "complete" },
       { "id": "gd-4", "name": "UAT",          "startDate": "2026-04-23", "dueDate": "2026-04-28", "status": "in_progress" },
-      { "id": "gd-5", "name": "Pilot Launch", "startDate": "2026-05-04", "dueDate": "2026-05-04", "status": "not_started" },
+      { "id": "gd-5", "name": "Unified Dialer Pilot Launch", "startDate": "2026-05-04", "dueDate": "2026-05-04", "status": "not_started" },
       { "id": "gd-6", "name": "GA Release",   "startDate": "2026-06-08", "dueDate": "2026-06-08", "status": "not_started" }
     ],
     "blockers": [],
