@@ -114,64 +114,65 @@ export default async function WorkstreamsPage() {
             </div>
 
             {/* Milestones detail + Blockers + Updates */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
-              <div className="lg:col-span-2 px-6 py-4">
-                <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Milestone Details</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
+              {/* Milestone Details */}
+              <div className="lg:col-span-1 px-5 py-4">
+                <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Milestones</h3>
                 <div className="divide-y divide-[var(--border)]">
                   {ws.milestones.map((m) => (
-                    <div key={m.id} className="flex items-center justify-between py-1.5 gap-3">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <span className={`text-xs font-bold shrink-0 ${milestoneText[m.status]}`}>
-                          {milestoneIcon[m.status]}
-                        </span>
-                        <span className={`text-xs truncate ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-medium" : "text-[var(--text-muted)]"}`}>
-                          {m.name}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-xs text-[var(--text-muted)]">{m.dueDate}</span>
-                        <StatusBadge status={m.status} size="xs" />
-                      </div>
+                    <div key={m.id} className="grid grid-cols-[16px_1fr_auto] items-center gap-x-2 py-1.5">
+                      <span className={`text-[11px] font-bold ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
+                      <span className={`text-[11px] truncate ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
+                        {m.name}
+                      </span>
+                      <span className="text-[10px] text-[var(--text-muted)] tabular-nums whitespace-nowrap text-right">
+                        {(m as { startDate?: string }).startDate
+                          ? `${(m as { startDate?: string }).startDate} → ${m.dueDate}`
+                          : m.dueDate}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="p-6 space-y-6">
-                <div>
-                  <h3 className="text-sm font-semibold text-[var(--text)] uppercase tracking-wide mb-3">Blockers</h3>
-                  {ws.blockers.length === 0 ? (
-                    <p className="text-emerald-400 text-sm">No blockers 🎉</p>
-                  ) : (
-                    <div className="space-y-3">
-                      {ws.blockers.map((b) => (
-                        <div key={b.id} className="bg-red-900/20 border border-red-800/40 rounded-lg p-3">
-                          <p className="text-sm text-red-300">{b.description}</p>
-                          <div className="flex gap-3 mt-2 text-xs text-[var(--text-muted)]">
-                            <span>Owner: {b.owner}</span>
-                            <span>{b.raisedDate}</span>
-                          </div>
+              {/* Blockers */}
+              <div className="px-5 py-4 border-t lg:border-t-0 lg:border-l border-[var(--border)]">
+                <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Blockers</h3>
+                {ws.blockers.length === 0 ? (
+                  <p className="text-xs text-emerald-500 dark:text-emerald-400">No blockers</p>
+                ) : (
+                  <div className="max-h-36 overflow-y-auto space-y-2 pr-1">
+                    {ws.blockers.map((b) => (
+                      <div key={b.id} className="flex gap-2 items-start">
+                        <span className="text-red-500 mt-0.5 shrink-0 text-xs">●</span>
+                        <div>
+                          <p className="text-xs text-[var(--text)] leading-snug">{b.description}</p>
+                          <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{b.owner} · {b.raisedDate}</p>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-                <div>
-                  <h3 className="text-sm font-semibold text-[var(--text)] uppercase tracking-wide mb-3">Latest Update</h3>
-                  {ws.updates.length === 0 ? (
-                    <p className="text-slate-500 text-sm">No updates yet.</p>
-                  ) : (
-                    <div className="space-y-2">
-                      {ws.updates.slice(0, 2).map((u, i) => (
-                        <div key={i} className="text-sm">
-                          <span className="text-slate-500 text-xs block mb-0.5">{u.date}</span>
-                          <span className="text-[var(--text)]">{u.text}</span>
+              {/* Updates */}
+              <div className="px-5 py-4 border-t lg:border-t-0 lg:border-l border-[var(--border)]">
+                <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Updates</h3>
+                {ws.updates.length === 0 ? (
+                  <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
+                ) : (
+                  <div className="max-h-36 overflow-y-auto space-y-2.5 pr-1">
+                    {ws.updates.map((u, i) => (
+                      <div key={i} className="flex gap-2 items-start">
+                        <span className="text-indigo-400 mt-0.5 shrink-0 text-xs">●</span>
+                        <div>
+                          <p className="text-[10px] text-[var(--text-muted)] mb-0.5">{u.date}</p>
+                          <p className="text-xs text-[var(--text)] leading-snug">{u.text}</p>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 

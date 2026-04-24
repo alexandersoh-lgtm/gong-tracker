@@ -5,6 +5,7 @@ export type ActionStatus = "open" | "in_progress" | "complete" | "cancelled";
 export interface Milestone {
   id: string;
   name: string;
+  startDate?: string;
   dueDate: string;
   status: "complete" | "in_progress" | "not_started";
 }
