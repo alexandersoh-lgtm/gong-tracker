@@ -175,7 +175,7 @@
     "blockers": [],
     "updates": [
       { "date": "2026-04-23", "text": "Salesforce CRM integration 70% complete — on track for May 1 target." },
-      { "date": "2026-04-17", "text": "Rentals pilot sync completed with Michelle Maenpaa. Agreed to parallel path: SalesLoft extension exploration + Gong Engage pilot scoping. Follow-up scheduled week of May 4." },
+      { "date": "2026-04-17", "text": "Sourcing sync completed — contract execution on track. Salesforce CRM integration in progress." },
       { "date": "2026-03-13", "text": "ASA pilot active. Office hours running to support reps on Engage & Forecast troubleshooting. Adoption tracking well." },
       { "date": "2026-03-03", "text": "Agent Sales rollout plan reviewed and aligned with Alex Coventry and Emily Bates. Business unit sequencing confirmed." },
       { "date": "2026-02-13", "text": "Go/No-Go meeting completed with full stakeholder group. Green light given for ASA rollout to proceed." }
@@ -213,10 +213,10 @@
           "goals": [
             "Review contract execution status and any outstanding commercial items",
             "Confirm SOW service timeline — Gong services must begin within 6 weeks of staffing completion",
-            "Discuss standard pilot license structure for Rentals and future teams"
+            "Discuss standard pilot license structure for future teams"
           ],
           "decisionPoints": [
-            "Confirm pilot license approach for Rentals — timeline and terms",
+            "Confirm pilot license approach for future teams — structure and terms",
             "Align on Twilio documentation timeline (needed for Gong Connect phone number provisioning)"
           ]
         }
@@ -244,28 +244,6 @@
           ]
         },
         {
-          "id": "ge-pm1",
-          "title": "Rentals Gong Engage Pilot",
-          "date": "2026-04-17",
-          "attendees": "Alexander Sohn, Michelle Maenpaa",
-          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0NTJrOGM5bzZjcjNnZDFnOGQyazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzRyNDRkMjE2OHIzMmQ5bDZjcjQ0ZzlrNnNza2FkMjE2Y3FqaWMyMThsMmplZTI1NmQzMCA%3D",
-          "decisions": [
-            "Too early to commit to Rentals pilot — Michelle just started, needs time to understand team workflows",
-            "Agreed to parallel path: SalesLoft extension exploration + Rentals Gong Engage pilot scoping",
-            "SalesLoft contract ends Aug 26, 2026 — Rentals last remaining group if all others migrate by then",
-            "Rentals would have separate Gong workspace with own admin control if they migrate",
-            "Bi-weekly 1:1 cadence agreed between Alexander and Michelle",
-            "Alexander to audit Gong smart trackers and reallocate equitably — ASA currently consuming majority",
-            "Gong moving to usage-based smart trackers — capacity concerns should resolve naturally"
-          ],
-          "actionItems": [
-            { "title": "Set up follow-up meeting with Michelle to discuss Rentals pilot (~week of May 4)", "owner": "Alexander Sohn", "dueDate": "2026-04-27" },
-            { "title": "Set up 3-way meeting: Alexander + Michelle + Brian Short re: SalesLoft extension", "owner": "Alexander Sohn", "dueDate": "2026-04-27" },
-            { "title": "Send Michelle the Gong implementation SOW", "owner": "Alexander Sohn", "dueDate": "2026-04-20" },
-            { "title": "Research pros/cons of shared vs separate Gong instance for Rentals", "owner": "Alexander Sohn", "dueDate": "2026-05-01" }
-          ]
-        },
-        {
           "id": "ge-pm5",
           "title": "Gong Engage & Forecast — Sourcing Sync",
           "date": "2026-03-20",
@@ -275,7 +253,7 @@
             "Leadership focused on services pricing and overall seat pricing",
             "Brian Short pushing for Foundations price to come down; Engage+Forecast at ~$400/seat likely acceptable",
             "Austin (Gong AE) to provide best and final offer by Mon Mar 23",
-            "Agreed to establish standard pilot license structure for future pilots (Rentals, LMD Gong Enable, etc.)"
+            "Agreed to establish standard pilot license structure for future pilots (LMD Gong Enable, etc.)"
           ],
           "actionItems": [
             { "title": "Brian Short to review Gong best/final proposal on Monday Mar 23", "owner": "Brian Short", "dueDate": "2026-03-23" },
@@ -301,7 +279,7 @@
           "decisions": [
             "Alex Coventry confirmed green light to move forward with Gong Engage & Forecast",
             "Gong's initial pricing was not best/final — they deliberately held back to gauge deal stage",
-            "700 seats does not include Rentals — pricing should assume 1,100 seats eventually",
+            "700 seats is current scope — pricing should assume growth to 1,100 seats over time",
             "Brian Short to meet with Austin (Gong AE) next day for best/final pricing",
             "Agent Sales rollout plan reviewed — ASA confirmed as primary launch cohort"
           ],
