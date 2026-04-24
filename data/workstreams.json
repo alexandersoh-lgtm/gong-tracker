@@ -159,17 +159,18 @@
     "icon": "🎯",
     "status": "green",
     "owner": "Alexander Sohn",
-    "percentComplete": 40,
-    "description": "Full deployment of Gong Engage (sales engagement / sequences) across all ZG sales teams. Includes email, dialer, and task automation.",
+    "percentComplete": 18,
+    "description": "Phased rollout of Gong Engage across all ZG sales teams — replacing Salesloft. ASA goes live in two waves (Jun 8 & Jun 22) with New Construction, ZGMI/Mortech, and StreetEasy following in Phase 2 (July+). Full cutover complete by Salesloft offboarding on Aug 26, 2026.",
     "milestones": [
-      { "id": "ge-1", "name": "Vendor SOW signed",          "startDate": "2025-12-01", "dueDate": "2026-03-01", "status": "complete" },
-      { "id": "ge-2", "name": "Admin configuration",        "startDate": "2026-03-02", "dueDate": "2026-04-15", "status": "complete" },
-      { "id": "ge-3", "name": "Salesforce CRM integration", "startDate": "2026-04-15", "dueDate": "2026-05-01", "status": "in_progress" },
-      { "id": "ge-4", "name": "ASA pilot launch",           "startDate": "2026-05-01", "dueDate": "2026-05-15", "status": "not_started" },
-      { "id": "ge-5", "name": "StreetEasy pilot",           "startDate": "2026-05-16", "dueDate": "2026-06-01", "status": "not_started" },
-      { "id": "ge-6", "name": "New Con pilot",              "startDate": "2026-06-02", "dueDate": "2026-06-15", "status": "not_started" },
-      { "id": "ge-7", "name": "ZMGI/Mortech pilot",         "startDate": "2026-06-16", "dueDate": "2026-07-01", "status": "not_started" },
-      { "id": "ge-8", "name": "All groups live",            "startDate": "2026-07-02", "dueDate": "2026-08-01", "status": "not_started" }
+      { "id": "ge-1", "name": "Pre-Work & Contract",                    "startDate": "2026-04-01", "dueDate": "2026-04-27", "status": "complete" },
+      { "id": "ge-2", "name": "Discovery & Configuration",              "startDate": "2026-04-27", "dueDate": "2026-05-29", "status": "in_progress" },
+      { "id": "ge-3", "name": "Train the Trainer",                      "startDate": "2026-05-18", "dueDate": "2026-06-05", "status": "not_started" },
+      { "id": "ge-4", "name": "UAT Sign-Off",                           "startDate": "2026-06-01", "dueDate": "2026-06-07", "status": "not_started" },
+      { "id": "ge-5", "name": "Ph1 · Wave 1 — ASA SMB Go-Live",         "startDate": "2026-06-08", "dueDate": "2026-06-18", "status": "not_started" },
+      { "id": "ge-6", "name": "Ph1 · Wave 2 — ASA MM/Strategic Go-Live","startDate": "2026-06-22", "dueDate": "2026-06-30", "status": "not_started" },
+      { "id": "ge-7", "name": "Hypercare & Stabilization",              "startDate": "2026-06-22", "dueDate": "2026-07-20", "status": "not_started" },
+      { "id": "ge-8", "name": "Ph2 · NC / ZGMI / StreetEasy Go-Live",   "startDate": "2026-07-01", "dueDate": "2026-08-15", "status": "not_started" },
+      { "id": "ge-9", "name": "Salesloft Offboarded",                   "startDate": "2026-08-26", "dueDate": "2026-08-26", "status": "not_started" }
     ],
     "blockers": [],
     "updates": [
