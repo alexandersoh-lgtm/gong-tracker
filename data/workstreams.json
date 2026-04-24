@@ -321,26 +321,29 @@
     "name": "Gong Forecast Implementation",
     "icon": "📊",
     "status": "yellow",
-    "owner": "TBD",
-    "percentComplete": 15,
-    "description": "Deployment of Gong Forecast for revenue intelligence and pipeline management. Replaces legacy forecasting tools.",
+    "owner": "Alex Coventry",
+    "percentComplete": 20,
+    "description": "Deployment of Gong Forecast (340 ASA seats) to replace manual spreadsheet-based pipeline forecasting. Automates deal-level AI forecasting, pipeline rollups, and manager forecast submissions directly within Gong. Key dependency: Salesforce opportunity data hygiene. Launches with ASA alongside the Gong Engage rollout (Jun 8 Wave 1, Jun 22 Wave 2). Legacy manual forecasting process retired by Aug 26.",
     "milestones": [
-      { "id": "gf-1", "name": "Vendor SOW signed",         "startDate": "2025-12-01", "dueDate": "2026-03-01", "status": "complete" },
-      { "id": "gf-2", "name": "CRM field mapping",         "startDate": "2026-03-02", "dueDate": "2026-05-01", "status": "in_progress" },
-      { "id": "gf-3", "name": "Forecast configuration",    "startDate": "2026-05-02", "dueDate": "2026-05-30", "status": "not_started" },
-      { "id": "gf-4", "name": "Manager enablement",        "startDate": "2026-05-31", "dueDate": "2026-06-15", "status": "not_started" },
-      { "id": "gf-5", "name": "Parallel run",              "startDate": "2026-06-16", "dueDate": "2026-07-01", "status": "not_started" },
-      { "id": "gf-6", "name": "Legacy decommission",       "startDate": "2026-07-02", "dueDate": "2026-08-31", "status": "not_started" }
+      { "id": "gf-1", "name": "Pre-work & Contract",      "startDate": "2025-12-01", "dueDate": "2026-04-06", "status": "complete" },
+      { "id": "gf-2", "name": "Forecast Configuration",   "startDate": "2026-04-27", "dueDate": "2026-05-29", "status": "in_progress" },
+      { "id": "gf-3", "name": "Pilot",                    "startDate": "2026-06-01", "dueDate": "2026-06-22", "status": "not_started" },
+      { "id": "gf-4", "name": "Manager Enablement",       "startDate": "2026-05-18", "dueDate": "2026-06-07", "status": "not_started" },
+      { "id": "gf-5", "name": "Go Live",                  "startDate": "2026-06-08", "dueDate": "2026-06-30", "status": "not_started" },
+      { "id": "gf-6", "name": "Legacy Decommission",      "startDate": "2026-07-01", "dueDate": "2026-08-26", "status": "not_started" }
     ],
     "blockers": [
-      { "id": "b2", "description": "Owner not yet confirmed for Forecast workstream — blocking key decisions", "owner": "Alexander Sohn", "raisedDate": "2026-04-15" }
+      { "id": "gf-b1", "description": "Salesforce opportunity data hygiene — reps not updating deal amounts or closing lost opps, which will degrade Gong automated forecast accuracy vs manual", "owner": "Alex Coventry, Shawn Cournoyer", "raisedDate": "2026-03-10" }
     ],
     "updates": [
-      { "date": "2026-04-23", "text": "CRM field mapping workshop completed. Awaiting workstream owner confirmation before proceeding." }
+      { "date": "2026-04-21", "text": "Weekly Gong Forecast standup completed with Alex Coventry, Shawn Cournoyer, Will Gray, Angela McClure, Alex Zener. Forecast configuration kickoff targeting Apr 27 implementation kickoff." },
+      { "date": "2026-03-16", "text": "Gong Forecast ROI business case reviewed and approved with Brian Short, Sherri Hahndorf, and Alex Coventry. Business case aligned for contract execution." },
+      { "date": "2026-03-10", "text": "Forecast measurement deep dive with Shawn Cournoyer. Key finding: Salesforce opp data hygiene (amount accuracy, closed-lost discipline) is critical dependency. Reps need to update opps in SF for automated forecast to match manual accuracy." },
+      { "date": "2026-02-12", "text": "Measurement methodology aligned with Alex Coventry, Matt Ryan, Shawn Cournoyer. Two accuracy metrics defined: (1) Gong AI forecast vs current manual process, (2) both vs actual closed revenue." },
+      { "date": "2026-01-28", "text": "Initial forecast measurement sessions with ASA managers (Matt Ryan, Alex Marden, Shawn Cournoyer). Confirmed universal desire to move off manual spreadsheet forecasting — everyone wants Gong to automate this." }
     ],
     "actions": [
-      { "id": "gf-a1", "title": "Confirm Gong Forecast workstream owner", "owner": "Alexander Sohn", "dueDate": "2026-04-28", "priority": "high", "status": "open" },
-      { "id": "gf-a2", "title": "Finalize CRM field mapping document", "owner": "TBD", "dueDate": "2026-05-10", "priority": "high", "status": "open" }
+      { "id": "gf-a1", "title": "Improve Salesforce opportunity data hygiene — align managers on amount updates and closed-lost discipline before Forecast launch", "owner": "Alex Coventry", "dueDate": "2026-05-29", "priority": "high", "status": "open" }
     ],
     "meetings": {
       "upcoming": [
@@ -370,16 +373,69 @@
           "date": "2026-04-21",
           "attendees": "Alexander Sohn, Steven Reilly, Alex Coventry, Shawn Cournoyer, Will Gray, Angela McClure, Alex Zener",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3AzZ2doZzcxMzNhZDlnODRwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODRvM2FncGw2Y3FrY2c5aDc0cjQ0ZzlrNnAwazZoOXA4OHA0OGRhMzcxMWoyaDFwNmNzMF8yMDI2MDQyMFQyMDM1MDBaIA%3D%3D",
-          "decisions": [],
+          "decisions": ["Weekly standup to track Gong Forecast buildout progress. Forecast configuration kickoff targeting Apr 27 Gong implementation kickoff."],
+          "actionItems": []
+        },
+        {
+          "id": "gf-pm5",
+          "title": "Gong Forecast ROI",
+          "date": "2026-03-16",
+          "attendees": "Alexander Sohn, Brian Short, Sherri Hahndorf, Alex Coventry",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc4OHEzOGMyMjhrcjMyYzIxODhwazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNzEwazhlYTE2OHNqYWQ5aDY0cTNlY3BrOG9zM2FkcTQ2aDI0Y2gxbzc0cDRjZ2kzNmwyMCA%3D",
+          "decisions": ["Gong Forecast ROI business case reviewed and approved", "Financial justification aligned — contract execution cleared to proceed"],
+          "actionItems": []
+        },
+        {
+          "id": "gf-pm4",
+          "title": "Forecast Measurement",
+          "date": "2026-03-10",
+          "attendees": "Alexander Sohn, Shawn Cournoyer",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y29qaWNoaDY4b2oyZ3BrNzExazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODhyMzJjaG04aDM0OGRpNDhwMjMyaGhrNjUwamlkcGk3MHMzY2dwaTY4cWpnaDFvNmtyMCA%3D",
+          "decisions": [
+            "Two levels of forecast accuracy must be measured: (1) Gong automated forecast vs current manual process, (2) both vs actual closed revenue",
+            "Critical finding: Salesforce opportunity hygiene is the key dependency — reps not updating deal amounts (e.g., 10-zip scenario) and not closing out lost deals inflates pipeline",
+            "Managers currently compensate in manual spreadsheets by excluding known inaccuracies — Gong cannot do this without SF data discipline",
+            "Everyone strongly motivated to eliminate manual spreadsheet forecasting"
+          ],
+          "actionItems": [
+            { "title": "Define Salesforce opportunity hygiene requirements and communicate to managers", "owner": "Alex Coventry", "dueDate": "2026-04-15" },
+            { "title": "Establish baseline forecast accuracy % from current manual process", "owner": "Shawn Cournoyer", "dueDate": "2026-03-31" }
+          ]
+        },
+        {
+          "id": "gf-pm3",
+          "title": "Forecast Measurement",
+          "date": "2026-02-12",
+          "attendees": "Alexander Sohn, Alex Coventry, Matt Ryan, Shawn Cournoyer",
+          "decisions": [
+            "Forecast accuracy measurement methodology aligned — two metrics confirmed",
+            "Business case doc updated by Alex Coventry — Doug approved, waiting on Colton",
+            "Matt Ryan confirmed current forecast process: managers use spreadsheets pulling from Gong, manually adjust based on rep conversations rather than Salesforce data"
+          ],
           "actionItems": []
         },
         {
           "id": "gf-pm2",
+          "title": "Forecast Measurement",
+          "date": "2026-01-28",
+          "attendees": "Alexander Sohn, Matt Ryan, Alex Marden, Alex Coventry, Shawn Cournoyer, Daniel Swenson",
+          "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2Y29qaWNoaDY4b2oyZ3BrNzExazhncGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnODhyMzJjaG04aDM0OGRpNDhwMjMyaGhrNjUwamlkcGk3MHMzY2dwaTY4cWpnaDFvNmtyMCA%3D",
+          "decisions": [
+            "Kickoff session for measuring Gong Forecast accuracy — reviewed how ASA managers currently forecast manually via spreadsheets",
+            "Universal desire confirmed: all managers want to move off manual spreadsheet forecasting",
+            "Gong automated forecast needs to be validated against manual process before full switch"
+          ],
+          "actionItems": [
+            { "title": "Follow-up session with Shawn Cournoyer to deep-dive on current forecasting process", "owner": "Alexander Sohn", "dueDate": "2026-02-18" }
+          ]
+        },
+        {
+          "id": "gf-pm1",
           "title": "Gong Engage & Forecast — Go/No-Go",
           "date": "2026-02-13",
           "attendees": "Alexander Sohn, Kelly Talaske, Andy Michaud-Reisig, Brian Short, Matt Gilliland, Joanna Kao, Doug Lampart + team",
           "calendarLink": "https://www.google.com/calendar/event?authuser=alexandersoh%40zillowgroup.com&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc0a3EzaWU5bjhkMmpkZWhuODkyM2dlMWs4Y3NqMmUxajcwc2s0ZDlrNnNzNDhkaGw2c3MwA%3D%3D",
-          "decisions": [],
+          "decisions": ["Green light given for full ASA rollout of both Gong Engage and Gong Forecast"],
           "actionItems": []
         }
       ]
