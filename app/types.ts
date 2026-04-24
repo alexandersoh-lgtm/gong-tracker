@@ -67,7 +67,7 @@ export interface Workstream {
   };
 }
 
-export type PhaseStatus = "complete" | "in_progress" | "not_started";
+export type PhaseStatus = "complete" | "in_progress" | "not_started" | "na";
 
 export interface LaunchGroup {
   id: string;
