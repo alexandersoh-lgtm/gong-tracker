@@ -154,10 +154,10 @@ export default async function WorkstreamsPage() {
                 </div>
               </div>
 
-              {/* Blockers + Updates — 1/3, scrollable */}
-              <div className="px-5 pt-4 pb-4 flex flex-col gap-3">
+              {/* Blockers + Updates — 1/3 */}
+              <div className="px-5 pt-4 pb-0 flex flex-col">
                 {/* Blockers */}
-                <div>
+                <div className="shrink-0 mb-3">
                   <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5">Blockers</h3>
                   {ws.blockers.length === 0 ? (
                     <p className="text-xs text-emerald-500 dark:text-emerald-400">No blockers</p>
@@ -177,15 +177,15 @@ export default async function WorkstreamsPage() {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-[var(--border)]" />
+                <div className="border-t border-[var(--border)] shrink-0 mb-3" />
 
-                {/* Updates — grows to fill remaining space */}
-                <div className="flex flex-col flex-1 min-h-0">
-                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5">Updates</h3>
+                {/* Updates — fills remaining height, scrolls */}
+                <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-1.5 shrink-0">Updates</h3>
                   {ws.updates.length === 0 ? (
                     <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
                   ) : (
-                    <div className="max-h-48 overflow-y-auto space-y-2 pr-1">
+                    <div className="flex-1 overflow-y-auto space-y-2 pr-1">
                       {ws.updates.map((u, i) => (
                         <div key={i} className="flex gap-2 items-start">
                           <span className="text-indigo-400 mt-0.5 shrink-0 text-[10px]">●</span>

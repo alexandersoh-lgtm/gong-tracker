@@ -181,9 +181,7 @@
       { "date": "2026-02-13", "text": "Go/No-Go meeting completed with full stakeholder group. Green light given for ASA rollout to proceed." }
     ],
     "actions": [
-      { "id": "ge-a1", "title": "Complete Salesforce CRM integration", "owner": "Engineering", "dueDate": "2026-05-01", "priority": "high", "status": "in_progress" },
-      { "id": "ge-a2", "title": "Schedule ASA training sessions", "owner": "TBD", "dueDate": "2026-05-05", "priority": "high", "status": "open" },
-      { "id": "ge-a3", "title": "Build ASA sequence templates", "owner": "Alexander Sohn", "dueDate": "2026-05-10", "priority": "high", "status": "open" }
+      { "id": "ge-a1", "title": "Submit Wave 1 training dates to Gong — minimum 4 weeks in advance (SOW requirement, blocks Jun 8 go-live)", "owner": "Alexander Sohn", "dueDate": "2026-05-11", "priority": "high", "status": "open" }
     ],
     "meetings": {
       "upcoming": [
