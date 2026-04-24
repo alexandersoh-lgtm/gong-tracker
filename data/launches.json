@@ -1,29 +1,58 @@
 {
-  "phases": ["Kickoff", "Discovery", "Training", "Pilot", "Go-Live", "Hypercare"],
+  "phases": ["Pilot", "Kickoff", "Discovery", "Training", "UAT", "Go-Live", "Hypercare"],
   "groups": [
     {
-      "id": "asa",
+      "id": "asa-wave1",
       "name": "ASA",
-      "fullName": "Agent Sales & Advertising",
+      "fullName": "Wave 1 — SMB (Ney + Weinraub pods)",
       "launchOwner": "Alexander Sohn",
       "targetGoLive": "2026-06-08",
       "forecastInScope": true,
-      "notes": "First to launch — two waves. Wave 1 (ASA Cohort 1: SMB, Ney + Weinraub pods, ~138 reps) goes live week of Jun 8. Wave 2 (ASA Cohort 2: MM/Strategic/Enterprise, ~105 reps) goes live week of Jun 22. Includes both Gong Engage and Gong Forecast. Target: all ASA fully onboarded by Jun 30.",
+      "notes": "Wave 1 covers all SMB Acquisition & G&R teams — Ney + Weinraub pods (~138 reps). Go-live week of Jun 8.",
       "engage": {
-        "Kickoff": "in_progress",
-        "Discovery": "not_started",
+        "Pilot":    "complete",
+        "Kickoff":  "complete",
+        "Discovery":"in_progress",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       },
       "forecast": {
-        "Kickoff": "in_progress",
-        "Discovery": "not_started",
+        "Pilot":    "complete",
+        "Kickoff":  "complete",
+        "Discovery":"in_progress",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
+      }
+    },
+    {
+      "id": "asa-wave2",
+      "name": "ASA",
+      "fullName": "Wave 2 — MM / Strategic / Enterprise",
+      "launchOwner": "Alexander Sohn",
+      "targetGoLive": "2026-06-22",
+      "forecastInScope": true,
+      "notes": "Wave 2 covers all Mid-Market, Strategic, and Enterprise ASA teams (~105 reps). Go-live week of Jun 22. All ASA fully onboarded by Jun 30.",
+      "engage": {
+        "Pilot":    "complete",
+        "Kickoff":  "complete",
+        "Discovery":"in_progress",
+        "Training": "not_started",
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
+      },
+      "forecast": {
+        "Pilot":    "complete",
+        "Kickoff":  "complete",
+        "Discovery":"in_progress",
+        "Training": "not_started",
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       }
     },
     {
@@ -31,24 +60,26 @@
       "name": "StreetEasy",
       "fullName": "StreetEasy Sales",
       "launchOwner": "TBD",
-      "targetGoLive": "2026-08-01",
+      "targetGoLive": "2026-07-15",
       "forecastInScope": false,
       "notes": "Phase 2 rollout — July 2026+. Engage only. Timeline TBD following ASA launch learnings. SME: Yen Blakely.",
       "engage": {
-        "Kickoff": "not_started",
-        "Discovery": "not_started",
+        "Pilot":    "not_started",
+        "Kickoff":  "not_started",
+        "Discovery":"not_started",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       },
       "forecast": {
-        "Kickoff": "not_started",
-        "Discovery": "not_started",
+        "Pilot":    "not_started",
+        "Kickoff":  "not_started",
+        "Discovery":"not_started",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       }
     },
     {
@@ -56,24 +87,26 @@
       "name": "New Con",
       "fullName": "New Construction Sales",
       "launchOwner": "TBD",
-      "targetGoLive": "2026-08-01",
+      "targetGoLive": "2026-07-15",
       "forecastInScope": false,
       "notes": "Phase 2 rollout — July 2026+. Engage only. Builder-facing workflows require custom sequence templates. SME: Wardah Faheem.",
       "engage": {
-        "Kickoff": "not_started",
-        "Discovery": "not_started",
+        "Pilot":    "not_started",
+        "Kickoff":  "not_started",
+        "Discovery":"not_started",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       },
       "forecast": {
-        "Kickoff": "not_started",
-        "Discovery": "not_started",
+        "Pilot":    "not_started",
+        "Kickoff":  "not_started",
+        "Discovery":"not_started",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       }
     },
     {
@@ -81,24 +114,26 @@
       "name": "ZMGI / Mortech",
       "fullName": "Zillow Home Loans / Mortech",
       "launchOwner": "TBD",
-      "targetGoLive": "2026-08-01",
+      "targetGoLive": "2026-07-15",
       "forecastInScope": false,
       "notes": "Phase 2 rollout — July 2026+. Engage only. Mortgage compliance review required before go-live. SMEs: Taylor Day (ZMGI), Ryan Cameron (Mortech).",
       "engage": {
-        "Kickoff": "not_started",
-        "Discovery": "not_started",
+        "Pilot":    "not_started",
+        "Kickoff":  "not_started",
+        "Discovery":"not_started",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       },
       "forecast": {
-        "Kickoff": "not_started",
-        "Discovery": "not_started",
+        "Pilot":    "not_started",
+        "Kickoff":  "not_started",
+        "Discovery":"not_started",
         "Training": "not_started",
-        "Pilot": "not_started",
-        "Go-Live": "not_started",
-        "Hypercare": "not_started"
+        "UAT":      "not_started",
+        "Go-Live":  "not_started",
+        "Hypercare":"not_started"
       }
     }
   ]
