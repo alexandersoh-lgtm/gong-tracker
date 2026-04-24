@@ -113,67 +113,79 @@ export default async function WorkstreamsPage() {
               <MilestoneTimeline milestones={ws.milestones} />
             </div>
 
-            {/* Milestones detail + Blockers + Updates */}
+            {/* Milestones + right panel */}
             <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
-              {/* Milestone Details */}
-              <div className="lg:col-span-1 px-5 py-4">
+
+              {/* Milestones — 2/3 */}
+              <div className="lg:col-span-2 px-6 py-5">
                 <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Milestones</h3>
                 <div className="divide-y divide-[var(--border)]">
-                  {ws.milestones.map((m) => (
-                    <div key={m.id} className="grid grid-cols-[16px_1fr_auto] items-center gap-x-2 py-1.5">
-                      <span className={`text-[11px] font-bold ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
-                      <span className={`text-[11px] truncate ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
-                        {m.name}
-                      </span>
-                      <span className="text-[10px] text-[var(--text-muted)] tabular-nums whitespace-nowrap text-right">
-                        {(m as { startDate?: string }).startDate
-                          ? `${(m as { startDate?: string }).startDate} → ${m.dueDate}`
-                          : m.dueDate}
-                      </span>
-                    </div>
-                  ))}
+                  {ws.milestones.map((m) => {
+                    const ms = m as { id: string; name: string; startDate?: string; dueDate: string; status: string };
+                    return (
+                      <div key={m.id} className="grid grid-cols-[18px_1fr_auto_80px] items-center gap-x-3 py-1.5">
+                        <span className={`text-xs font-bold ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
+                        <span className={`text-xs ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
+                          {m.name}
+                        </span>
+                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums whitespace-nowrap">
+                          {ms.startDate ? `${ms.startDate} → ${m.dueDate}` : m.dueDate}
+                        </span>
+                        <div className="flex justify-end">
+                          <StatusBadge status={m.status} size="xs" />
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Blockers */}
-              <div className="px-5 py-4 border-t lg:border-t-0 lg:border-l border-[var(--border)]">
-                <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Blockers</h3>
-                {ws.blockers.length === 0 ? (
-                  <p className="text-xs text-emerald-500 dark:text-emerald-400">No blockers</p>
-                ) : (
-                  <div className="max-h-36 overflow-y-auto space-y-2 pr-1">
-                    {ws.blockers.map((b) => (
-                      <div key={b.id} className="flex gap-2 items-start">
-                        <span className="text-red-500 mt-0.5 shrink-0 text-xs">●</span>
-                        <div>
-                          <p className="text-xs text-[var(--text)] leading-snug">{b.description}</p>
-                          <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{b.owner} · {b.raisedDate}</p>
+              {/* Blockers + Updates — 1/3, scrollable */}
+              <div className="px-5 py-5 flex flex-col gap-4">
+                {/* Blockers */}
+                <div>
+                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Blockers</h3>
+                  {ws.blockers.length === 0 ? (
+                    <p className="text-xs text-emerald-500 dark:text-emerald-400">No blockers</p>
+                  ) : (
+                    <div className="max-h-28 overflow-y-auto space-y-2 pr-1">
+                      {ws.blockers.map((b) => (
+                        <div key={b.id} className="flex gap-2 items-start">
+                          <span className="text-red-500 mt-0.5 shrink-0 text-[10px]">●</span>
+                          <div>
+                            <p className="text-xs text-[var(--text)] leading-snug">{b.description}</p>
+                            <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{b.owner} · {b.raisedDate}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-[var(--border)]" />
+
+                {/* Updates */}
+                <div>
+                  <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">Updates</h3>
+                  {ws.updates.length === 0 ? (
+                    <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
+                  ) : (
+                    <div className="max-h-36 overflow-y-auto space-y-2.5 pr-1">
+                      {ws.updates.map((u, i) => (
+                        <div key={i} className="flex gap-2 items-start">
+                          <span className="text-indigo-400 mt-0.5 shrink-0 text-[10px]">●</span>
+                          <div>
+                            <p className="text-[10px] text-[var(--text-muted)]">{u.date}</p>
+                            <p className="text-xs text-[var(--text)] leading-snug">{u.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
-              {/* Updates */}
-              <div className="px-5 py-4 border-t lg:border-t-0 lg:border-l border-[var(--border)]">
-                <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Updates</h3>
-                {ws.updates.length === 0 ? (
-                  <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
-                ) : (
-                  <div className="max-h-36 overflow-y-auto space-y-2.5 pr-1">
-                    {ws.updates.map((u, i) => (
-                      <div key={i} className="flex gap-2 items-start">
-                        <span className="text-indigo-400 mt-0.5 shrink-0 text-xs">●</span>
-                        <div>
-                          <p className="text-[10px] text-[var(--text-muted)] mb-0.5">{u.date}</p>
-                          <p className="text-xs text-[var(--text)] leading-snug">{u.text}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* High Priority Actions */}
