@@ -126,22 +126,26 @@ export default async function WorkstreamsPage() {
 
               {/* Milestones — 2/3 */}
               <div className="lg:col-span-2 px-6 py-5">
-                <h3 className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Milestones</h3>
+                <div className="grid items-center gap-x-4 mb-1" style={{ gridTemplateColumns: "16px 1fr 86px 86px 84px" }}>
+                  <span />
+                  <span className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">Milestone</span>
+                  <span className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">Start</span>
+                  <span className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">End</span>
+                  <span className="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-wider text-right">Status</span>
+                </div>
                 <div className="divide-y divide-[var(--border)]">
                   {ws.milestones.map((m) => {
                     const ms = m as { id: string; name: string; startDate?: string; dueDate: string; status: string };
-                    const fmt = (d?: string) => d ? d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$2-$3-$1") : "";
-                    const dateRange = ms.startDate ? `${fmt(ms.startDate)} → ${fmt(ms.dueDate)}` : fmt(ms.dueDate);
+                    const fmt = (d?: string) => d ? d.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$2-$3-$1") : "—";
                     return (
-                      <div key={m.id} className="flex items-center gap-3 py-1.5">
-                        <span className={`text-xs font-bold shrink-0 w-4 ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
-                        <span className={`text-xs flex-1 ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
+                      <div key={m.id} className="grid items-center gap-x-4 py-1.5" style={{ gridTemplateColumns: "16px 1fr 86px 86px 84px" }}>
+                        <span className={`text-xs font-bold ${milestoneText[m.status]}`}>{milestoneIcon[m.status]}</span>
+                        <span className={`text-xs truncate ${m.status === "complete" ? "text-[var(--text-muted)] line-through" : m.status === "in_progress" ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
                           {m.name}
                         </span>
-                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums whitespace-nowrap shrink-0">
-                          {dateRange}
-                        </span>
-                        <div className="shrink-0 w-20 flex justify-end">
+                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums">{fmt(ms.startDate)}</span>
+                        <span className="text-[11px] text-[var(--text-muted)] tabular-nums">{fmt(ms.dueDate)}</span>
+                        <div className="flex justify-end">
                           <StatusBadge status={m.status} size="xs" />
                         </div>
                       </div>
@@ -181,7 +185,7 @@ export default async function WorkstreamsPage() {
                   {ws.updates.length === 0 ? (
                     <p className="text-xs text-[var(--text-muted)]">No updates yet.</p>
                   ) : (
-                    <div className="overflow-y-auto space-y-2 pr-1" style={{ maxHeight: "calc(100% - 20px)" }}>
+                    <div className="max-h-48 overflow-y-auto space-y-2 pr-1">
                       {ws.updates.map((u, i) => (
                         <div key={i} className="flex gap-2 items-start">
                           <span className="text-indigo-400 mt-0.5 shrink-0 text-[10px]">●</span>
