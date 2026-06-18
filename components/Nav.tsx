@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
-  { href: "/", label: "Dashboard" },
+  { href: "/command-center", label: "Command Center" },
+  { href: "/overview", label: "Overview" },
   { href: "/workstreams", label: "Workstreams" },
   { href: "/launches", label: "Launches" },
   { href: "/pmo", label: "PMO" },
@@ -16,7 +17,7 @@ export default function Nav() {
     <nav className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
+          <Link href="/command-center" className="flex items-center gap-2 shrink-0">
             <div className="w-6 h-6 rounded-md bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
               <span className="text-white text-xs font-bold">G</span>
             </div>

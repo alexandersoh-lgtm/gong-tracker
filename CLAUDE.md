@@ -89,3 +89,28 @@ Full sync — does all of the following in one pass:
 ## After any data change
 Always run: `git add -A && git commit -m "[description]" && git push`
 Vercel auto-deploys on every push. Live in ~90 seconds.
+
+## Launch Command Center (`/command-center`)
+
+Live launch-readiness page. Two data sources, kept strictly separate:
+- **LIVE from Jira (never hand-edit):** all tickets, statuses, assignees, due dates, **sprints**, the at-risk engine, readiness %, counts. Pulled in `lib/jira.ts` via `JIRA_*` env vars; matched to waves/LOBs by labels (`cc-wave1/2/3`, `cc-lob-*`) + Jira components.
+- **MANUAL in `data/command-center.json`:** wave list + go-live dates, LOB list (seats/owner/scope), and each LOB's **go-live milestone statuses** (Discovery · Configuration · Template Tagging · SalesLoft Migration · Training · UAT · Go-Live → `complete` | `in_progress` | `not_started`). Milestones have NO Jira source.
+
+### Prompt: "Sync the command center from the plan doc"
+Source: **Gong Engage & Forecast Implementation Plan** — https://docs.google.com/document/d/1VxCf0w1pcNOVeslsPjg3c2CdBNmGM26mWATWCAd59TI/edit
+1. Read the doc (Glean `read_document`).
+2. Update `data/command-center.json` **only where the doc is unambiguous**: wave `goLive` dates, LOB seats/owners/scope. The doc is prose + has internally inconsistent tables — when tables conflict, **flag it to Alexander** and prefer his confirmed model (3 waves: ZGMI/Mortech Jul 13 · ASA Jul 20 · NewCon/StreetEasy/Preferred/dotloop/ShowingTime Aug 3 · Rentals excluded · SalesLoft off-board Aug 26).
+3. **Milestone statuses:** parse ONLY from a "Per-LOB Go-Live Milestones" table in the doc (format below). If that table is absent, do NOT fabricate statuses — leave them and tell Alexander to add it.
+4. Never modify ticket data (it's live). Then commit + push.
+
+Milestone table to maintain in the doc (one row per LOB; cells = `complete`/`in_progress`/`not_started`):
+
+| LOB | Discovery | Configuration | Template Tagging | SalesLoft Migration | Training | UAT | Go-Live |
+|-----|-----------|---------------|------------------|---------------------|----------|-----|---------|
+| ZGMI / Mortech | complete | complete | in_progress | not_started | not_started | not_started | not_started |
+| ASA | … | … | … | … | … | … | … |
+| New Construction | … | … | … | … | … | … | … |
+| StreetEasy | … | … | … | … | … | … | … |
+| Preferred | … | … | … | … | … | … | … |
+| dotloop | … | … | … | … | … | … | … |
+| ShowingTime | … | … | … | … | … | … | … |

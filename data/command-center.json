@@ -1,0 +1,130 @@
+{
+  "_README": "Wave structure confirmed by Alexander (Jun 2026). The page reads ONLY this file for wave/LOB structure + milestone statuses; tickets are fetched LIVE from Jira via each wave's jql and matched to LOBs by label/component. MILESTONES ARE MANUALLY MAINTAINED (no Jira source) — update the `status` fields here as each LOB progresses. Forecast is ASA-only; all other LOBs are Engage-only. Rentals excluded.",
+  "config": {
+    "jiraProject": "B2BFAST",
+    "jiraProjectId": "21237",
+    "offboardDate": "2026-08-26",
+    "dueSoonDays": 10,
+    "stalledDays": 7,
+    "milestoneSequence": ["Discovery", "Configuration", "Template Tagging", "SalesLoft Migration", "Training", "UAT", "Go-Live"]
+  },
+  "waves": [
+    {
+      "id": "wave1-zgmi-mortech",
+      "name": "Wave 1 — ZGMI / Mortech",
+      "goLive": "2026-07-13",
+      "scope": ["Engage"],
+      "owner": "Taylor Day · Ryan Cameron",
+      "jql": "project = B2BFAST AND labels = cc-wave1 ORDER BY duedate ASC",
+      "lobs": [
+        {
+          "id": "zgmi-mortech", "name": "ZGMI / Mortech", "seats": 20, "owner": "Taylor Day · Ryan Cameron", "allWaveTickets": true,
+          "milestones": [
+            { "name": "Discovery", "status": "complete" },
+            { "name": "Configuration", "status": "complete" },
+            { "name": "Template Tagging", "status": "na" },
+            { "name": "SalesLoft Migration", "status": "na" },
+            { "name": "Training", "status": "in_progress" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wave2-asa",
+      "name": "Wave 2 — ASA",
+      "goLive": "2026-07-20",
+      "scope": ["Engage", "Forecast"],
+      "owner": "Alex Coventry · Chris Hayden",
+      "jql": "project = B2BFAST AND labels = cc-wave2 ORDER BY duedate ASC",
+      "lobs": [
+        {
+          "id": "asa", "name": "ASA — Agent Sales", "seats": 340, "owner": "Coventry · Hayden", "allWaveTickets": true,
+          "milestones": [
+            { "name": "Discovery", "status": "complete" },
+            { "name": "Configuration", "status": "complete" },
+            { "name": "Template Tagging", "status": "complete" },
+            { "name": "SalesLoft Migration", "status": "complete" },
+            { "name": "Training", "status": "in_progress" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wave3-rollout",
+      "name": "Wave 3 — New Con · StreetEasy · Preferred · dotloop · ShowingTime",
+      "goLive": "2026-08-03",
+      "scope": ["Engage"],
+      "owner": "Faheem · Blakely · Mercado · Hayden",
+      "jql": "project = B2BFAST AND labels = cc-wave3 ORDER BY duedate ASC",
+      "watchItems": [
+        "Preferred (~102 seats) — no implementation tickets created in Jira yet. Untracked work ahead of Aug 3 go-live."
+      ],
+      "lobs": [
+        {
+          "id": "newcon", "name": "New Construction", "seats": 81, "owner": "Wardah Faheem", "lobLabel": "cc-lob-newcon",
+          "milestones": [
+            { "name": "Discovery", "status": "complete" },
+            { "name": "Configuration", "status": "in_progress" },
+            { "name": "Template Tagging", "status": "not_started" },
+            { "name": "SalesLoft Migration", "status": "not_started" },
+            { "name": "Training", "status": "not_started" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        },
+        {
+          "id": "streeteasy", "name": "StreetEasy", "seats": 15, "owner": "Yen Blakely", "lobLabel": "cc-lob-streeteasy",
+          "milestones": [
+            { "name": "Discovery", "status": "complete" },
+            { "name": "Configuration", "status": "in_progress" },
+            { "name": "Template Tagging", "status": "not_started" },
+            { "name": "SalesLoft Migration", "status": "not_started" },
+            { "name": "Training", "status": "not_started" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        },
+        {
+          "id": "preferred", "name": "Preferred", "seats": 102, "owner": "Andreas Mercado", "lobLabel": "cc-lob-preferred",
+          "milestones": [
+            { "name": "Discovery", "status": "not_started" },
+            { "name": "Configuration", "status": "not_started" },
+            { "name": "Template Tagging", "status": "not_started" },
+            { "name": "SalesLoft Migration", "status": "not_started" },
+            { "name": "Training", "status": "not_started" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        },
+        {
+          "id": "dotloop", "name": "dotloop", "seats": 34, "owner": "Chris Hayden", "components": ["dotloop"],
+          "milestones": [
+            { "name": "Discovery", "status": "complete" },
+            { "name": "Configuration", "status": "complete" },
+            { "name": "Template Tagging", "status": "in_progress" },
+            { "name": "SalesLoft Migration", "status": "not_started" },
+            { "name": "Training", "status": "not_started" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        },
+        {
+          "id": "showingtime", "name": "ShowingTime", "seats": 21, "owner": "Chris Hayden", "components": ["ShowingTime+"],
+          "milestones": [
+            { "name": "Discovery", "status": "complete" },
+            { "name": "Configuration", "status": "complete" },
+            { "name": "Template Tagging", "status": "in_progress" },
+            { "name": "SalesLoft Migration", "status": "not_started" },
+            { "name": "Training", "status": "not_started" },
+            { "name": "UAT", "status": "not_started" },
+            { "name": "Go-Live", "status": "not_started" }
+          ]
+        }
+      ]
+    }
+  ]
+}
