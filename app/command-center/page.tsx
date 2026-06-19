@@ -166,13 +166,17 @@ export default async function CommandCenterPage() {
     })
   );
 
-  // Silent risks: unassigned or stalled tickets not already on the at-risk board
+  // Silent risks (not already on the at-risk board):
+  //  - No sprint   → every ticket should be in a sprint
+  //  - No owner    → only flagged when the ticket is in the ACTIVE sprint (future-sprint tickets needn't have owners yet)
+  //  - Stalled     → no update in N days
   const cleanup: { t: AssessedTicket; wave: string; reasons: string[] }[] = [];
   for (const a of assessments)
     for (const t of a.tickets) {
       if (t.isDone || t.severity === "overdue" || t.severity === "due-soon") continue;
       const reasons: string[] = [];
-      if (!t.assignee) reasons.push("No owner");
+      if (!t.sprint) reasons.push("No sprint");
+      else if (t.sprint.state === "active" && !t.assignee) reasons.push("No owner");
       if (t.flags.includes("stalled")) reasons.push("Stalled");
       if (reasons.length) cleanup.push({ t, wave: a.wave.name.split(" — ")[0], reasons });
     }
@@ -249,18 +253,20 @@ export default async function CommandCenterPage() {
       )}
 
       {unmapped.length > 0 && (
-        <div className="banner warn2">
-          <h3>⚠ {unmapped.length} ticket{unmapped.length === 1 ? "" : "s"} in the Gong epics not mapped to a wave</h3>
-          <p>These won&apos;t appear on any wave until they get a <code>cc-wave1/2/3</code> label. <a href={unmappedUrl} target="_blank" rel="noopener noreferrer">Review in Jira →</a></p>
-          <div className="unmapped">
-            {unmapped.slice(0, 8).map((t) => (
+        <details className="banner warn2">
+          <summary>
+            <span className="um-title">⚠ {unmapped.length} ticket{unmapped.length === 1 ? "" : "s"} in the Gong epics not mapped to a wave</span>
+            <span className="um-toggle">show all ▾</span>
+          </summary>
+          <p>These won&apos;t appear on any wave until they get a <code>cc-wave1/2/3</code> label. <a href={unmappedUrl} target="_blank" rel="noopener noreferrer">Open all in Jira →</a></p>
+          <div className="unmapped scroll">
+            {unmapped.map((t) => (
               <a key={t.key} href={t.url} target="_blank" rel="noopener noreferrer">
                 <span className="um-k">{t.key}</span> {t.summary}
               </a>
             ))}
-            {unmapped.length > 8 && <span className="um-more">+{unmapped.length - 8} more</span>}
           </div>
-        </div>
+        </details>
       )}
 
       {!configured && (
@@ -372,7 +378,7 @@ export default async function CommandCenterPage() {
         </>
       )}
 
-      <div className="sec"><span className="idx">03</span><h2>Needs Cleanup</h2><span className="count">{cleanup.length} ITEMS · NO OWNER / STALLED</span></div>
+      <div className="sec"><span className="idx">03</span><h2>Needs Cleanup</h2><span className="count">{cleanup.length} ITEMS · NO SPRINT / NO OWNER (ACTIVE) / STALLED</span></div>
       {cleanup.length === 0 ? (
         <div className="emptyline">{configured ? "No hygiene issues — every active ticket has an owner and recent activity." : "Connect Jira to populate."}</div>
       ) : (

@@ -22,7 +22,7 @@ export interface JiraTicket {
   priority: string | null;
   labels: string[];
   components: string[];
-  sprint: { name: string; range: string | null } | null;
+  sprint: { name: string; range: string | null; state: string | null } | null;
   storyPoints: number | null;
   url: string;
 }
@@ -67,12 +67,14 @@ interface RawSprint {
   startDate?: string;
   endDate?: string;
 }
-function pickSprint(arr: RawSprint[] | null | undefined): { name: string; range: string | null } | null {
+function pickSprint(
+  arr: RawSprint[] | null | undefined
+): { name: string; range: string | null; state: string | null } | null {
   if (!Array.isArray(arr) || arr.length === 0) return null;
   const chosen = arr.find((s) => s.state === "active") ?? arr[arr.length - 1];
   const range =
     chosen.startDate && chosen.endDate ? `${shortDate(chosen.startDate)} – ${shortDate(chosen.endDate)}` : null;
-  return { name: chosen.name ?? "Sprint", range };
+  return { name: chosen.name ?? "Sprint", range, state: chosen.state ?? null };
 }
 
 interface RawIssue {
