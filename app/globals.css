@@ -195,6 +195,34 @@ body {
 .cc .wtile.feat .tdate{color:rgba(255,255,255,.92)}
 .cc .wdate{font-size:14px;font-weight:600;color:var(--ink)}
 .cc .wdate small{font-size:10px;font-weight:500;color:var(--muted)}
+
+/* Review round: at-risk strip, unmapped alert, GO/NO-GO gate, cleanup, owners, readiness breakdown */
+.cc .mstrip a.m{text-decoration:none;color:inherit;cursor:pointer;transition:.12s;display:block}
+.cc .mstrip a.m:hover{border-color:var(--ink)}
+.cc .tbreak{font-family:var(--font-mono),monospace;font-size:11px;color:var(--muted);margin-top:6px}
+.cc .wtile.feat .tbreak{color:rgba(255,255,255,.66)}
+.cc .riskstrip{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 16px;border:1px solid #f1c7c8;background:#fdeced;border-radius:12px;text-decoration:none;color:var(--ink)}
+.cc .riskstrip:hover{border-color:var(--red)}
+.cc .rs-badge{font-family:var(--font-mono),monospace;font-weight:700;font-size:13px;color:#fff;background:var(--red);padding:3px 10px;border-radius:6px;white-space:nowrap}
+.cc .rs-text{font-size:13.5px;font-weight:500}
+.cc .rs-go{margin-left:auto;font-family:var(--font-mono),monospace;font-size:12px;font-weight:600;color:var(--red);white-space:nowrap}
+.cc .banner.warn2{border-color:#f1c7c8;background:#fdeced}
+.cc .banner.warn2 h3{color:var(--red)}
+.cc .banner.warn2 code{font-family:var(--font-mono),monospace;font-size:12px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:4px}
+.cc .banner.warn2 a{color:var(--red);font-weight:600}
+.cc .unmapped{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.cc .unmapped a{font-size:12.5px;color:var(--ink);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc .unmapped a:hover{color:var(--red)}
+.cc .unmapped .um-k{font-family:var(--font-mono),monospace;color:var(--red);font-size:11.5px;margin-right:6px}
+.cc .unmapped .um-more{font-size:11.5px;color:var(--muted)}
+.cc .gate{font-family:var(--font-mono),monospace;font-size:12.5px;font-weight:600;padding:10px 14px;border-radius:10px;margin-bottom:8px}
+.cc .gate.go{background:#e8f6ee;color:var(--green)}
+.cc .gate.nogo{background:#fdeced;color:var(--red)}
+.cc .emptyline{padding:16px 2px;color:var(--muted);font-size:13.5px}
+.cc .ownerrow{display:grid;grid-template-columns:210px 46px 1fr;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+.cc .ownername{font-size:14px;font-weight:600}
+.cc .ownercount{font-family:var(--font-mono),monospace;font-size:13px;font-weight:600;color:var(--red);text-align:center;background:#fdeced;border-radius:6px;padding:2px 0}
+.cc .ownerkeys{font-family:var(--font-mono),monospace;font-size:11.5px;color:var(--accent);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cc .wname{display:flex;align-items:center}
 .cc .wname .wbadge{margin-right:11px;font-size:12.5px}
 .cc .trow .tk{font-family:var(--font-mono),monospace;font-size:11.5px;color:var(--accent)}

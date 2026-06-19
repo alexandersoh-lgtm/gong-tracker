@@ -3,6 +3,7 @@
   "config": {
     "jiraProject": "B2BFAST",
     "jiraProjectId": "21237",
+    "gongEpics": ["B2BFAST-13413", "B2BFAST-13414", "B2BFAST-8958"],
     "offboardDate": "2026-08-26",
     "dueSoonDays": 10,
     "stalledDays": 7,

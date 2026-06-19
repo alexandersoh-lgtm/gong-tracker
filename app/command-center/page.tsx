@@ -12,6 +12,7 @@ import {
   type RiskThresholds,
 } from "@/lib/risk";
 import MilestoneStepper from "./components/MilestoneStepper";
+import TicketGroups from "./components/TicketGroups";
 
 export const revalidate = 60;
 export const metadata = { title: "Launch Command Center — Gong Engage & Forecast" };
@@ -40,15 +41,6 @@ function daysTo(iso: string, today: Date): number {
 }
 function tMinus(days: number): string {
   return days < 0 ? `${Math.abs(days)}d ago` : `T−${days}d`;
-}
-function stClass(cat: AssessedTicket["statusCategory"]): string {
-  return cat === "done" ? "stt done" : cat === "indeterminate" ? "stt prog" : "stt new";
-}
-function ticketDue(t: AssessedTicket): { txt: string; red: boolean } {
-  if (t.daysToDue === null) return { txt: "—", red: false };
-  if (t.daysToDue < 0) return { txt: `−${Math.abs(t.daysToDue)}d`, red: true };
-  if (t.daysToDue === 0) return { txt: "today", red: true };
-  return { txt: `${t.daysToDue}d`, red: false };
 }
 function riskAction(t: AssessedTicket): string {
   if (!t.dueDate) return "Set due date";
@@ -98,6 +90,14 @@ export default async function CommandCenterPage() {
   const configured = jiraConfigured();
   const fetchError = assessments.find((a) => a.error)?.error ?? null;
 
+  // Coverage check: tickets under the Gong epics missing any cc-wave label (invisible until tagged)
+  const gongEpics = (ccData.config as { gongEpics?: string[] }).gongEpics ?? [];
+  const unmappedJql = `parent in (${gongEpics.join(",")}) AND (labels is EMPTY OR labels not in (cc-wave1,cc-wave2,cc-wave3)) AND issuetype != Epic ORDER BY updated DESC`;
+  const unmappedRes =
+    configured && gongEpics.length ? await searchJira(unmappedJql) : { tickets: [], error: null, configured };
+  const unmapped = unmappedRes.tickets;
+  const unmappedUrl = BASE ? `${BASE}/issues/?jql=${encodeURIComponent(unmappedJql)}` : "#";
+
   // Program readiness = blended milestone + ticket completion across every wave.
   let progDone = 0;
   let progApp = 0;
@@ -142,6 +142,50 @@ export default async function CommandCenterPage() {
   for (const a of assessments) for (const w of a.wave.watchItems ?? []) watch.push({ wave: a.wave.name.split(" — ")[0], text: w });
   const boardCount = atRisk.length + watch.length;
 
+  // Per-wave derived stats: readiness breakdown (milestone vs ticket) + GO/NO-GO gate
+  const waveStats = new Map(
+    assessments.map((a): [string, { mPct: number; tPct: number; blockers: string[]; go: boolean }] => {
+      const lobs = a.wave.lobs ?? [];
+      const mDone = lobs.reduce((s, l) => s + milestonesDone(l), 0);
+      const mApp = lobs.reduce((s, l) => s + milestonesApplicable(l), 0);
+      const openMs = mApp - mDone;
+      const untrackedInWave = lobs.filter((l) => lobTickets(a, l).length === 0).length;
+      const blockers: string[] = [];
+      if (a.counts.overdue > 0) blockers.push(`${a.counts.overdue} overdue`);
+      if (openMs > 0) blockers.push(`${openMs} milestone${openMs > 1 ? "s" : ""} open`);
+      if (untrackedInWave > 0) blockers.push(`${untrackedInWave} LOB${untrackedInWave > 1 ? "s" : ""} untracked`);
+      return [
+        a.wave.id,
+        {
+          mPct: mApp ? Math.round((mDone / mApp) * 100) : 0,
+          tPct: a.total ? Math.round((a.done / a.total) * 100) : 0,
+          blockers,
+          go: blockers.length === 0,
+        },
+      ];
+    })
+  );
+
+  // Silent risks: unassigned or stalled tickets not already on the at-risk board
+  const cleanup: { t: AssessedTicket; wave: string; reasons: string[] }[] = [];
+  for (const a of assessments)
+    for (const t of a.tickets) {
+      if (t.isDone || t.severity === "overdue" || t.severity === "due-soon") continue;
+      const reasons: string[] = [];
+      if (!t.assignee) reasons.push("No owner");
+      if (t.flags.includes("stalled")) reasons.push("Stalled");
+      if (reasons.length) cleanup.push({ t, wave: a.wave.name.split(" — ")[0], reasons });
+    }
+
+  // Owner accountability: at-risk items grouped by assignee, busiest first
+  const byOwner = new Map<string, { t: AssessedTicket; wave: string }[]>();
+  for (const r of atRisk) {
+    const o = r.t.assignee ?? "Unassigned";
+    if (!byOwner.has(o)) byOwner.set(o, []);
+    byOwner.get(o)!.push(r);
+  }
+  const owners = Array.from(byOwner.entries()).sort((x, y) => y[1].length - x[1].length);
+
   const offboardDays = daysTo(ccData.config.offboardDate, today);
   const asOf = today.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
 
@@ -167,6 +211,7 @@ export default async function CommandCenterPage() {
           const waveSP = a.tickets.reduce((s, t) => s + (t.storyPoints ?? 0), 0);
           const wr = waveReadiness(a.wave, a.done, a.total);
           const accent = WAVE_ACCENTS[i % WAVE_ACCENTS.length];
+          const st = waveStats.get(a.wave.id)!;
           return (
             <div className={`wtile${isNext ? " feat" : ""}`} key={a.wave.id} style={{ borderTop: `3px solid ${accent}` }}>
               <div className="te">
@@ -178,16 +223,45 @@ export default async function CommandCenterPage() {
               <div className="tcd">{tMinus(a.daysToGoLive)}</div>
               <div className="tbar"><i style={{ width: `${wr}%`, backgroundColor: accent }} /></div>
               <div className="tsub">{wr}% ready · {a.total} tickets · {waveSP} pts · {a.atRisk} at risk</div>
+              <div className="tbreak">Milestones {st.mPct}% · Tickets {st.tPct}%</div>
             </div>
           );
         })}
       </div>
 
       <div className="mstrip">
-        <div className="m warn"><div className="mk">Needs action</div><div className="mv warnv">{totalAtRisk}</div><div className="mn">tickets at risk of slipping</div></div>
-        <div className="m gap"><div className="mk">Untracked LOBs</div><div className="mv gapv">{untracked}</div><div className="mn">{firstUntracked ? `${firstUntracked.name} · no tickets` : "all LOBs have tickets"}</div></div>
+        <a className="m warn" href="#atrisk"><div className="mk">Needs action ↓</div><div className="mv warnv">{totalAtRisk}</div><div className="mn">tickets at risk of slipping</div></a>
+        <div className="m gap"><div className="mk">Untracked LOBs</div><div className="mv gapv">{untracked}</div><div className="mn">{firstUntracked ? `${firstUntracked.name}${untracked > 1 ? ` +${untracked - 1} more` : ""} · no tickets` : "all LOBs have tickets"}</div></div>
         <div className="m wall"><div className="mk">SalesLoft off-board</div><div className="mv wallv">{tMinus(offboardDays)}</div><div className="mn">hard cutover · {fmtDate(ccData.config.offboardDate)}</div></div>
       </div>
+
+      {boardCount > 0 && (
+        <a className="riskstrip" href="#atrisk">
+          <span className="rs-badge">⚠ {boardCount}</span>
+          <span className="rs-text">
+            need attention
+            {atRisk.length > 0 && (
+              <> — {atRisk.slice(0, 3).map((r) => r.t.key).join(", ")}{atRisk.length > 3 ? ` +${atRisk.length - 3}` : ""}</>
+            )}
+          </span>
+          <span className="rs-go">View all ↓</span>
+        </a>
+      )}
+
+      {unmapped.length > 0 && (
+        <div className="banner warn2">
+          <h3>⚠ {unmapped.length} ticket{unmapped.length === 1 ? "" : "s"} in the Gong epics not mapped to a wave</h3>
+          <p>These won&apos;t appear on any wave until they get a <code>cc-wave1/2/3</code> label. <a href={unmappedUrl} target="_blank" rel="noopener noreferrer">Review in Jira →</a></p>
+          <div className="unmapped">
+            {unmapped.slice(0, 8).map((t) => (
+              <a key={t.key} href={t.url} target="_blank" rel="noopener noreferrer">
+                <span className="um-k">{t.key}</span> {t.summary}
+              </a>
+            ))}
+            {unmapped.length > 8 && <span className="um-more">+{unmapped.length - 8} more</span>}
+          </div>
+        </div>
+      )}
 
       {!configured && (
         <div className="banner"><h3>Connect Jira</h3><p>Set JIRA_BASE_URL / JIRA_EMAIL / JIRA_API_TOKEN in the environment to populate live data.</p></div>
@@ -202,6 +276,7 @@ export default async function CommandCenterPage() {
         const waveSP = a.tickets.reduce((s, t) => s + (t.storyPoints ?? 0), 0);
         const wr = waveReadiness(a.wave, a.done, a.total);
         const accent = WAVE_ACCENTS[wi % WAVE_ACCENTS.length];
+        const st = waveStats.get(a.wave.id)!;
         return (
           <details className="wave" key={a.wave.id} open={wi === 0}>
             <summary>
@@ -215,31 +290,13 @@ export default async function CommandCenterPage() {
               <div className="wdate">{fmtDate(a.wave.goLive)}<small>{tMinus(a.daysToGoLive)}</small></div>
             </summary>
             <div className="lobs">
+              <div className={`gate ${st.go ? "go" : "nogo"}`}>
+                {st.go ? "✅ GO — all go-live criteria met" : `🚦 NO-GO — ${st.blockers.join(" · ")}`}
+              </div>
               {(a.wave.lobs ?? []).map((lob) => {
                 const tix = lobTickets(a, lob);
                 const done = milestonesDone(lob);
                 const applicable = milestonesApplicable(lob);
-                // group this LOB's tickets by sprint (live), labelled "Sprint N" and ordered chronologically
-                const groups: { name: string; label: string; range: string | null; isBacklog: boolean; items: AssessedTicket[] }[] = [];
-                const gidx = new Map<string, number>();
-                for (const t of tix) {
-                  const key = t.sprint?.name ?? "__backlog__";
-                  if (!gidx.has(key)) {
-                    gidx.set(key, groups.length);
-                    const m = t.sprint?.name.match(/S(\d+)(?:_|$)/);
-                    groups.push({
-                      name: t.sprint?.name ?? "",
-                      label: t.sprint ? (m ? `Sprint ${parseInt(m[1], 10)}` : t.sprint.name) : "Backlog · no sprint",
-                      range: t.sprint?.range ?? null,
-                      isBacklog: !t.sprint,
-                      items: [],
-                    });
-                  }
-                  groups[gidx.get(key)!].items.push(t);
-                }
-                groups.sort((x, y) =>
-                  x.isBacklog !== y.isBacklog ? (x.isBacklog ? 1 : -1) : x.name.localeCompare(y.name)
-                );
                 return (
                   <div className="lob" key={lob.id}>
                     <div className="lobhd">
@@ -253,34 +310,7 @@ export default async function CommandCenterPage() {
                     </div>
                     <MilestoneStepper milestones={lob.milestones} accent={accent} />
                     {tix.length > 0 ? (
-                      <div className="ltix">
-                        {groups.map((g) => {
-                          const gpts = g.items.reduce((s, t) => s + (t.storyPoints ?? 0), 0);
-                          return (
-                            <div className="sprintgrp" key={g.label}>
-                              <div className="sh">
-                                <span className="sn">{g.label}</span>
-                                <span className="sd">{g.isBacklog ? "" : g.name}{g.range ? ` · ${g.range}` : ""}</span>
-                                <span className="sbar" />
-                                {gpts > 0 && <span className="pts">{gpts} pts</span>}
-                              </div>
-                              {g.items.map((t) => {
-                                const du = ticketDue(t);
-                                return (
-                                  <div className="trow" key={t.key}>
-                                    <span className="tk">{t.key}</span>
-                                    <a className="ts" href={t.url} target="_blank" rel="noopener noreferrer">{t.summary}</a>
-                                    <span className={stClass(t.statusCategory)}>{t.status}</span>
-                                    <span className="ta">{t.assignee ?? "—"}</span>
-                                    <span className="td" style={du.red ? { color: "var(--red)" } : undefined}>{du.txt}</span>
-                                    <span className="tp">{t.storyPoints != null ? t.storyPoints : "—"}</span>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <TicketGroups tickets={tix} />
                     ) : (
                       <div className="empty">
                         ⚠ No implementation tickets — {lob.seats ?? "?"} seats, go-live {fmtDate(a.wave.goLive)}
@@ -290,12 +320,29 @@ export default async function CommandCenterPage() {
                   </div>
                 );
               })}
+              {(() => {
+                const lobs = a.wave.lobs ?? [];
+                const unmatched = a.tickets.filter((t) => !lobs.some((l) => lobMatches(t, l)));
+                if (unmatched.length === 0) return null;
+                return (
+                  <div className="lob">
+                    <div className="lobhd">
+                      <span className="lobnm">Unassigned to a line of business</span>
+                      <span className="lobseats">{unmatched.length} ticket{unmatched.length === 1 ? "" : "s"}</span>
+                      <span className="lobright">
+                        <span className="flagchip">Needs LOB tag</span>
+                      </span>
+                    </div>
+                    <TicketGroups tickets={unmatched} />
+                  </div>
+                );
+              })()}
             </div>
           </details>
         );
       })}
 
-      <div className="sec"><span className="idx">02</span><h2>At Risk</h2><span className="count">{boardCount} ITEMS · MOST URGENT FIRST</span></div>
+      <div className="sec" id="atrisk"><span className="idx">02</span><h2>At Risk</h2><span className="count">{boardCount} ITEMS · MOST URGENT FIRST</span></div>
       {boardCount === 0 ? (
         <div style={{ padding: "26px 0", color: "var(--muted)", fontSize: 14 }}>
           {configured ? "Nothing currently threatens a go-live date." : "Connect Jira to populate live risk."}
@@ -323,6 +370,35 @@ export default async function CommandCenterPage() {
             );
           })}
         </>
+      )}
+
+      <div className="sec"><span className="idx">03</span><h2>Needs Cleanup</h2><span className="count">{cleanup.length} ITEMS · NO OWNER / STALLED</span></div>
+      {cleanup.length === 0 ? (
+        <div className="emptyline">{configured ? "No hygiene issues — every active ticket has an owner and recent activity." : "Connect Jira to populate."}</div>
+      ) : (
+        cleanup.slice(0, 25).map(({ t, wave, reasons }) => (
+          <div className="rrow" key={t.key}>
+            <span className="dot d-slate" /><span className="rk">{t.key}</span>
+            <span className="rs">{t.summary}</span>
+            <span className="rw">{wave}</span>
+            <span className="rf slate">{reasons.join(" · ")}</span>
+            <span className="act"><a className="btn" href={t.url} target="_blank" rel="noopener noreferrer">Fix ↗</a></span>
+          </div>
+        ))
+      )}
+      {cleanup.length > 25 && <div className="emptyline">+{cleanup.length - 25} more</div>}
+
+      <div className="sec"><span className="idx">04</span><h2>By Owner — Who Owes What</h2><span className="count">at-risk items by assignee</span></div>
+      {owners.length === 0 ? (
+        <div className="emptyline">No at-risk items are assigned right now.</div>
+      ) : (
+        owners.map(([owner, items]) => (
+          <div className="ownerrow" key={owner}>
+            <span className="ownername">{owner}</span>
+            <span className="ownercount">{items.length}</span>
+            <span className="ownerkeys">{items.map((it) => it.t.key).join(", ")}</span>
+          </div>
+        ))
       )}
 
       <div className="foot">
