@@ -6,6 +6,12 @@
     "gongEpics": ["B2BFAST-13413", "B2BFAST-13414"],
     "offboardDate": "2026-08-26",
     "excludeStatuses": ["Cancelled", "Duplicate"],
+    "sprints": [
+      { "name": "Sprint 13", "start": "2026-06-16", "end": "2026-06-29" },
+      { "name": "Sprint 14", "start": "2026-06-30", "end": "2026-07-13" },
+      { "name": "Sprint 15", "start": "2026-07-14", "end": "2026-07-27" },
+      { "name": "Sprint 16", "start": "2026-07-28", "end": "2026-08-10" }
+    ],
     "dueSoonDays": 10,
     "stalledDays": 7,
     "milestoneSequence": ["Discovery", "Configuration", "Template Tagging", "SalesLoft Migration", "Training", "UAT", "Go-Live"]
@@ -54,7 +60,7 @@
       "jql": "project = B2BFAST AND labels = cc-wave2 ORDER BY duedate ASC",
       "lobs": [
         {
-          "id": "asa", "name": "ASA — Agent Sales", "seats": 340, "owner": "Coventry · Hayden", "allWaveTickets": true,
+          "id": "asa", "name": "ASA", "seats": 340, "owner": "Coventry · Hayden", "allWaveTickets": true,
           "milestones": [
             { "name": "Discovery", "status": "complete" },
             { "name": "Configuration", "status": "complete" },

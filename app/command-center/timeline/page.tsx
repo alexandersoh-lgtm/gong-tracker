@@ -21,6 +21,7 @@ export default async function TimelinePage() {
   const { assessments, today } = await loadCommandCenter();
   const todayISO = today.toISOString().slice(0, 10);
   const offboard = ccConfig.offboardDate;
+  const sprints = (ccConfig as { sprints?: { name: string; start: string; end: string }[] }).sprints ?? [];
 
   const months = [
     { iso: "2026-06-15", label: "Jun" },
@@ -47,6 +48,16 @@ export default async function TimelinePage() {
           ))}
           <div className="tlmark today" style={{ left: `${x(todayISO)}%` }}><span>Today</span></div>
           <div className="tlmark off" style={{ left: `${x(offboard)}%` }}><span>Off-board {fmtDate(offboard)}</span></div>
+
+          {/* Sprint ribbon (2-week cadence; S15/S16 are planned placeholders) */}
+          <div className="tlsprintrow">
+            {sprints.map((s) => (
+              <div className={`tlsprint${s.start > todayISO ? " planned" : ""}`} key={s.name} style={{ left: `${x(s.start)}%`, width: `${x(s.end) - x(s.start)}%` }}>
+                <span className="tls-n">{s.name.replace("Sprint ", "S")}</span>
+                <span className="tls-d">{fmtDate(s.start)}–{fmtDate(s.end)}</span>
+              </div>
+            ))}
+          </div>
 
           {assessments.map((a, wi) => {
             const accent = WAVE_ACCENTS[wi % WAVE_ACCENTS.length];

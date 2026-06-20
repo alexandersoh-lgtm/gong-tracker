@@ -1,4 +1,4 @@
-import { loadCommandCenter, WAVE_ACCENTS } from "@/lib/loadCommandCenter";
+import { loadCommandCenter, WAVE_ACCENTS, ccConfig, fmtDate } from "@/lib/loadCommandCenter";
 import { lobMatches, type AssessedTicket } from "@/lib/risk";
 import Tabs from "../Tabs";
 
@@ -57,11 +57,27 @@ export default async function SprintsPage() {
       label: isBacklog ? "Backlog · no sprint" : sprintLabel(name),
       range: sample?.range ?? null,
       active: sample?.state === "active",
+      placeholder: false as boolean,
     };
   });
   list.sort((a, b) =>
     a.isBacklog !== b.isBacklog ? (a.isBacklog ? 1 : -1) : a.active !== b.active ? (a.active ? -1 : 1) : a.name.localeCompare(b.name)
   );
+
+  // Planned sprints from config that have no tickets yet → placeholder cards (S15/S16)
+  const sprintDefs = (ccConfig as { sprints?: { name: string; start: string; end: string }[] }).sprints ?? [];
+  const present = new Set(list.map((g) => g.label));
+  const placeholders = sprintDefs
+    .filter((s) => !present.has(s.name))
+    .sort((a, b) => a.start.localeCompare(b.start))
+    .map((s) => ({
+      name: s.name, label: s.name, isBacklog: false, active: false, placeholder: true as boolean,
+      range: `${fmtDate(s.start)} – ${fmtDate(s.end)}`,
+      items: [] as Row[], total: 0, done: 0, pts: 0, ptsDone: 0, atRisk: 0,
+    }));
+  const dated = list.filter((g) => !g.isBacklog);
+  const backlog = list.filter((g) => g.isBacklog);
+  const ordered = [...dated, ...placeholders, ...backlog];
 
   return (
     <div className="cc">
@@ -69,7 +85,21 @@ export default async function SprintsPage() {
       <Tabs />
       <div className="subhead"><h1>Sprint Board</h1><p>Every tracked ticket grouped by Jira sprint — active sprint first.</p></div>
 
-      {list.map((g) => {
+      {ordered.map((g) => {
+        if (g.placeholder) {
+          return (
+            <div className="spcard placeholder" key={g.label}>
+              <div className="sphd">
+                <div className="sphd-l">
+                  <span className="spname">{g.label}</span>
+                  <span className="spplanned">PLANNED</span>
+                  <span className="sprange">{g.range}</span>
+                </div>
+                <div className="spstats">no tickets yet</div>
+              </div>
+            </div>
+          );
+        }
         const pct = g.pts > 0 ? Math.round((g.ptsDone / g.pts) * 100) : g.total ? Math.round((g.done / g.total) * 100) : 0;
         return (
           <div className="spcard" key={g.label}>
