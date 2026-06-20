@@ -177,6 +177,10 @@ export default async function CommandCenterPage() {
       const reasons: string[] = [];
       if (!t.sprint) reasons.push("No sprint");
       else if (t.sprint.state === "active" && !t.assignee) reasons.push("No owner");
+      if (!t.team) reasons.push("No Team");
+      if (!t.fetTeam) reasons.push("No FET Team");
+      const pc = (t.productCategory ?? "").trim();
+      if (pc !== "Key Initiatives") reasons.push(pc ? `Product: ${pc}` : "No Product Category");
       if (t.flags.includes("stalled")) reasons.push("Stalled");
       if (reasons.length) cleanup.push({ t, wave: a.wave.name.split(" — ")[0], reasons });
     }
@@ -378,7 +382,7 @@ export default async function CommandCenterPage() {
         </>
       )}
 
-      <div className="sec"><span className="idx">03</span><h2>Needs Cleanup</h2><span className="count">{cleanup.length} ITEMS · NO SPRINT / NO OWNER (ACTIVE) / STALLED</span></div>
+      <div className="sec"><span className="idx">03</span><h2>Needs Cleanup</h2><span className="count">{cleanup.length} ITEMS · MISSING SPRINT / OWNER / TEAM / FET / PRODUCT-CAT · STALLED</span></div>
       {cleanup.length === 0 ? (
         <div className="emptyline">{configured ? "No hygiene issues — every active ticket has an owner and recent activity." : "Connect Jira to populate."}</div>
       ) : (

@@ -24,6 +24,9 @@ export interface JiraTicket {
   components: string[];
   sprint: { name: string; range: string | null; state: string | null } | null;
   storyPoints: number | null;
+  team: string | null;
+  fetTeam: string | null;
+  productCategory: string | null;
   url: string;
 }
 
@@ -60,7 +63,15 @@ const FIELDS = [
   "components",
   "customfield_11670", // Sprint
   "customfield_12072", // Story Points
+  "customfield_17773", // Team
+  "customfield_20868", // FET Team
+  "customfield_19801", // Product Category
 ];
+
+function selVal(v: { value?: string; name?: string } | null | undefined): string | null {
+  if (!v) return null;
+  return v.value ?? v.name ?? null;
+}
 
 const MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 function shortDate(iso: string): string {
@@ -98,6 +109,9 @@ interface RawIssue {
     components?: { name?: string }[];
     customfield_11670?: RawSprint[] | null;
     customfield_12072?: number | null;
+    customfield_17773?: { value?: string; name?: string } | null;
+    customfield_20868?: { value?: string; name?: string } | null;
+    customfield_19801?: { value?: string; name?: string } | null;
   };
 }
 
@@ -118,6 +132,9 @@ function mapIssue(issue: RawIssue): JiraTicket {
     components: (f.components ?? []).map((c) => c.name ?? "").filter(Boolean),
     sprint: pickSprint(f.customfield_11670),
     storyPoints: typeof f.customfield_12072 === "number" ? f.customfield_12072 : null,
+    team: selVal(f.customfield_17773),
+    fetTeam: selVal(f.customfield_20868),
+    productCategory: selVal(f.customfield_19801),
     url: `${BASE}/browse/${issue.key}`,
   };
 }
