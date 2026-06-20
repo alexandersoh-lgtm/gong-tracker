@@ -33,9 +33,16 @@ export interface WaveFetchResult {
   configured: boolean;
 }
 
+import ccData from "@/data/command-center.json";
+
 const BASE = process.env.JIRA_BASE_URL?.replace(/\/$/, "");
 const EMAIL = process.env.JIRA_EMAIL;
 const TOKEN = process.env.JIRA_API_TOKEN;
+
+// Statuses to drop everywhere (e.g. Cancelled, Duplicate) — case-insensitive.
+const EXCLUDE_STATUSES = new Set(
+  ((ccData.config as { excludeStatuses?: string[] }).excludeStatuses ?? []).map((s) => s.toLowerCase())
+);
 
 export function jiraConfigured(): boolean {
   return Boolean(BASE && EMAIL && TOKEN);
@@ -167,7 +174,11 @@ export async function searchJira(
         isLast?: boolean;
       };
 
-      for (const issue of data.issues ?? []) collected.push(mapIssue(issue));
+      for (const issue of data.issues ?? []) {
+        const mapped = mapIssue(issue);
+        if (EXCLUDE_STATUSES.has(mapped.status.toLowerCase())) continue; // drop Cancelled / Duplicate
+        collected.push(mapped);
+      }
       nextPageToken = data.isLast ? undefined : data.nextPageToken;
     } while (nextPageToken && collected.length < maxTotal);
 

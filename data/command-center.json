@@ -5,6 +5,7 @@
     "jiraProjectId": "21237",
     "gongEpics": ["B2BFAST-13413", "B2BFAST-13414"],
     "offboardDate": "2026-08-26",
+    "excludeStatuses": ["Cancelled", "Duplicate"],
     "dueSoonDays": 10,
     "stalledDays": 7,
     "milestoneSequence": ["Discovery", "Configuration", "Template Tagging", "SalesLoft Migration", "Training", "UAT", "Go-Live"]
