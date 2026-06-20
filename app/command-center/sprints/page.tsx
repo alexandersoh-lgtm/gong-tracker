@@ -1,5 +1,5 @@
 import { loadCommandCenter, WAVE_ACCENTS } from "@/lib/loadCommandCenter";
-import type { AssessedTicket } from "@/lib/risk";
+import { lobMatches, type AssessedTicket } from "@/lib/risk";
 import Tabs from "../Tabs";
 
 export const revalidate = 60;
@@ -19,18 +19,23 @@ function stCls(c: AssessedTicket["statusCategory"]) {
   return c === "done" ? "stt done" : c === "indeterminate" ? "stt prog" : "stt new";
 }
 
-type Row = { t: AssessedTicket; waveN: number; waveName: string; accent: string };
+type Row = { t: AssessedTicket; waveN: number; waveName: string; accent: string; lob: string };
 
 export default async function SprintsPage() {
   const { assessments } = await loadCommandCenter();
-  const rows: Row[] = assessments.flatMap((a, wi) =>
-    a.tickets.map((t) => ({
-      t,
-      waveN: wi + 1,
-      waveName: a.wave.name.split(" — ")[0],
-      accent: WAVE_ACCENTS[wi % WAVE_ACCENTS.length],
-    }))
-  );
+  const rows: Row[] = assessments.flatMap((a, wi) => {
+    const lobs = a.wave.lobs ?? [];
+    return a.tickets.map((t) => {
+      const matched = lobs.filter((l) => lobMatches(t, l)).map((l) => l.name);
+      return {
+        t,
+        waveN: wi + 1,
+        waveName: a.wave.name.split(" — ")[0],
+        accent: WAVE_ACCENTS[wi % WAVE_ACCENTS.length],
+        lob: matched.length ? matched.join(" / ") : "—",
+      };
+    });
+  });
 
   const groups = new Map<string, Row[]>();
   for (const r of rows) {
@@ -83,12 +88,13 @@ export default async function SprintsPage() {
             </div>
             <div className="spbar"><i style={{ width: `${pct}%` }} /></div>
             <div className="sbrows">
-              {g.items.map(({ t, waveN, accent }) => {
+              {g.items.map(({ t, waveN, accent, lob }) => {
                 const du = dueTxt(t);
                 return (
-                  <div className="sbrow" key={t.key}>
+                  <div className="sbrow spw" key={t.key}>
                     <span className="tk">{t.key}</span>
                     <span className="wvchip" style={{ color: accent, borderColor: accent }}>W{waveN}</span>
+                    <span className="lobcell" title={lob}>{lob}</span>
                     <a className="ts" href={t.url} target="_blank" rel="noopener noreferrer">{t.summary}</a>
                     <span className={stCls(t.statusCategory)}>{t.status}</span>
                     <span className="ta">{t.assignee ?? "—"}</span>
