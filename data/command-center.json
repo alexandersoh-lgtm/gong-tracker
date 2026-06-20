@@ -10,6 +10,18 @@
     "stalledDays": 7,
     "milestoneSequence": ["Discovery", "Configuration", "Template Tagging", "SalesLoft Migration", "Training", "UAT", "Go-Live"]
   },
+  "risks": [
+    { "title": "Gong custom-field mapping unresolved", "detail": "Blocks realized value of Engage email/name defaulting & backfill.", "owner": "Alex Sohn / Gong", "likelihood": "high", "impact": "high", "status": "open", "mitigation": "Confirm Gong solution; track BoB sync stories (13415/13416)." },
+    { "title": "SalesLoft number port-out (dotloop & ShowingTime)", "detail": "Carrier port is the critical-path long pole (4–6 wks); single-shot list, no amendments.", "owner": "Bre'Anna Mikell", "likelihood": "high", "impact": "high", "status": "open", "mitigation": "Submit port requests wk of Jun 22; final audited number list before submission." },
+    { "title": "Sonar data separation (ShowingTime)", "detail": "ShowingTime data historically siloed; shared vs dedicated Sonar instance unresolved.", "owner": "Alex Sohn + Legal", "likelihood": "medium", "impact": "high", "status": "open", "mitigation": "Legal review before Sonar onboarding (B2BFAST-13422)." },
+    { "title": "Preferred has no implementation tickets", "detail": "102 seats, Aug 3 go-live, zero tickets created — untracked work.", "owner": "Andreas Mercado", "likelihood": "medium", "impact": "high", "status": "open", "mitigation": "Create Preferred implementation tickets + tag cc-wave3." },
+    { "title": "SalesLoft hard off-board Aug 26", "detail": "Any team still on SalesLoft at cutover loses outbound tooling with no fallback.", "owner": "Alex Sohn (FET)", "likelihood": "high", "impact": "high", "status": "open", "mitigation": "100% Engage coverage before cutover; weekly coverage audit." }
+  ],
+  "decisions": [
+    { "date": "2026-06-09", "decision": "ASA go-live consolidated to a single date of Jul 20 (was Jun 8 / Jun 22 waves).", "owner": "Alex Sohn" },
+    { "date": "2026-06-09", "decision": "Rentals excluded from the Gong migration (pilot only).", "owner": "Program" },
+    { "date": "2026-06-09", "decision": "Three go-live waves: ZGMI/Mortech Jul 13 · ASA Jul 20 · NewCon/StreetEasy/Preferred/dotloop/ShowingTime Aug 3.", "owner": "Alex Sohn" }
+  ],
   "waves": [
     {
       "id": "wave1-zgmi-mortech",

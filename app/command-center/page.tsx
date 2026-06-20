@@ -13,6 +13,7 @@ import {
 } from "@/lib/risk";
 import MilestoneStepper from "./components/MilestoneStepper";
 import TicketGroups from "./components/TicketGroups";
+import Tabs from "./Tabs";
 
 export const revalidate = 60;
 export const metadata = { title: "Launch Command Center — Gong Engage & Forecast" };
@@ -203,6 +204,8 @@ export default async function CommandCenterPage() {
         <span>Gong Engage &amp; Forecast — Implementation</span>
         <span className="live">{configured ? `Live · Jira ${ccData.config.jiraProject} · ${asOf}` : "Not connected"}</span>
       </div>
+
+      <Tabs />
 
       <div className="head">
         <h1>Launch<br />Command <span>Center</span></h1>

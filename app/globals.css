@@ -228,6 +228,89 @@ body {
 .cc .ownername{font-size:14px;font-weight:600}
 .cc .ownercount{font-family:var(--font-mono),monospace;font-size:13px;font-weight:600;color:var(--red);text-align:center;background:#fdeced;border-radius:6px;padding:2px 0}
 .cc .ownerkeys{font-family:var(--font-mono),monospace;font-size:11.5px;color:var(--accent);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== Command Center sub-tabs + tab views (Sprints / Timeline / Owners / Risks) ===== */
+.cc .cctabs{display:flex;gap:2px;margin:14px 0 6px;border-bottom:1px solid var(--line-d);flex-wrap:wrap}
+.cc .cctabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:9px 14px;border-bottom:2px solid transparent;margin-bottom:-1px}
+.cc .cctabs a:hover{color:var(--ink)}
+.cc .cctabs a.active{color:var(--accent);border-bottom-color:var(--accent)}
+.cc .subhead{margin:24px 0 20px}
+.cc .subhead h1{font-size:30px;font-weight:800;letter-spacing:-.02em;text-transform:none;line-height:1.1}
+.cc .subhead p{font-size:13.5px;color:var(--muted);margin-top:7px}
+
+/* shared compact ticket row for sprint/owner views */
+.cc .sbrow{display:grid;grid-template-columns:90px 38px 1fr 118px 116px 56px 40px;align-items:center;gap:12px;padding:8px 0;border-top:1px solid #f4f4f2;font-size:13px}
+.cc .sbrows .sbrow:first-child{border-top:none}
+.cc .wvchip{font-family:var(--font-mono),monospace;font-size:10px;font-weight:600;border:1px solid;border-radius:5px;padding:1px 0;text-align:center}
+
+/* Sprint board */
+.cc .spcard{border:1px solid var(--line-d);border-radius:14px;padding:16px 20px;margin-bottom:14px}
+.cc .sphd{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cc .sphd-l{display:flex;align-items:center;gap:10px}
+.cc .spname{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.cc .spactive{font-family:var(--font-mono),monospace;font-size:10px;font-weight:700;letter-spacing:.06em;background:var(--accent);color:#fff;padding:2px 7px;border-radius:5px}
+.cc .sprange{font-family:var(--font-mono),monospace;font-size:11.5px;color:var(--muted)}
+.cc .spstats{display:flex;align-items:center;gap:14px;font-size:12.5px;color:var(--muted);font-family:var(--font-mono),monospace}
+.cc .spat{color:var(--red);font-weight:600}
+.cc .sppct{font-weight:700;color:var(--ink)}
+.cc .spbar{height:5px;border-radius:99px;background:var(--line);overflow:hidden;margin:12px 0 14px}
+.cc .spbar > i{display:block;height:100%;background:var(--green)}
+
+/* Owners */
+.cc .ownercard{border:1px solid var(--line-d);border-radius:14px;padding:16px 20px;margin-bottom:14px}
+.cc .ochd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.cc .oname{font-size:15px;font-weight:800}
+.cc .oname.unassigned{color:var(--red)}
+.cc .ostats{display:flex;gap:16px;font-size:12.5px;color:var(--muted)}
+.cc .ostats b{color:var(--ink);font-family:var(--font-mono),monospace}
+.cc .oat{color:var(--red);font-weight:600}
+
+/* Risks & decisions */
+.cc .riskgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:2px}
+.cc .riskcard{border:1px solid var(--line-d);border-radius:14px;border-top-width:3px;border-top-color:var(--red);padding:18px}
+.cc .rc-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cc .rc-title{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.cc .rc-status{font-family:var(--font-mono),monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.cc .rc-status.open{background:#fdeced;color:var(--red)}
+.cc .rc-status.closed{background:#e8f6ee;color:var(--green)}
+.cc .rc-detail{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+.cc .rc-badges{display:flex;gap:8px;margin-top:12px}
+.cc .sev{font-family:var(--font-mono),monospace;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:6px}
+.cc .sev.high{background:#fdeced;color:var(--red)}
+.cc .sev.med{background:#fdf4e3;color:var(--orange)}
+.cc .sev.low{background:#eef0f2;color:var(--slate)}
+.cc .rc-mit{font-size:12.5px;margin-top:12px;color:var(--ink);line-height:1.45}
+.cc .rc-lbl{font-family:var(--font-mono),monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-right:6px}
+.cc .rc-owner{font-size:11.5px;color:var(--muted);margin-top:10px;font-family:var(--font-mono),monospace}
+.cc .decrow{display:grid;grid-template-columns:80px 1fr 170px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.cc .decdate{font-family:var(--font-mono),monospace;font-size:11.5px;color:var(--muted)}
+.cc .decowner{font-size:12px;color:var(--muted);text-align:right}
+
+/* Timeline / Gantt */
+.cc .tl{margin-top:6px}
+.cc .tlaxis{position:relative;height:18px;margin-bottom:2px}
+.cc .tlmonth{position:absolute;font-family:var(--font-mono),monospace;font-size:11px;font-weight:600;color:var(--muted)}
+.cc .tlbody{position:relative;padding:22px 0 6px}
+.cc .tlgrid{position:absolute;top:0;bottom:0;width:1px;background:var(--line);z-index:0}
+.cc .tlmark{position:absolute;top:0;bottom:0;border-left:2px dashed;z-index:2}
+.cc .tlmark.today{border-color:var(--accent)}
+.cc .tlmark.off{border-color:var(--red)}
+.cc .tlmark span{position:absolute;top:0;left:5px;font-family:var(--font-mono),monospace;font-size:10px;font-weight:700;white-space:nowrap}
+.cc .tlmark.today span{color:var(--accent)}
+.cc .tlmark.off span{color:var(--red)}
+.cc .tlrow{position:relative;margin-bottom:20px}
+.cc .tllabel{display:flex;align-items:center;gap:10px;margin-bottom:7px;flex-wrap:wrap}
+.cc .tlname{font-size:14px;font-weight:700}
+.cc .tlmeta{font-family:var(--font-mono),monospace;font-size:11px;color:var(--muted)}
+.cc .tltrack{position:relative;height:22px}
+.cc .tlbar{position:absolute;top:0;height:22px;border:1px solid;border-radius:6px;overflow:hidden;z-index:1}
+.cc .tlbarfill{height:100%}
+.cc .tlflag{position:absolute;top:-1px;font-size:18px;line-height:1;z-index:3;transform:translateX(-5px)}
+.cc .tllegend{display:flex;gap:22px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.cc .tllegend span{display:flex;align-items:center;gap:7px}
+.cc .lg-today{width:16px;border-top:2px dashed var(--accent)}
+.cc .lg-off{width:16px;border-top:2px dashed var(--red)}
+.cc .lg-bar{width:16px;height:8px;background:var(--accent);opacity:.35;border-radius:3px}
 .cc .wname{display:flex;align-items:center}
 .cc .wname .wbadge{margin-right:11px;font-size:12.5px}
 .cc .trow .tk{font-family:var(--font-mono),monospace;font-size:11.5px;color:var(--accent)}
